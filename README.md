@@ -49,7 +49,7 @@ This plugin simply extracts all devices currently in use by the Telldus Tellstic
 and exposes them to HomeKit and you have the ability to turn them on or off.
 And, of course, change the names and group them into rooms on your iPhone or iPad.
 
-But as stated, one switches are supported at the moment.
+But as stated, only switches are supported at the moment.
 
 
 ## Useful Links
