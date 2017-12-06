@@ -56,7 +56,7 @@ telldus.addDeviceEventListener(function(id, status) {
     if (device != undefined) {
         device.status = status;
 
-        debug('EventX:', device);
+        debug('Event:', device);
 
     } else {
         debug('Device', id, 'not found.');
