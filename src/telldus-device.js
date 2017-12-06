@@ -1,6 +1,7 @@
 "use strict";
 
 var tellstick = require('./tellstick.js');
+var telldus = require('telldus');
 
 function debug() {
     console.log.apply(this, arguments);
