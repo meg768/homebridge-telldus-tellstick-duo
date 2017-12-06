@@ -10,8 +10,11 @@ function debug() {
 module.exports = class TelldusPlatform {
 
     constructor(log, config, homebridge) {
-        this.log = log;
+
+        debug = log;
+
         this.config = config;
+        this.log = log;
         this.homebridge = homebridge;
     }
 
@@ -23,7 +26,7 @@ module.exports = class TelldusPlatform {
 
         devices.forEach((device) => {
             if (device.type.toUpperCase() == 'DEVICE')
-                list.push(new TelldusDevice(this.homebridge, device));
+                list.push(new TelldusDevice(this.log, this.config, this.homebridge, device));
         });
 
         callback(list);

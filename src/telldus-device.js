@@ -8,10 +8,14 @@ function debug() {
 
 module.exports = class TelldusDevice {
 
-    constructor(homebridge, device) {
-        debug(device);
-        this.device = device;
+    constructor(log, config, homebridge, device) {
+
+        debug = log;
+
+        this.log = log;
+        this.config = config;
         this.homebridge = homebridge;
+        this.device = device;
 
         // A device must have a name present
         this.name = device.name;
