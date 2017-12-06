@@ -2,7 +2,8 @@
 Homebridge for Telldus Tellstick Duo
 
 A HomeKit plugin for anyone with a working setup using a Telldus Tellstick Duo.
-
+This module uses the NPM module https://www.npmjs.com/package/telldus instead of
+the **tdtool** command.
 
 
 ## config.json
