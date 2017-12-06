@@ -45,6 +45,5 @@ you will se this plugin in your iPhone Home app.
 
 ## Useful Links
 
-    - https://github.com/nfarina/homebridge
-    - http://blog.theodo.fr/2017/08/make-siri-perfect-home-companion-devices-not-supported-apple-homekit/
-    
+* https://github.com/nfarina/homebridge
+* http://blog.theodo.fr/2017/08/make-siri-perfect-home-companion-devices-not-supported-apple-homekit/
