@@ -20,7 +20,7 @@ Then install this plugin.
 
 Configure your **~/.homebridge/config.json** with the following platform.
 
-## ~/.homebridge/config.json
+## Configuration File
 
     {
         "bridge": {
