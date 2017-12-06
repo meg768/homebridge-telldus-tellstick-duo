@@ -1,5 +1,5 @@
 # homebridge-telldus-tellstick-duo
-Homebridge for Telldus Tellstick Duo
+Homebridge for Telldus Tellstick Duo.
 
 A HomeBridge plugin for anyone with a working setup using a Telldus Tellstick Duo.
 This module uses the npm module https://www.npmjs.com/package/telldus instead of
