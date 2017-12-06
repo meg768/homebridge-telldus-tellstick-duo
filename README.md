@@ -1,7 +1,11 @@
 # homebridge-telldus-tellstick-duo
 Homebridge for Telldus Tellstick Duo
 
+A HomeKit plugin for anyone with a working setup using a Telldus Tellstick Duo.
 
+
+
+## config.json
 
     {
         "bridge": {
