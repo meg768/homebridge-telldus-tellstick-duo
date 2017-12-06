@@ -1,7 +1,7 @@
 "use strict";
 
 var telldus = require('telldus');
-var sprintf = require('yow/sprintf');
+var sprintf = require('sprintf-js').sprintf;
 var devices = undefined;
 
 /*
