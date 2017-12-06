@@ -40,5 +40,11 @@ Configure your **~/.homebridge/config.json** with the following platform.
 
     }
 
-After this, start **homebridge**, scan the code with your iPhone, and hopefully
+After this, start **homebridge**, scan the presented code with your iPhone, and hopefully
 you will se this plugin in your iPhone Home app.
+
+## Useful Links
+
+    - https://github.com/nfarina/homebridge
+    - http://blog.theodo.fr/2017/08/make-siri-perfect-home-companion-devices-not-supported-apple-homekit/
+    
