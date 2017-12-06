@@ -8,11 +8,13 @@ function debug() {
     console.log.apply(this, arguments);
 }
 
-
 function getDevices() {
     return devices;
 }
 
+//
+// Find the device by id or name.
+//
 
 function findDevice(id) {
 
@@ -28,6 +30,11 @@ function findDevice(id) {
     };
 }
 
+//
+// Get the device by id or name.
+// Throw an error if not found.
+//
+
 function getDevice(id) {
 
     var device = findDevice(id);
@@ -38,19 +45,24 @@ function getDevice(id) {
         return device;
 }
 
+//
+// Add an event-listener so the status of the device is updated
+//
+
 telldus.addDeviceEventListener(function(id, status) {
 
     var device = findDevice(id);
 
     if (device != undefined) {
         device.status = status;
-        console.log('Event:', device);
+
+        debug('Event:', device);
 
     } else {
-        console.log('Device', id, 'not found.');
+        debug('Device', id, 'not found.');
     }
 });
 
 module.exports.getDevices = getDevices;
-module.exports.getDevice = getDevice;
+module.exports.getDevice  = getDevice;
 module.exports.findDevice = findDevice;
