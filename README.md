@@ -18,9 +18,10 @@ Then install this plugin.
 
     $ sudo npm install homebridge-telldus-tellstick-duo -g
 
+## Configuration File
+
 Configure your **~/.homebridge/config.json** with the following platform.
 
-## Configuration File
 
     {
         "bridge": {
