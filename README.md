@@ -46,8 +46,8 @@ you will se this plugin in your iPhone Home app.
 ## What This Plugin Does
 
 This plugin simply extracts all devices currently in use by the Telldus Tellstick Duo
-and exposes them to HomeKit and you have the ability to turn them on or off.
-And, of course, change the names and group them into rooms on your iPhone or iPad.
+and exposes them to HomeKit and you have the ability to turn the switches on or off.
+And, of course, you may change the device names and group them into rooms on your iPhone or iPad.
 
 But as stated, only switches are supported at the moment.
 
