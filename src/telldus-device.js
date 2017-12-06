@@ -76,8 +76,6 @@ module.exports = class TelldusDevice {
         characteristic.on('get', this.getState.bind(this));
         characteristic.on('set', this.setState.bind(this));
 
-        debug('NEW NAME', this.device.name);
-
         return [info, service];
     }
 
