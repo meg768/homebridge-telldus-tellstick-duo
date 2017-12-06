@@ -1,7 +1,7 @@
 # homebridge-telldus-tellstick-duo
 Homebridge for Telldus Tellstick Duo
 
-A HomeKit plugin for anyone with a working setup using a Telldus Tellstick Duo.
+A HomeBridge plugin for anyone with a working setup using a Telldus Tellstick Duo.
 This module uses the npm module https://www.npmjs.com/package/telldus instead of
 the **tdtool** command line utility that the npm module **homebridge-telldus-tdtool** uses,
 see https://www.npmjs.com/package/homebridge-telldus-tdtool.
@@ -42,6 +42,15 @@ Configure your **~/.homebridge/config.json** with the following platform.
 
 After this, start **homebridge**, scan the presented code with your iPhone, and hopefully
 you will se this plugin in your iPhone Home app.
+
+## What This Plugin Does
+
+This plugin simply extracts all devices currently in use by the Telldus Tellstick Duo
+and exposes them to HomeKit and you have the ability to turn them on or off.
+And, of course, change the names and group them into rooms on your iPhone or iPad.
+
+But as stated, one switches are supported at the moment.
+
 
 ## Useful Links
 
