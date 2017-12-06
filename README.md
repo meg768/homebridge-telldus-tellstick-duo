@@ -36,3 +36,6 @@ Configure your **~/homebridge/config.json** with the following platform.
 
 
     }
+
+After this, start **homebridge**, scan the code with your iPhone, and hopefully
+you will se this plugin in your iPhone Home app.
