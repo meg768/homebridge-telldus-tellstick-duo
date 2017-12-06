@@ -18,9 +18,9 @@ Then install this plugin.
 
     $ sudo install homebridge-telldus-tellstick-duo -g
 
-Configure your **~/homebridge/config.json** with the following platform.
+Configure your **~/.homebridge/config.json** with the following platform.
 
-## ~/homebridge/config.json
+## ~/.homebridge/config.json
 
     {
         "bridge": {
