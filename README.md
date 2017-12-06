@@ -16,7 +16,7 @@ Please refer to https://www.npmjs.com/package/telldus for this.
 Secondly, install Homebridge. See https://www.npmjs.com/package/homebridge for more information.
 Then install this plugin.
 
-    $ sudo install homebridge-telldus-tellstick-duo -g
+    $ sudo npm install homebridge-telldus-tellstick-duo -g
 
 Configure your **~/.homebridge/config.json** with the following platform.
 
