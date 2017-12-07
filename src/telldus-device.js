@@ -33,7 +33,7 @@ module.exports = class TelldusDevice {
 
     identify(callback) {
         debug('Identify called.');
-
+/*
         if (this.device.status.name == 'ON') {
             this.turnOff();
             this.turnOn();
@@ -42,7 +42,7 @@ module.exports = class TelldusDevice {
             this.turnOn();
             this.turnOff();
         }
-
+*/
         callback();
 
     }
