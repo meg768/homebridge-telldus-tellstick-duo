@@ -51,10 +51,10 @@ And, of course, you may change the device names and group them into rooms on you
 
 The following Telldus models are supported
 
-    * selflearning-switch
-    * codeswitch
-    * temperature
-    * temperaturehumidity
+- selflearning-switch
+- codeswitch
+- temperature
+- temperaturehumidity
 
 
 ## Useful Links
