@@ -12,9 +12,9 @@
         "platform": "Telldus Tellstick Duo",
         "name": "Telldus Tellstick Duo",
 
-        "exclude": {
-            ["PS-01", "PS-02", "PS-03"]
-        }
+        "exclude": [
+            "PS-01", "PS-02", "PS-03"
+        ]
     }]
 
 
