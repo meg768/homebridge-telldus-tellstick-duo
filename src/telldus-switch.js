@@ -17,8 +17,29 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
 
     getServices() {
-        var services = super.getServices();
-        var service = this.config.type == 'switch' ? new this.Service.Switch(this.name) : new this.Service.Lightbulb(this.name);
+        var service, services = super.getServices();
+
+        var type = this.config.type || '';
+
+        switch(type.toLowerCase()) {
+            case: 'switch': {
+                service = new this.Service.Switch(this.name);
+                break;
+            }
+            case: 'lightbulb': {
+                service = new this.Service.Lightbulb(this.name);
+                break;
+            }
+            case: 'motionsensor': {
+                service = new this.Service.MotionSensor(this.name);
+                break;
+            }
+            default: {
+                service = new this.Service.Lightbulb(this.name);
+                break;
+            }
+        }
+
         var characteristic = service.getCharacteristic(this.Characteristic.On);
 
         characteristic.on('get', (callback) => {

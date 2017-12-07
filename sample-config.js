@@ -39,28 +39,28 @@
             },
 
             "VS-01": {
-                "type": "switch",
+                "type": "lightbulb",
                 "name": "Terassen"
             },
 
             "VS-02": {
-                "type": "switch",
-                "name": "Matrummet"
+                "type": "lightbulb",
+                "name": "Snickarrummet"
             },
 
             "VS-03": {
-                "type": "switch",
-                "name": "Vardagsrummet"
+                "type": "lightbulb",
+                "name": "Matrummet"
             },
 
             "VS-04": {
-                "type": "switch",
-                "name": "VS-04 - Vet inte!"
+                "type": "lightbulb",
+                "name": "Vardagsrummet"
             },
 
             "VS-05": {
                 "type": "switch",
-                "name": "VS-05 - Vet inte!"
+                "name": "Larmet"
             },
 
             "RV-01": {
