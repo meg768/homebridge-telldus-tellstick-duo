@@ -85,6 +85,9 @@ function init() {
                     device.temperature = entry.value;
                 if (entry.type == 'HUMIDITY')
                     device.humidity = entry.value;
+
+                device.timestamp = entry.timestamp;
+
             });
 
         }
@@ -92,7 +95,7 @@ function init() {
         devices.push(device);
     });
 
-    telldus.addSensorEventListener(function(deviceId, protocol, model, type, value, timestamp) {
+    telldus.addSensorEventListener(function(id, protocol, model, type, value, timestamp) {
 
         var device = findDevice(id);
 
@@ -106,6 +109,8 @@ function init() {
                 if (type == 2)
                     device.humidity = value;
             }
+
+            device.timestamp = timestamp;
 
             debug('Sensor event:', device);
 
