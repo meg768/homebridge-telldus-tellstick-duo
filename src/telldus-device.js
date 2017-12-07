@@ -13,7 +13,7 @@ module.exports = class TelldusDevice {
         debug = log;
 
         this.log = log;
-        this.config = config;
+        this.config = config && config[device.name] ? config[device.name] : {};
         this.homebridge = homebridge;
         this.device = device;
 
@@ -70,13 +70,32 @@ module.exports = class TelldusDevice {
         info.setCharacteristic(Characteristic.Model, this.device.model);
         info.setCharacteristic(Characteristic.SerialNumber, "123-456-789");
 
-        var service = new Service.Lightbulb(this.device.name);
-        var characteristic = service.getCharacteristic(Characteristic.On);
+        if (this.device.name == 'RV-01') {
+            info.setCharacteristic(Characteristic.Name, "Rörelsevakt");
 
-        characteristic.on('get', this.getState.bind(this));
-        characteristic.on('set', this.setState.bind(this));
+            var service = new Service.MotionSensor(this.device.name);
+            var characteristic = service.getCharacteristic(Characteristic.MotionDetected);
 
-        return [info, service];
+            characteristic.on('get', (callback) => {
+                debug('Motion!');
+                callback(null, this.device.status.name == 'ON');
+            });
+
+            return [info, service];
+
+        }
+        else {
+            var service = new Service.Lightbulb(this.device.name);
+            var characteristic = service.getCharacteristic(Characteristic.On);
+
+            characteristic.on('get', this.getState.bind(this));
+            characteristic.on('set', this.setState.bind(this));
+
+            return [info, service];
+
+        }
+
+
     }
 
 };
