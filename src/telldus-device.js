@@ -35,12 +35,12 @@ module.exports = class TelldusDevice {
         debug('Identify called.');
 
         if (this.device.status.name == 'ON') {
-            turnOff();
-            turnOn();
+            this.turnOff();
+            this.turnOn();
         }
         else {
-            turnOn();
-            turnOff();
+            this.turnOn();
+            this.turnOff();
         }
 
     }
