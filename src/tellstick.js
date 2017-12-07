@@ -135,6 +135,8 @@ function init() {
         }
     });
 
+    debug(JSON.stringify(devices, null, '  '));
+
 }
 
 init();
