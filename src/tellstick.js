@@ -71,30 +71,28 @@ function init() {
     // Add sensors
     telldus.getSensorsSync().forEach((item) => {
 
-            var device = {};
+        var device = {};
 
-            device.id = item.id;
-            device.name = sprintf('Sensor %d', item.id);
-            device.type = 'sensor';
-            device.protocol = item.protocol;
-            device.model = item.model;
+        device.id = item.id;
+        device.name = sprintf('Sensor %d', item.id);
+        device.type = 'sensor';
+        device.protocol = item.protocol;
+        device.model = item.model;
 
-            if (item.data) {
-                item.data.forEach((entry) => {
-                    if (entry.type == 'TEMPERATURE')
-                        device.temperature = entry.value;
-                    if (entry.type == 'HUMIDITY')
-                        device.humidity = entry.value;
-                });
+        if (item.data) {
+            item.data.forEach((entry) => {
+                if (entry.type == 'TEMPERATURE')
+                    device.temperature = entry.value;
+                if (entry.type == 'HUMIDITY')
+                    device.humidity = entry.value;
+            });
 
-            }
-
-            devices.push(device);
         }
+
+        devices.push(device);
     });
 
     telldus.addSensorEventListener(function(deviceId, protocol, model, type, value, timestamp) {
-        console.log('New sensor event received: ', deviceId, protocol, model, type, value, timestamp);
 
         var device = findDevice(id);
 
