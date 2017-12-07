@@ -49,7 +49,7 @@ module.exports = class TelldusDevice {
 
     getState(callback) {
         debug('Returning state', this.device);
-        return callback(null, this.device.status.name == 'ON');
+        return callback(null, this.device.state == 'ON');
     }
 
     setState(value, callback) {
@@ -78,7 +78,7 @@ module.exports = class TelldusDevice {
 
             characteristic.on('get', (callback) => {
                 debug('Motion!');
-                callback(null, this.device.status.name == 'ON');
+                callback(null, this.device.state == 'ON');
             });
 
             return [info, service];
