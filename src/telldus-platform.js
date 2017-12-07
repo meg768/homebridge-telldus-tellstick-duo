@@ -15,7 +15,7 @@ module.exports = class TelldusPlatform {
     constructor(log, config, homebridge) {
 
         this.config = config;
-        this.log = debug;
+        this.log = log;
         this.homebridge = homebridge;
     }
 
