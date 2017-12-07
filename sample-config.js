@@ -64,12 +64,12 @@
             },
 
             "RV-01": {
-                "type": "motionsensor",
+                "type": "MotionSensor",
                 "name": "Rörelsevakt - Kontoret"
             },
 
             "RV-02": {
-                "type": "motionsensor",
+                "type": "MotionSensor",
                 "name": "Rörelsevakt - Vardagsrummet"
             },
 
