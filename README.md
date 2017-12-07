@@ -6,7 +6,6 @@ This module uses the npm module https://www.npmjs.com/package/telldus instead of
 the **tdtool** command line utility that the npm module **homebridge-telldus-tdtool** uses,
 see https://www.npmjs.com/package/homebridge-telldus-tdtool.
 
-Currently, it only supports switch devices.
 
 ## Installation
 
@@ -50,7 +49,12 @@ This plugin simply extracts all devices currently in use by the Telldus Tellstic
 and exposes them to HomeKit and you have the ability to turn the switches on or off.
 And, of course, you may change the device names and group them into rooms on your iPhone or iPad.
 
-But as stated, only switches are supported at the moment.
+The following Telldus models are supported
+
+    * selflearning-switch
+    * codeswitch
+    * temperature
+    * temperaturehumidity
 
 
 ## Useful Links
