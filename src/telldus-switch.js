@@ -5,10 +5,6 @@ var telldus = require('telldus');
 
 module.exports = class TelldusSwitch extends TelldusAccessory {
 
-    constructor(log, config, homebridge, device) {
-        super(log, config, homebridge, device);
-    }
-
     turnOn() {
         this.log('Turning on', this.device.name);
         telldus.turnOnSync(this.device.id);
@@ -22,7 +18,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
     getServices() {
         var services = super.getServices();
-        var service = new this.Service.Lightbulb(this.name);
+        var service = config.type == 'switch' ? new this.Service.Switch(this.name) : new this.Service.Lighbulb(this.name);
         var characteristic = service.getCharacteristic(this.Characteristic.On);
 
         characteristic.on('get', (callback) => {

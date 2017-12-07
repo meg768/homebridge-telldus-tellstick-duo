@@ -39,22 +39,27 @@
             },
 
             "VS-01": {
+                "type": "switch",
                 "name": "Terassen"
             },
 
             "VS-02": {
+                "type": "switch",
                 "name": "Matrummet"
             },
 
             "VS-03": {
+                "type": "switch",
                 "name": "Vardagsrummet"
             },
 
             "VS-04": {
+                "type": "switch",
                 "name": "VS-04 - Vet inte!"
             },
 
             "VS-05": {
+                "type": "switch",
                 "name": "VS-05 - Vet inte!"
             },
 
@@ -74,10 +79,12 @@
             },
 
             "RK-01": {
+                "type": "doorbell",
                 "name": "Ringklockan"
             },
 
             "SR-01": {
+                "type": "motionsensor",
                 "name": "Skymmningsrelä"
             }
 
