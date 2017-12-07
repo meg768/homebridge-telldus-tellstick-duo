@@ -16,37 +16,47 @@ module.exports = class TelldusPlatform {
     }
 
     accessories(callback) {
-        this.log('Loading devices...');
+        this.log('Loading accessories...');
 
         var devices = tellstick.getDevices();
-        var list = [];
+        var accessories = [];
 
         devices.forEach((device) => {
-            switch(device.model) {
-                case 'selflearning-switch': {
-                    list.push(new TelldusSwitch(this.log, this.config, this.homebridge, device));
-                    break;
-                }
-                case 'codeswitch': {
-                    list.push(new TelldusSwitch(this.log, this.config, this.homebridge, device));
-                    break;
-                }
-                case 'temperature': {
-                    list.push(new TelldusThermometer(this.log, this.config, this.homebridge, device));
-                    break;
-                }
-                case 'temperaturehumidity': {
-                    list.push(new TelldusThermometerHygrometer(this.log, this.config, this.homebridge, device));
-                    break;
-                }
-                default: {
-                    this.log('Ignoring:', device);
-                    break;
+            var exclude = false;
+
+            if (this.config.exclude) {
+                if (this.config.exclude.indexOf(device.name) >= 0)
+                    exclude = true;
+            }
+
+            if (!exclude) {
+                switch(device.model) {
+                    case 'selflearning-switch': {
+                        accessories.push(new TelldusSwitch(this.log, this.config, this.homebridge, device));
+                        break;
+                    }
+                    case 'codeswitch': {
+                        accessories.push(new TelldusSwitch(this.log, this.config, this.homebridge, device));
+                        break;
+                    }
+                    case 'temperature': {
+                        accessories.push(new TelldusThermometer(this.log, this.config, this.homebridge, device));
+                        break;
+                    }
+                    case 'temperaturehumidity': {
+                        accessories.push(new TelldusThermometerHygrometer(this.log, this.config, this.homebridge, device));
+                        break;
+                    }
+                    default: {
+                        this.log('Ignoring:', device);
+                        break;
+                    }
                 }
             }
+
         });
 
-        callback(list);
+        callback(accessories);
 
     }
 }
