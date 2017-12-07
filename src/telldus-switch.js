@@ -22,15 +22,15 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         var type = this.config.type || '';
 
         switch(type.toLowerCase()) {
-            case: 'switch': {
+            case 'switch': {
                 service = new this.Service.Switch(this.name);
                 break;
             }
-            case: 'lightbulb': {
+            case 'lightbulb': {
                 service = new this.Service.Lightbulb(this.name);
                 break;
             }
-            case: 'motionsensor': {
+            case 'motionsensor': {
                 service = new this.Service.MotionSensor(this.name);
                 break;
             }
