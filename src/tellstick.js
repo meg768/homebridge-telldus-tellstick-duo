@@ -2,7 +2,7 @@
 
 var telldus = require('telldus');
 var sprintf = require('sprintf-js').sprintf;
-var devices = telldus.getDevicesSync();
+var devices = [];
 
 function debug() {
     //console.log.apply(this, arguments);
@@ -45,24 +45,95 @@ function getDevice(id) {
         return device;
 }
 
-//
-// Add an event-listener so the status of the device is updated
-//
+function init() {
 
-telldus.addDeviceEventListener(function(id, status) {
 
-    var device = findDevice(id);
+    // Add normal devices
 
-    if (device != undefined) {
-        device.status = status;
+    telldus.getDevicesSync().forEach((item) => {
+        if (item.type == 'DEVICE') {
 
-        debug('Event:', device);
+            var device = {};
 
-    } else {
-        debug('Device', id, 'not found.');
-    }
-});
+            device.id = item.id;
+            device.name = item.name;
+            device.type = 'device';
+            device.protocol = item.protocol;
+            device.model = item.model;
+
+            if (item.status)
+                device.state = item.status.name;
+
+            push(device);
+        }
+    });
+
+    // Add sensors
+    telldus.getSensorsSync().forEach((item) => {
+
+            var device = {};
+
+            device.id = item.id;
+            device.name = sprintf('Sensor %d', item.id);
+            device.type = 'sensor';
+            device.protocol = item.protocol;
+            device.model = item.model;
+
+            if (item.data) {
+                item.data.forEach((entry) => {
+                    if (entry.type == 'TEMPERATURE')
+                        device.temperature = entry.value;
+                    if (entry.type == 'HUMIDITY')
+                        device.humidity = entry.value;
+                });
+
+            }
+
+            devices.push(device);
+        }
+    });
+
+    telldus.addSensorEventListener(function(deviceId, protocol, model, type, value, timestamp) {
+        console.log('New sensor event received: ', deviceId, protocol, model, type, value, timestamp);
+
+        var device = findDevice(id);
+
+        if (device != undefined) {
+            if (protocol == 'temperature')
+                device.temperature = value;
+
+            if (protocol == 'temperaturehumidity') {
+                if (type == 1)
+                    device.temperature = value;
+                if (type == 2)
+                    device.humidity = value;
+            }
+
+            debug('Sensor:', device);
+
+        } else {
+            debug('Device', id, 'not found.');
+        }
+
+    });
+
+    telldus.addDeviceEventListener(function(id, status) {
+
+        var device = findDevice(id);
+
+        if (device != undefined) {
+            if (status.name)
+                device.state = status.name;
+
+            debug('Event:', device);
+
+        } else {
+            debug('Device', id, 'not found.');
+        }
+    });
+
+}
 
 module.exports.getDevices = getDevices;
-module.exports.getDevice  = getDevice;
+module.exports.getDevice = getDevice;
 module.exports.findDevice = findDevice;

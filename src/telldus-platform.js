@@ -25,8 +25,11 @@ module.exports = class TelldusPlatform {
         var list = [];
 
         devices.forEach((device) => {
-            if (device.type.toUpperCase() == 'DEVICE')
+            if (device.type == 'device')
                 list.push(new TelldusDevice(this.log, this.config, this.homebridge, device));
+            else {
+                debug('*******************Ignoring', device);
+            }
         });
 
         callback(list);
