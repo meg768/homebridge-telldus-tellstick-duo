@@ -109,7 +109,7 @@ function init() {
                     device.humidity = value;
             }
 
-            debug('Sensor:', device);
+            debug('Sensor event:', device);
 
         } else {
             debug('Device', id, 'not found.');
@@ -125,7 +125,7 @@ function init() {
             if (status.name)
                 device.state = status.name;
 
-            debug('Event:', device);
+            debug('Device event:', device);
 
         } else {
             debug('Device', id, 'not found.');
@@ -133,6 +133,8 @@ function init() {
     });
 
 }
+
+init();
 
 module.exports.getDevices = getDevices;
 module.exports.getDevice = getDevice;
