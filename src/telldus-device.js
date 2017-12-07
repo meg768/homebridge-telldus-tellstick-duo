@@ -43,6 +43,8 @@ module.exports = class TelldusDevice {
             this.turnOff();
         }
 
+        callback();
+
     }
 
     getState(callback) {
