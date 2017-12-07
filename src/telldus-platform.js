@@ -6,12 +6,16 @@ var TelldusThermometer = require('./telldus-thermometer.js');
 var TelldusHygrometer = require('./telldus-hygrometer.js');
 var TelldusThermometerHygrometer = require('./telldus-thermometer-hygrometer.js');
 
+function debug() {
+    console.log.apply(this, arguments);
+}
+
 module.exports = class TelldusPlatform {
 
     constructor(log, config, homebridge) {
 
         this.config = config;
-        this.log = log;
+        this.log = debug;
         this.homebridge = homebridge;
     }
 
