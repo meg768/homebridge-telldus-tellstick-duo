@@ -64,7 +64,7 @@ function init() {
             if (item.status)
                 device.state = item.status.name;
 
-            push(device);
+            devices.push(device);
         }
     });
 
