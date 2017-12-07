@@ -5,7 +5,7 @@ var sprintf = require('sprintf-js').sprintf;
 var devices = [];
 
 function debug() {
-    //console.log.apply(this, arguments);
+    console.log.apply(this, arguments);
 }
 
 function getDevices() {
