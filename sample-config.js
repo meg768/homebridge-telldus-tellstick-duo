@@ -15,7 +15,11 @@
         "devices": {
             "RV-01": {
                 "type": "MotionSensor",
-                "name": "Rörelsevakt"
+                "name": "Rörelsevakt på kontoret"
+            },
+            "RV-02": {
+                "type": "MotionSensor",
+                "name": "Rörelsevakt i källaren"
             }
         }
     }]
