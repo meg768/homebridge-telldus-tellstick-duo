@@ -20,7 +20,7 @@
             "FK-01-02": {
                 "name": "Sänglampa - Kontoret"
             },
-            "FK-01-02": {
+            "FK-01-03": {
                 "name": "Övriga - Kontoret"
             },
 
@@ -30,7 +30,7 @@
             "FK-02-02": {
                 "name": "Främre lampor - Biorummet"
             },
-            "FK-01-02": {
+            "FK-02-03": {
                 "name": "Bakre lampor - Biorummet"
             },
 
@@ -50,6 +50,14 @@
                 "name": "Vardagsrummet"
             },
 
+            "VS-04": {
+                "name": "VS-04 - Vet inte!"
+            },
+
+            "VS-05": {
+                "name": "VS-05 - Vet inte!"
+            },
+
             "RV-01": {
                 "type": "motionsensor",
                 "name": "Rörelsevakt - Kontoret"
@@ -60,9 +68,17 @@
                 "name": "Rörelsevakt - Vardagsrummet"
             },
 
-            "RV-02": {
+            "RV-03": {
                 "type": "motionsensor",
                 "name": "Rörelsevakt - Biorummet"
+            },
+
+            "RK-01": {
+                "name": "Ringklockan"
+            },
+
+            "SR-01": {
+                "name": "Skymmningsrelä"
             }
 
         },
