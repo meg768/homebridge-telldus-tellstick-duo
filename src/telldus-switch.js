@@ -20,29 +20,24 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
     }
 
 
-    getState(callback) {
-        this.log('Returning state', this.device);
-        return callback(null, this.device.state == 'ON');
-    }
-
-    setState(value, callback) {
-
-        if (value)
-            this.turnOn();
-        else
-            this.turnOff();
-
-        callback();
-    }
-
     getServices() {
         var services = super.getServices();
-
         var service = new this.Service.Lightbulb(this.name);
         var characteristic = service.getCharacteristic(this.Characteristic.On);
 
-        characteristic.on('get', this.getState.bind(this));
-        characteristic.on('set', this.setState.bind(this));
+        characteristic.on('get', (callback) => {
+            callback(null, this.device.state == 'ON');
+        });
+
+        characteristic.on('set', (value, callback) => {
+
+            if (value)
+                this.turnOn();
+            else
+                this.turnOff();
+
+            callback();
+        });
 
         services.push(service);
 

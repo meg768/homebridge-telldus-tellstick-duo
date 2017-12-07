@@ -2,6 +2,7 @@
 
 var tellstick = require('./tellstick.js');
 var TelldusSwitch = require('./telldus-switch.js');
+var TelldusThermometer = require('./telldus-thermometer.js');
 
 function debug() {
     console.log.apply(this, arguments);
@@ -25,10 +26,19 @@ module.exports = class TelldusPlatform {
         var list = [];
 
         devices.forEach((device) => {
-            if (device.type == 'device')
-                list.push(new TelldusSwitch(debug, this.config, this.homebridge, device));
-            else {
-                debug('*******************Ignoring', device);
+            switch(device.model) {
+                case 'selflearning-switch': {
+                    list.push(new TelldusSwitch(debug, this.config, this.homebridge, device));
+                    break;
+                }
+                case 'temperature': {
+                    list.push(new TelldusSwitch(debug, this.config, this.homebridge, device));
+                    break;
+                }
+                default: {
+                    this.log('*******************Ignoring', device);
+                    break;
+                }
             }
         });
 
