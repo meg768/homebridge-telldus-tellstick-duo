@@ -12,6 +12,12 @@
         "platform": "Telldus Tellstick Duo",
         "name": "Telldus Tellstick Duo",
 
+        "devices": {
+            "RV-01": {
+                "type": "MotionSensor"
+            }
+        },
+
         "exclude": [
             "PS-01", "PS-02", "PS-03"
         ]

@@ -9,7 +9,7 @@ module.exports = class TelldusAccessory {
             throw new Error('All devices must have a name.');
 
         this.log = log;
-        this.config = config && config.devices && config.devices[device.name] ? config.devices[device.name] : {};
+        this.config = config;
         this.homebridge = homebridge;
         this.device = device;
         this.Characteristic = homebridge.hap.Characteristic;
@@ -30,7 +30,7 @@ module.exports = class TelldusAccessory {
 
         accessoryInfo.setCharacteristic(this.Characteristic.Manufacturer, this.device.protocol);
         accessoryInfo.setCharacteristic(this.Characteristic.Model, this.device.model);
-        accessoryInfo.setCharacteristic(this.Characteristic.SerialNumber, "123-456-789");
+        accessoryInfo.setCharacteristic(this.Characteristic.SerialNumber, this.device.id);
 
         return [accessoryInfo];
 

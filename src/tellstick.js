@@ -103,6 +103,9 @@ function init() {
             if (protocol == 'temperature')
                 device.temperature = value;
 
+            if (protocol == 'humidity')
+                device.humidity = value;
+
             if (protocol == 'temperaturehumidity') {
                 if (type == 1)
                     device.temperature = value;
