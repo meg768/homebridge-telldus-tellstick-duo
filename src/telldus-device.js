@@ -73,7 +73,7 @@ module.exports = class TelldusDevice {
         info.setCharacteristic(Characteristic.SerialNumber, "123-456-789");
 
         if (this.config.type == 'MotionSensor') {
-            var service = new Service.MotionSensor(this.device.name);
+            var service = new Service.MotionSensor(this.name);
             var characteristic = service.getCharacteristic(Characteristic.MotionDetected);
 
             characteristic.on('get', (callback) => {
@@ -85,7 +85,7 @@ module.exports = class TelldusDevice {
 
         }
         else {
-            var service = new Service.Lightbulb(this.device.name);
+            var service = new Service.Lightbulb(this.name);
             var characteristic = service.getCharacteristic(Characteristic.On);
 
             characteristic.on('get', this.getState.bind(this));
