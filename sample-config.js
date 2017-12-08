@@ -8,25 +8,7 @@
 
     "description": "This is an example configuration file",
 
-    "platforms": [{
-            "platform": "IFTTT",
-            "name": "IFTTT",
-            "makerkey": "AhWhvxjx6Rdr_gTdS9l42",
-            "accessories": [{
-                "name": "Accessory 1",
-                "buttons": [{
-                    "caption": "A1-1",
-                    "trigger": "foo"
-                }, {
-                    "caption": "A1-2",
-                    "trigger": "bar"
-                }, {
-                    "caption": "A1-3",
-                    "trigger": "faz"
-                }]
-            }]
-        },
-
+    "platforms": [
         {
             "platform": "Telldus Tellstick Duo",
             "name": "Telldus Tellstick Duo",
@@ -37,14 +19,20 @@
             ],
 
             "devices": {
-                "Sensor 135": {
+                "Sensor-135": {
                     "name": "Temperatur"
                 },
                 "RV-01": {
-                    "type": "MotionSensor"
+                    "type": "MotionSensor",
+                    "triggerLength": 10
                 },
                 "RV-02": {
-                    "type": "MotionSensor"
+                    "type": "MotionSensor",
+                    "triggerLength": 10
+                },
+                "RV-03": {
+                    "type": "MotionSensor",
+                    "triggerLength": 10
                 }
             }
 

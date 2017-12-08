@@ -21,7 +21,6 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         });
 
         this.device.on('change', () => {
-            this.log('Motion detected');
 
             // Clear previous timer
             if (timer != null)
