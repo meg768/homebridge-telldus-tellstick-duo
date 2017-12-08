@@ -18,6 +18,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         characteristic.on('get', (callback) => {
             callback(null, state);
+            callback(null, Boolean(MOTION_SENSOR.motionDetected));
         });
 
         this.device.on('change', () => {
@@ -26,19 +27,22 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
             if (timer != null)
                 clearTimeout(timer);
 
-            // Indicate movement
-            this.log('Triggering movement.');
-            state = true;
-            characteristic.updateValue(state);
-
-            timer = setTimeout(() => {
-                this.log('Resetting movement.');
-
-                // Turn off movement
-                state = false;
+            setTimeout(() => {
+                // Indicate movement
+                this.log('Triggering movement.');
+                state = true;
                 characteristic.updateValue(state);
 
-            }, duration * 1000);
+                timer = setTimeout(() => {
+                    this.log('Resetting movement.');
+
+                    // Turn off movement
+                    state = false;
+                    characteristic.updateValue(state);
+
+                }, duration * 1000);
+                
+            }, 100);
         });
     }
 
