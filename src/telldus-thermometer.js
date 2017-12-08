@@ -12,7 +12,7 @@ module.exports = class TelldusThermometer extends TelldusAccessory {
         chars.setProps({minValue: -50});
 
         chars.on('get', (callback) => {
-            callback(null, this.device.temperature);
+            callback(null, parseFloat(this.device.temperature));
         });
 
         services.push(service);
