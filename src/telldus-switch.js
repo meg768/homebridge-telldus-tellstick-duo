@@ -5,8 +5,8 @@ var telldus = require('telldus');
 
 module.exports = class TelldusSwitch extends TelldusAccessory {
 
-    constructor(platform, device) {
-        super(platform, device);
+    constructor(platform, config, device) {
+        super(platform, config, device);
 
         this.type = this.config.type ? this.config.type.toLowerCase() : 'lightbulb';
     }
@@ -34,10 +34,6 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
                 service = new this.Service.Lightbulb(this.name);
                 break;
             }
-            case 'motionsensor': {
-                service = new this.Service.MotionSensor(this.name);
-                break;
-            }
             default: {
                 service = new this.Service.Lightbulb(this.name);
                 break;
@@ -50,7 +46,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
             callback(null, this.device.state == 'ON');
         });
 
-        characteristic.on('set', (value, callback) => {
+        characteristic.on('set', (value, callback, context) => {
 
             if (value)
                 this.turnOn();

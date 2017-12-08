@@ -2,6 +2,7 @@
 
 var tellstick = require('./tellstick.js');
 var TelldusSwitch = require('./telldus-switch.js');
+var TelldusMotionSensor = require('./telldus-motion-sensor.js');
 var TelldusThermometer = require('./telldus-thermometer.js');
 var TelldusHygrometer = require('./telldus-hygrometer.js');
 var TelldusThermometerHygrometer = require('./telldus-thermometer-hygrometer.js');
@@ -27,6 +28,10 @@ module.exports = class TelldusPlatform {
 
         devices.forEach((device) => {
             var exclude = false;
+            var config = this.config && this.config.devices && this.config.devices[device.name] ? this.config.devices[device.name] : {};
+            var type   = config.type ? config.type.toLowerCase() : 'lightbulb';
+
+            type = type.toLowerCase();
 
             if (this.config.exclude) {
                 if (this.config.exclude.indexOf(device.name) >= 0)
@@ -36,28 +41,31 @@ module.exports = class TelldusPlatform {
             if (!exclude) {
                 switch(device.model) {
                     case 'selflearning-switch': {
-                        accessories.push(new TelldusSwitch(this, device));
+                        if (type == 'motionsensor')
+                            accessories.push(new TelldusMotionSensor(this, config, device));
+                        else
+                            accessories.push(new TelldusSwitch(this, config, device));
                         break;
                     }
                     case 'codeswitch': {
-                        accessories.push(new TelldusSwitch(this, device));
+                        accessories.push(new TelldusSwitch(this, config, device));
                         break;
                     }
 
                     case 'humidity': {
-                        accessories.push(new TelldusHygrometer(this, device));
+                        accessories.push(new TelldusHygrometer(this, config, device));
                         break;
                     }
 
                     case 'EA4C':
                     case 'temperature': {
-                        accessories.push(new TelldusThermometer(this, device));
+                        accessories.push(new TelldusThermometer(this, config, device));
                         break;
                     }
 
                     case '1A2D':
                     case 'temperaturehumidity': {
-                        accessories.push(new TelldusThermometerHygrometer(this, device));
+                        accessories.push(new TelldusThermometerHygrometer(this, config, device));
                         break;
                     }
                     default: {

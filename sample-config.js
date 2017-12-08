@@ -19,10 +19,10 @@
                     "trigger": "foo"
                 }, {
                     "caption": "A1-2",
-                    "trigger": "foo"
+                    "trigger": "bar"
                 }, {
                     "caption": "A1-3",
-                    "trigger": "foo"
+                    "trigger": "faz"
                 }]
             }]
         },

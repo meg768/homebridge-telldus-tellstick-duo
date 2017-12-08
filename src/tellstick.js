@@ -1,12 +1,19 @@
 "use strict";
 
 var telldus = require('telldus');
+var Events  = require('events');
 var sprintf = require('sprintf-js').sprintf;
+
 var devices = [];
 
 function debug() {
     //console.log.apply(this, arguments);
 }
+
+class Device extends Events {
+
+}
+
 
 function getDevices() {
     return devices;
@@ -53,7 +60,7 @@ function init() {
     telldus.getDevicesSync().forEach((item) => {
         if (item.type == 'DEVICE') {
 
-            var device = {};
+            var device = new Device();
 
             device.id = item.id;
             device.name = item.name;
@@ -71,10 +78,10 @@ function init() {
     // Add sensors
     telldus.getSensorsSync().forEach((item) => {
 
-        var device = {};
+        var device = new Device();
 
         device.id = item.id;
-        device.name = sprintf('Sensor %d', item.id);
+        device.name = sprintf('Sensor-%d', item.id);
         device.type = 'sensor';
         device.protocol = item.protocol;
         device.model = item.model;
@@ -115,6 +122,8 @@ function init() {
 
             device.timestamp = timestamp;
 
+            device.emit('change');
+
             debug('Sensor event:', device);
 
         } else {
@@ -130,6 +139,8 @@ function init() {
         if (device != undefined) {
             if (status.name)
                 device.state = status.name;
+
+            device.emit('change');
 
             debug('Device event:', device);
 
