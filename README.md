@@ -4,7 +4,7 @@ Homebridge for Telldus Tellstick Duo.
 A HomeBridge plugin for anyone with a working setup using a Telldus Tellstick Duo.
 This module uses the npm module https://www.npmjs.com/package/telldus instead of
 the **tdtool** command line utility that is used by the npm module
-(https://www.npmjs.com/package/homebridge-telldus-tdtool). This plugin also supports
+https://www.npmjs.com/package/homebridge-telldus-tdtool. This plugin also supports
 motion sensors so they may be automated in the Home app on your iPhone.
 
 ## Installation
