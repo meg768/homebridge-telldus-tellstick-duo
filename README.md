@@ -94,7 +94,7 @@ how long the motion sensor should be in a triggered state. Default is 5 seconds.
 By default, every device is represented by a lightbulb in HomeKit. The following
 example shows how to change the device **VS-05** into a switch in HomeKit.
 
-```js
+```javascript
 
     ...
     "platforms": [{
