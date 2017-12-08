@@ -100,7 +100,7 @@ example shows how to change the device **VS-05** into a switch in HomeKit.
 
         "devices": {
             "VS-05": {
-                "type": "switch"
+                "type": "Switch"
             }
         }
 
