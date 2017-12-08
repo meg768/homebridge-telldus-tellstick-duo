@@ -1,6 +1,6 @@
 {
   "name": "homebridge-telldus-tellstick-duo",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Homebridge for Telldus Tellstick Duo",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,7 @@
   "keywords": [
     "homebrige",
     "tellstick",
+    "tellstick duo",
     "telldus",
     "homebridge-plugin"
   ],
@@ -20,7 +21,7 @@
     "node": ">=0.12.0",
     "homebridge": ">=0.2.0"
   },
-  "author": "",
+  "author": "meg768",
   "license": "ISC",
   "dependencies": {
     "sleep": "^5.1.1",
