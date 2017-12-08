@@ -49,8 +49,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
                 result = telldus.turnOffSync(this.device.id);
             }
 
-            if (result != 0)
-                this.log('Error switching on/off %s (%d).', this.device.name, result);
+            this.log('Result of switching on/off %s (%d).', this.device.name, result);
 
             callback();
         });
