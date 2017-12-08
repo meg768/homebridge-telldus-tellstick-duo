@@ -15,6 +15,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         var state = false;
         var duration = this.config.triggerLength ? this.config.triggerLength : 5;
         var characteristic = service.getCharacteristic(this.Characteristic.MotionDetected);
+        var busy = false;
 
         characteristic.on('get', (callback) => {
             callback(null, state);
@@ -23,15 +24,17 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         this.device.on('change', () => {
 
-            // Clear previous timer
-            if (timer != null)
-                clearTimeout(timer);
+            if (!busy) {
+                busy = true;
 
-            setTimeout(() => {
                 // Indicate movement
                 this.log('Triggering movement.');
                 state = true;
                 characteristic.updateValue(state);
+
+                // Clear previous timer
+                if (timer != null)
+                    clearTimeout(timer);
 
                 timer = setTimeout(() => {
                     this.log('Resetting movement.');
@@ -41,8 +44,13 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
                     characteristic.updateValue(state);
 
                 }, duration * 1000);
-                
-            }, 100);
+
+                busy = false;
+
+            }
+            else {
+                this.log('Upps! Busy!');
+            }
         });
     }
 
