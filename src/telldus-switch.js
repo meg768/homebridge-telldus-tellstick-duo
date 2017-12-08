@@ -42,17 +42,19 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
                 else
                     this.log('Done.');
 
-                setTimeout(callback, 1000);
+                setTimeout(callback, 100);
                 //callback(error);
             }
             if (value) {
                 this.log('Turning on', this.device.name);
-                telldus.turnOn(this.device.id, done.bind(this));
+                telldus.turnOnSync(this.device.id, done.bind(this));
             } else {
                 this.log('Turning off', this.device.name);
-                telldus.turnOff(this.device.id, done.bind(this));
+                telldus.turnOffSync(this.device.id, done.bind(this));
 
             }
+
+            done();
         });
 
         this.device.on('change', () => {
