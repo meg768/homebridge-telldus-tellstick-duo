@@ -35,7 +35,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
             if (value) {
                 this.log('Turning on', this.device.name);
-                this.turnOn();
+                telldus.turnOnSync(this.device.id);
             }
             else {
                 this.log('Turning off', this.device.name);
