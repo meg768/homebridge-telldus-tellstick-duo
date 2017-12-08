@@ -33,12 +33,17 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         characteristic.on('set', (value, callback, context) => {
 
-            if (value)
+            if (value) {
+                this.log('Turning on', this.device.name);
                 this.turnOn();
-            else
-                this.turnOff();
+            }
+            else {
+                this.log('Turning off', this.device.name);
+                telldus.turnOffSync(this.device.id);
 
-            callback();
+            }
+
+            setTimeout(callback, 200);
         });
 
         this.device.on('change', () => {
@@ -52,15 +57,6 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
     }
 
-    turnOn() {
-        this.log('Turning on', this.device.name);
-        telldus.turnOnSync(this.device.id);
-    }
-
-    turnOff() {
-        this.log('Turning off', this.device.name);
-        telldus.turnOffSync(this.device.id);
-    }
 
 
     getServices() {
