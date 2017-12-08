@@ -1,7 +1,6 @@
 "use strict";
 var TelldusAccessory = require('./telldus-accessory.js');
 var telldus = require('telldus');
-var sleep = require('sleep').msleep;
 
 module.exports = class TelldusSwitch extends TelldusAccessory {
 
@@ -11,7 +10,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         this.type = this.config.type ? this.config.type.toLowerCase() : 'lightbulb';
 
         this.log('Creating new service for %s as type %s.', this.name, this.type);
-        
+
         switch (this.type) {
             case 'switch':
                 {

@@ -24,7 +24,6 @@
   "author": "meg768",
   "license": "ISC",
   "dependencies": {
-    "sleep": "^5.1.1",
     "sprintf-js": "^1.0.3",
     "telldus": "^1.1.0"
   },
