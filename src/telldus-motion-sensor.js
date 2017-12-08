@@ -28,7 +28,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
             // Indicate movement
             this.log('Triggering movement.');
-            status = true;
+            state = true;
             characteristic.updateValue(state);
 
             timer = setTimeout(() => {
