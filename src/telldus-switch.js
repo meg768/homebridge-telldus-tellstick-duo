@@ -42,7 +42,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
                 telldus.turnOffSync(this.device.id);
 
             }
-            sleep(300);
+            sleep(1000);
             callback();
         });
 
