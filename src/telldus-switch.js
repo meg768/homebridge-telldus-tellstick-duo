@@ -43,7 +43,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
             }
             sleep(300);
-            //setTimeout(callback, 1000);
+            callback();
         });
 
         this.device.on('change', () => {
