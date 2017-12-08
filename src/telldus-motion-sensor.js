@@ -23,33 +23,26 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         this.device.on('change', () => {
 
-            if (!busy) {
-                busy = true;
-
-                // Indicate movement
+            // Indicate movement
+            setTimeout(() => {
                 this.log('Triggering movement.');
                 state = true;
                 characteristic.updateValue(state);
+                
+            }, 100);
 
-                // Clear previous timer
-                if (timer != null)
-                    clearTimeout(timer);
+            // Clear previous timer
+            if (timer != null)
+                clearTimeout(timer);
 
-                timer = setTimeout(() => {
-                    this.log('Resetting movement.');
+            timer = setTimeout(() => {
+                this.log('Resetting movement.');
 
-                    // Turn off movement
-                    state = false;
-                    characteristic.updateValue(state);
+                // Turn off movement
+                state = false;
+                characteristic.updateValue(state);
 
-                }, duration * 1000);
-
-                busy = false;
-
-            }
-            else {
-                this.log('Upps! Busy!');
-            }
+            }, duration * 1000);
         });
     }
 
