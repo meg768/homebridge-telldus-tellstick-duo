@@ -22,23 +22,25 @@ Then install this plugin.
 Configure your **~/.homebridge/config.json** with the following platform.
 
 
-    {
-        "bridge": {
-            "name": "Homebridge",
-            "username": "CC:22:3D:E3:CE:30",
-            "port": 51826,
-            "pin": "031-45-154"
-        },
+```javascript
+{
+    "bridge": {
+        "name": "Homebridge",
+        "username": "CC:22:3D:E3:CE:30",
+        "port": 51826,
+        "pin": "031-45-154"
+    },
 
-        "description": "This is an example configuration file.",
+    "description": "This is an example configuration file.",
 
-        "platforms": [{
-            "platform": "Telldus Tellstick Duo",
-            "name": "Telldus Tellstick Duo"
-        }]
+    "platforms": [{
+        "platform": "Telldus Tellstick Duo",
+        "name": "Telldus Tellstick Duo"
+    }]
 
 
-    }
+}
+```
 
 After this, start **homebridge**, scan the presented code with your iPhone, and hopefully
 you will se this plugin in your iPhone Home app.
@@ -67,6 +69,8 @@ normal switches this plugin cannot distinguish between them. The following examp
 the device **RV-01** is a motion sensor and behaves like it in HomeKit, turning it on
 for a while and then automatically turning it off.
 
+```javascript
+
     {
         ...
         "platforms": [{
@@ -82,9 +86,9 @@ for a while and then automatically turning it off.
 
         }]
         ...
-
-
     }
+```
+
 
 The **triggerLength** entry is optional and specifies, in seconds,
 how long the motion sensor should be in a triggered state. Default is 5 seconds.
@@ -95,7 +99,6 @@ By default, every device is represented by a lightbulb in HomeKit. The following
 example shows how to change the device **VS-05** into a switch in HomeKit.
 
 ```javascript
-
     ...
     "platforms": [{
         ...
