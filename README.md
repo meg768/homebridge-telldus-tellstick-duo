@@ -3,9 +3,9 @@ Homebridge for Telldus Tellstick Duo.
 
 A HomeBridge plugin for anyone with a working setup using a Telldus Tellstick Duo.
 This module uses the npm module https://www.npmjs.com/package/telldus instead of
-the **tdtool** command line utility that is used by the npm module **homebridge-telldus-tdtool**
-uses (https://www.npmjs.com/package/homebridge-telldus-tdtool).
-
+the **tdtool** command line utility that is used by the npm module
+(https://www.npmjs.com/package/homebridge-telldus-tdtool). This plugin also supports
+motion sensors so they may be automated in the Home app on your iPhone.
 
 ## Installation
 
@@ -82,7 +82,7 @@ for a while and then automatically turning it off.
     }
 
 The **triggerLength** entry is optional and specifies, in seconds,
-how long the motion sensor should be in a triggered state.
+how long the motion sensor should be in a triggered state. Default is 5 seconds.
 
 ## Useful Links
 
