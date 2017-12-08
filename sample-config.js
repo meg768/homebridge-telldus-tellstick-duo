@@ -36,7 +36,7 @@
                 "FK-00-01", "FK-00-02", "FK-00-03"
             ],
 
-            "devices": [
+            "devices": {
                 "Sensor 135": {
                     "name": "Temperatur"
                 },
@@ -46,7 +46,7 @@
                 "RV-02": {
                     "type": "MotionSensor"
                 }
-            ]
+            }
 
         }
     ]
