@@ -18,8 +18,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         var busy = false;
 
         characteristic.on('get', (callback) => {
-            callback(null, state);
-            callback(null, Boolean(MOTION_SENSOR.motionDetected));
+            callback(null, Boolean(state));
         });
 
         this.device.on('change', () => {
