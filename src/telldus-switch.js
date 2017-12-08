@@ -33,15 +33,15 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         characteristic.on('set', (value, callback, context) => {
 
-
             function done(error) {
                 if (error)
                     this.log(error);
                 else
                     this.log('Done.');
 
-                sleep(300);
-                callback(error);
+                setImmedate(callback);
+
+                //callback(error);
             }
             if (value) {
                 this.log('Turning on', this.device.name);
