@@ -20,19 +20,16 @@
 
             "devices": {
                 "RV-01": {
-                    "type": "MotionSensor",
-                    "triggerLength": 10
+                    "type": "MotionSensor"
                 },
                 "RV-02": {
-                    "type": "MotionSensor",
-                    "triggerLength": 10
+                    "type": "MotionSensor"
                 },
                 "RV-03": {
-                    "type": "MotionSensor",
-                    "triggerLength": 10
-                }
+                    "type": "MotionSensor"
+                },
                 "VS-05": {
-                    "type": "switch"
+                    "type": "Switch"
                 }
             }
 
