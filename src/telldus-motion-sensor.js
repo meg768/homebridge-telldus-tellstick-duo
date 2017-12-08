@@ -13,6 +13,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         var timer = null;
         var service = this.service;
         var state = false;
+        var duration = this.config.triggerLength ? this.config.triggerLength : 5;
         var characteristic = service.getCharacteristic(this.Characteristic.MotionDetected);
 
         characteristic.on('get', (callback) => {
@@ -38,7 +39,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
                 state = false;
                 characteristic.updateValue(state);
 
-            }, 5000);
+            }, duration * 1000);
         });
     }
 
