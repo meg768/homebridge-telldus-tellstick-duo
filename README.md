@@ -67,7 +67,7 @@ Optionally, you may configure this plugin with the following additions.
 Since motion sensors registered in your Tellstick Duo acts like
 normal switches this plugin cannot distinguish between them. The following example tells this plugin that
 the device **RV-01** is a motion sensor and behaves like it in HomeKit, turning it on
-for a while and then automatically turning it off.
+for a while when activated and then automatically turning it off.
 
 ```javascript
 
