@@ -39,7 +39,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
                 else
                     this.log('Done.');
 
-                setImmedate(callback);
+                setImmediate(callback);
 
                 //callback(error);
             }
