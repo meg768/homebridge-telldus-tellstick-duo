@@ -8,12 +8,15 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
     constructor(platform, config, device) {
         super(platform, config, device);
 
+        this.service = new this.Service.MotionSensor(this.name);
+
         var timer = null;
-        var service = new this.Service.MotionSensor(this.name);
+        var service = this.service;
+        var state = false;
         var characteristic = service.getCharacteristic(this.Characteristic.MotionDetected);
 
         characteristic.on('get', (callback) => {
-            callback(null, this.device.state == 'ON');
+            callback(null, state);
         });
 
         this.device.on('change', () => {
@@ -24,11 +27,16 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
                 clearTimeout(timer);
 
             // Indicate movement
-            characteristic.updateValue(true, null, 'updateState');
+            this.log('Triggering movement.');
+            status = true;
+            characteristic.updateValue(state);
 
             timer = setTimeout(() => {
+                this.log('Resetting movement.');
+
                 // Turn off movement
-                characteristic.updateValue(false, null, 'updateState');
+                state = false;
+                characteristic.updateValue(state);
 
             }, 5000);
         });
