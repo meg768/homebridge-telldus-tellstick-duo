@@ -3,17 +3,17 @@
 
 module.exports = class TelldusAccessory {
 
-    constructor(log, config, homebridge, device) {
+    constructor(platform, device) {
 
         if (!device.name)
             throw new Error('All devices must have a name.');
 
-        this.log = log;
-        this.config = config;
-        this.homebridge = homebridge;
+        this.log = platform.log;
+        this.config = platform.config && platform.config.devices && platform.config.devices[device.name] ? platform.config.devices[device.name] : {};
+        this.homebridge = platform.homebridge;
         this.device = device;
-        this.Characteristic = homebridge.hap.Characteristic;
-        this.Service = homebridge.hap.Service;
+        this.Characteristic = platform.homebridge.hap.Characteristic;
+        this.Service = platform.homebridge.hap.Service;
 
         // A device must have a name present
         this.name = this.config.name || device.name;

@@ -34,32 +34,30 @@ module.exports = class TelldusPlatform {
             }
 
             if (!exclude) {
-                var config = this.config && this.config.devices && this.config.devices[device.name] ? this.config.devices[device.name] : {};
-
                 switch(device.model) {
                     case 'selflearning-switch': {
-                        accessories.push(new TelldusSwitch(this.log, config, this.homebridge, device));
+                        accessories.push(new TelldusSwitch(this, device));
                         break;
                     }
                     case 'codeswitch': {
-                        accessories.push(new TelldusSwitch(this.log, config, this.homebridge, device));
+                        accessories.push(new TelldusSwitch(this, device));
                         break;
                     }
 
                     case 'humidity': {
-                        accessories.push(new TelldusHygrometer(this.log, config, this.homebridge, device));
+                        accessories.push(new TelldusHygrometer(this, device));
                         break;
                     }
 
                     case 'EA4C':
                     case 'temperature': {
-                        accessories.push(new TelldusThermometer(this.log, config, this.homebridge, device));
+                        accessories.push(new TelldusThermometer(this, device));
                         break;
                     }
 
                     case '1A2D':
                     case 'temperaturehumidity': {
-                        accessories.push(new TelldusThermometerHygrometer(this.log, config, this.homebridge, device));
+                        accessories.push(new TelldusThermometerHygrometer(this, device));
                         break;
                     }
                     default: {

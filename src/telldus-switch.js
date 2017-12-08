@@ -5,6 +5,12 @@ var telldus = require('telldus');
 
 module.exports = class TelldusSwitch extends TelldusAccessory {
 
+    constructor(platform, device) {
+        super(platform, device);
+
+        this.type = this.config.type ? this.config.type.toLowerCase() : 'lightbulb';
+    }
+
     turnOn() {
         this.log('Turning on', this.device.name);
         telldus.turnOnSync(this.device.id);
@@ -19,9 +25,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
     getServices() {
         var service, services = super.getServices();
 
-        var type = this.config.type || '';
-
-        switch(type.toLowerCase()) {
+        switch(this.type) {
             case 'switch': {
                 service = new this.Service.Switch(this.name);
                 break;
