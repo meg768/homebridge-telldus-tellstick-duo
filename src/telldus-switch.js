@@ -1,7 +1,7 @@
 "use strict";
 var TelldusAccessory = require('./telldus-accessory.js');
 var telldus = require('telldus');
-
+var sleep = require('sleep').msleep;
 
 module.exports = class TelldusSwitch extends TelldusAccessory {
 
@@ -42,8 +42,8 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
                 telldus.turnOffSync(this.device.id);
 
             }
-
-            setTimeout(callback, 1000);
+            sleep(300);
+            //setTimeout(callback, 1000);
         });
 
         this.device.on('change', () => {

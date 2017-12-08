@@ -1,33 +1,34 @@
 {
-    "name": "homebridge-telldus-tellstick-duo",
-    "version": "1.0.10",
-    "description": "Homebridge for Telldus Tellstick Duo",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/meg768/homebridge-telldus-tellstick-duo.git"
-    },
-    "keywords": [
-        "homebrige",
-        "tellstick",
-        "telldus",
-        "homebridge-plugin"
-    ],
-    "engines": {
-        "node": ">=0.12.0",
-        "homebridge": ">=0.2.0"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "sprintf-js": "^1.0.3",
-        "telldus": "^1.1.0"
-    },
-    "bugs": {
-        "url": "https://github.com/meg768/homebridge-telldus-tellstick-duo/issues"
-    },
-    "homepage": "https://github.com/meg768/homebridge-telldus-tellstick-duo#readme"
+  "name": "homebridge-telldus-tellstick-duo",
+  "version": "1.0.10",
+  "description": "Homebridge for Telldus Tellstick Duo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meg768/homebridge-telldus-tellstick-duo.git"
+  },
+  "keywords": [
+    "homebrige",
+    "tellstick",
+    "telldus",
+    "homebridge-plugin"
+  ],
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sleep": "^5.1.1",
+    "sprintf-js": "^1.0.3",
+    "telldus": "^1.1.0"
+  },
+  "bugs": {
+    "url": "https://github.com/meg768/homebridge-telldus-tellstick-duo/issues"
+  },
+  "homepage": "https://github.com/meg768/homebridge-telldus-tellstick-duo#readme"
 }
