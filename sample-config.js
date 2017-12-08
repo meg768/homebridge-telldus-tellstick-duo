@@ -19,9 +19,6 @@
             ],
 
             "devices": {
-                "Sensor-135": {
-                    "name": "Temperatur"
-                },
                 "RV-01": {
                     "type": "MotionSensor",
                     "triggerLength": 10
@@ -33,6 +30,9 @@
                 "RV-03": {
                     "type": "MotionSensor",
                     "triggerLength": 10
+                }
+                "VS-05": {
+                    "type": "switch"
                 }
             }
 
