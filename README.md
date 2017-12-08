@@ -58,6 +58,10 @@ The following Telldus models are supported
 
 ## Additional Configuration
 
+Optionally, you may configure this plugin with the following additions.
+
+### Motion Sensors
+
 Since motion sensors registered in your Tellstick Duo acts like
 normal switches this plugin cannot distinguish between them. The following example tells this plugin that
 the device **RV-01** is a motion sensor and behaves like it in HomeKit, turning it on
@@ -77,12 +81,32 @@ for a while and then automatically turning it off.
             }
 
         }]
+        ...
 
 
     }
 
 The **triggerLength** entry is optional and specifies, in seconds,
 how long the motion sensor should be in a triggered state. Default is 5 seconds.
+
+### Switches
+
+By default, every device is represented by a lightbulb in HomeKit. The following
+example shows how to change the device **VS-05** into a switch in HomeKit.
+
+    ...
+    "platforms": [{
+        ...
+
+        "devices": {
+            "VS-05": {
+                "type": "switch"
+            }
+        }
+
+    }]
+    ...
+
 
 ## Useful Links
 
