@@ -10,19 +10,22 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         this.type = this.config.type ? this.config.type.toLowerCase() : 'lightbulb';
 
-        switch(this.type) {
-            case 'switch': {
-                this.service = new this.Service.Switch(this.name);
-                break;
-            }
-            case 'lightbulb': {
-                this.service = new this.Service.Lightbulb(this.name);
-                break;
-            }
-            default: {
-                this.service = new this.Service.Lightbulb(this.name);
-                break;
-            }
+        switch (this.type) {
+            case 'switch':
+                {
+                    this.service = new this.Service.Switch(this.name);
+                    break;
+                }
+            case 'lightbulb':
+                {
+                    this.service = new this.Service.Lightbulb(this.name);
+                    break;
+                }
+            default:
+                {
+                    this.service = new this.Service.Lightbulb(this.name);
+                    break;
+                }
         }
 
         var characteristic = this.service.getCharacteristic(this.Characteristic.On);
@@ -46,8 +49,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
             if (value) {
                 this.log('Turning on', this.device.name);
                 telldus.turnOn(this.device.id, done.bind(this));
-            }
-            else {
+            } else {
                 this.log('Turning off', this.device.name);
                 telldus.turnOff(this.device.id, done.bind(this));
 
