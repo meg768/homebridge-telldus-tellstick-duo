@@ -89,9 +89,38 @@ for a while when activated and then automatically turning it off.
     }
 ```
 
-
 The **timeout** entry is optional and specifies, in seconds,
-how long the motion sensor should be in a triggered state. Default is 5 seconds.
+how long the motion sensor should be in a triggered state
+after motion has been detected. Default is 5 seconds.
+
+### Occupancy Sensors
+
+Occupancy sensors are similar to motion sensors but remain in
+a triggered state as long as there has been movement during the timeout period.
+
+```javascript
+
+    {
+        ...
+        "platforms": [{
+            "platform": "Telldus Tellstick Duo",
+            "name": "Telldus Tellstick Duo",
+
+            "devices": {
+                "RV-01": {
+                    "type": "MotionSensor",
+                    "timeout": 10
+                }
+            }
+
+        }]
+        ...
+    }
+```
+
+The **timeout** entry is optional and specifies, in minutes,
+how long the motion sensor should be in a triggered state after
+a movement has been detected. Default is 10 minutes.
 
 ### Switches
 

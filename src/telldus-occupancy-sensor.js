@@ -3,7 +3,7 @@ var TelldusAccessory = require('./telldus-accessory.js');
 var telldus = require('telldus');
 var Timer = require('./timer.js');
 
-module.exports = class TelldusSwitch extends TelldusAccessory {
+module.exports = class TelldusOccupancySensor extends TelldusAccessory {
 
     constructor(platform, config, device) {
         super(platform, config, device);
