@@ -18,6 +18,7 @@ module.exports = class TelldusDoorbell extends TelldusAccessory {
         var characteristic = service.getCharacteristic(this.Characteristic.ProgrammableSwitchEvent);
 
         characteristic.on('get', (callback) => {
+            this.log('**************************************');
             callback(null, Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS);
         });
 
