@@ -1,7 +1,7 @@
 "use strict";
 var TelldusAccessory = require('./telldus-accessory.js');
 var telldus = require('telldus');
-
+var Timer = require('./timer.js');
 
 module.exports = class TelldusSwitch extends TelldusAccessory {
 
@@ -10,10 +10,10 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         this.service = new this.Service.MotionSensor(this.name);
 
-        var timer = null;
+        var timer = new Timer();
         var service = this.service;
         var state = false;
-        var duration = this.config.triggerLength ? this.config.triggerLength : 5;
+        var timeout = this.config.timeout ? this.config.timeout : 5;
         var characteristic = service.getCharacteristic(this.Characteristic.MotionDetected);
         var busy = false;
 
@@ -24,25 +24,21 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         this.device.on('change', () => {
 
             // Indicate movement
-            setTimeout(() => {
-                this.log('Triggering movement.');
-                state = true;
+            this.log('Movement detected by sensor', this.name);
+
+            state = true;
+            characteristic.updateValue(state);
+
+            timer.cancel();
+
+            timer.setTimer(timeout * 1000, () => {
+                this.log('Resetting movement for sensor', this.name);
+
+                // Turn off movement
+                state = false;
                 characteristic.updateValue(state);
 
-                // Clear previous timer
-                if (timer != null)
-                    clearTimeout(timer);
-
-                timer = setTimeout(() => {
-                    this.log('Resetting movement.');
-
-                    // Turn off movement
-                    state = false;
-                    characteristic.updateValue(state);
-
-                }, duration * 1000);
-
-            }, 100);
+            });
 
         });
     }
