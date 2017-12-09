@@ -120,7 +120,7 @@ a triggered state as long as there has been movement during the timeout period.
 
 The **timeout** entry is optional and specifies, in minutes,
 how long the motion sensor should be in a triggered state after
-a movement has been detected. Default is 10 minutes.
+a movement has been detected. Default is 60 minutes.
 
 ### Switches
 
