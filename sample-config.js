@@ -20,7 +20,8 @@
 
             "devices": {
                 "RV-01": {
-                    "type": "MotionSensor"
+                    "type": "OccupancySensor",
+                    "timeout": 1
                 },
                 "RV-02": {
                     "type": "MotionSensor"
@@ -29,7 +30,7 @@
                     "type": "MotionSensor"
                 },
                 "RK-01": {
-                    "type": "Doorbell"
+                    "type": "MotionSensor"
                 },
                 "VS-05": {
                     "type": "Switch"

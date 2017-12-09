@@ -8,7 +8,6 @@ module.exports = class TelldusDoorbell extends TelldusAccessory {
     constructor(platform, config, device) {
         super(platform, config, device);
 
-        this.log('**************************************');
         this.service = new this.Service.Doorbell(this.name);
 
         var timer = null;
@@ -18,7 +17,6 @@ module.exports = class TelldusDoorbell extends TelldusAccessory {
         var characteristic = service.getCharacteristic(this.Characteristic.ProgrammableSwitchEvent);
 
         characteristic.on('get', (callback) => {
-            this.log('**************************************');
             callback(null, Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS);
         });
 
