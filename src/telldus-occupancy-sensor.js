@@ -21,22 +21,23 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
             callback(null, Boolean(state));
         });
 
-        this.log('*******************************', timeout);
-
         this.device.on('change', () => {
 
-            this.log('Movement detected on sensor', this.name);
+            setTimeout(() => {
+                this.log('Movement detected on sensor', this.name);
 
-            timer.cancel();
+                timer.cancel();
 
-            state = true;
-            characteristic.updateValue(state);
-
-            timer.setTimer(timeout * 60 * 1000, () => {
-                this.log('Sensor', this.name, 'reported no movement.');
-                state = false;
+                state = true;
                 characteristic.updateValue(state);
-            });
+
+                timer.setTimer(timeout * 60 * 1000, () => {
+                    this.log('Sensor', this.name, 'reported no movement.');
+                    state = false;
+                    characteristic.updateValue(state);
+                });
+
+            }, 100);
         });
     }
 
