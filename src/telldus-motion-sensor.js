@@ -40,7 +40,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
                     characteristic.updateValue(state);
 
                 });
-                
+
             }, 200);
 
         });

@@ -80,7 +80,7 @@ for a while when activated and then automatically turning it off.
             "devices": {
                 "RV-01": {
                     "type": "MotionSensor",
-                    "triggerLength": 10
+                    "timeout": 10
                 }
             }
 
@@ -90,7 +90,7 @@ for a while when activated and then automatically turning it off.
 ```
 
 
-The **triggerLength** entry is optional and specifies, in seconds,
+The **timeout** entry is optional and specifies, in seconds,
 how long the motion sensor should be in a triggered state. Default is 5 seconds.
 
 ### Switches
