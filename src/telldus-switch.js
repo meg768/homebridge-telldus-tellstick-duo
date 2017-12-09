@@ -30,6 +30,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         }
 
         var characteristic = this.service.getCharacteristic(this.Characteristic.On);
+        characteristic.updateValue(this.device.state == 'ON');
 
         characteristic.on('get', (callback) => {
             callback(null, this.device.state == 'ON');
