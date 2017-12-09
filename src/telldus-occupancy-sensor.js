@@ -26,11 +26,11 @@ module.exports = class TelldusOccupancySensor extends TelldusAccessory {
                 this.log('Movement detected on occupancy sensor', this.name);
 
                 timer.cancel();
-                characteristic.updateValue(state = true);
+                characteristic.setValue(state = true);
 
                 timer.setTimer(timeout * 60 * 1000, () => {
                     this.log('Resetting movement for occupancy sensor', this.name);
-                    characteristic.updateValue(state = false);
+                    characteristic.setValue(state = false);
                 });
 
             }, 200);
