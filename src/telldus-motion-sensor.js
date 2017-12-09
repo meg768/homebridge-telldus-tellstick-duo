@@ -15,7 +15,6 @@ module.exports = class TelldusMotionSensor extends TelldusAccessory {
         var state = false;
         var timeout = this.config.timeout ? this.config.timeout : 5;
         var characteristic = service.getCharacteristic(this.Characteristic.MotionDetected);
-        var busy = false;
 
         characteristic.on('get', (callback) => {
             callback(null, Boolean(state));
@@ -24,25 +23,17 @@ module.exports = class TelldusMotionSensor extends TelldusAccessory {
         this.device.on('change', () => {
 
             setTimeout(() => {
-                // Indicate movement
-                this.log('Movement detected by sensor', this.name);
-
-                state = true;
-                characteristic.updateValue(state);
+                this.log('Movement detected by motion sensor', this.name);
 
                 timer.cancel();
+                characteristic.updateValue(state = true);
 
                 timer.setTimer(timeout * 1000, () => {
-                    this.log('Resetting movement for sensor', this.name);
-
-                    // Turn off movement
-                    state = false;
-                    characteristic.updateValue(state);
-
+                    this.log('Resetting movement for motion sensor', this.name);
+                    characteristic.updateValue(state = false);
                 });
 
             }, 200);
-
         });
     }
 

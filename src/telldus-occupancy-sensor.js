@@ -15,7 +15,6 @@ module.exports = class TelldusOccupancySensor extends TelldusAccessory {
         var state = false;
         var timeout = this.config.timeout ? this.config.timeout : 10;
         var characteristic = service.getCharacteristic(this.Characteristic.OccupancyDetected);
-        var busy = false;
 
         characteristic.on('get', (callback) => {
             callback(null, Boolean(state));
@@ -24,17 +23,14 @@ module.exports = class TelldusOccupancySensor extends TelldusAccessory {
         this.device.on('change', () => {
 
             setTimeout(() => {
-                this.log('Movement detected on sensor', this.name);
+                this.log('Movement detected on occupancy sensor', this.name);
 
                 timer.cancel();
-
-                state = true;
-                characteristic.updateValue(state);
+                characteristic.updateValue(state = true);
 
                 timer.setTimer(timeout * 60 * 1000, () => {
-                    this.log('Sensor', this.name, 'reported no movement.');
-                    state = false;
-                    characteristic.updateValue(state);
+                    this.log('Resetting movement for occupancy sensor', this.name);
+                    characteristic.updateValue(state = false);
                 });
 
             }, 200);
