@@ -3,6 +3,7 @@
 var tellstick = require('./tellstick.js');
 var TelldusSwitch = require('./telldus-switch.js');
 var TelldusMotionSensor = require('./telldus-motion-sensor.js');
+var TelldusDoorbell = require('./telldus-doorbell.js');
 var TelldusThermometer = require('./telldus-thermometer.js');
 var TelldusHygrometer = require('./telldus-hygrometer.js');
 var TelldusThermometerHygrometer = require('./telldus-thermometer-hygrometer.js');
@@ -41,12 +42,22 @@ module.exports = class TelldusPlatform {
             if (!exclude) {
                 switch(device.model) {
                     case 'selflearning-switch': {
-                        if (type == 'motionsensor')
-                            accessories.push(new TelldusMotionSensor(this, config, device));
-                        else
-                            accessories.push(new TelldusSwitch(this, config, device));
+                        switch(type) {
+                            case 'motionsensor': {
+                                accessories.push(new TelldusMotionSensor(this, config, device));
+                                break;
+                            }
+                            case 'doorbell': {
+                                accessories.push(new TelldusDoorbell(this, config, device));
+                                break;
+                            }
+                            default: {
+                                accessories.push(new TelldusSwitch(this, config, device));
+                            }
+                        }
                         break;
                     }
+
                     case 'codeswitch': {
                         accessories.push(new TelldusSwitch(this, config, device));
                         break;

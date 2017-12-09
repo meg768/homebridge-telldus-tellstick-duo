@@ -28,6 +28,9 @@
                 "RV-03": {
                     "type": "MotionSensor"
                 },
+                "RK-01": {
+                    "type": "Doorbell"
+                },
                 "VS-05": {
                     "type": "Switch"
                 }
