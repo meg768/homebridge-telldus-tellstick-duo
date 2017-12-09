@@ -13,7 +13,7 @@ module.exports = class TelldusOccupancySensor extends TelldusAccessory {
         var timer = new Timer();
         var service = this.service;
         var state = false;
-        var timeout = this.config.timeout ? this.config.timeout : 10;
+        var timeout = this.config.timeout ? this.config.timeout : 30;
         var characteristic = service.getCharacteristic(this.Characteristic.OccupancyDetected);
 
         characteristic.on('get', (callback) => {
