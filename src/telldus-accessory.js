@@ -30,7 +30,7 @@ module.exports = class TelldusAccessory {
 
         accessoryInfo.setCharacteristic(this.Characteristic.Manufacturer, this.device.protocol);
         accessoryInfo.setCharacteristic(this.Characteristic.Model, this.device.model);
-        accessoryInfo.setCharacteristic(this.Characteristic.SerialNumber, this.device.id);
+        accessoryInfo.setCharacteristic(this.Characteristic.SerialNumber, this.device.name);
 
         return [accessoryInfo];
 

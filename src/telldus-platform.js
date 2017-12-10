@@ -84,8 +84,9 @@ module.exports = class TelldusPlatform {
                         accessories.push(new TelldusThermometerHygrometer(this, config, device));
                         break;
                     }
+                    
                     default: {
-                        this.log('Ignoring:', device);
+                        this.log('Ignoring device', device.name);
                         break;
                     }
                 }

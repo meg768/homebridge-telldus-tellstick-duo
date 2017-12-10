@@ -15,20 +15,23 @@
 
             "exclude": [
                 "PS-01", "PS-02", "PS-03",
-                "FK-00-01", "FK-00-02", "FK-00-03"
+                "FK-00-01", "FK-00-02", "FK-00-03",
+                "FK-01-01", "FK-01-02", "FK-01-03",
+                "Sensor-101"
             ],
 
             "devices": {
                 "RV-01": {
                     "type": "OccupancySensor",
-                    "timeout": 30
+                    "timeout": 1
                 },
                 "RV-02": {
-                    "type": "OccupancySensor"
+                    "type": "OccupancySensor",
+                    "timeout": 1
                 },
                 "RV-03": {
                     "type": "OccupancySensor",
-                    "timeout": 1
+                    "timeout": 30
                 },
                 "RK-01": {
                     "type": "MotionSensor"
