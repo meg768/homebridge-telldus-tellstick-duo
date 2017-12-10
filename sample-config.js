@@ -20,13 +20,15 @@
 
             "devices": {
                 "RV-01": {
-                    "type": "OccupancySensor"
+                    "type": "OccupancySensor",
+                    "timeout": 30
                 },
                 "RV-02": {
                     "type": "OccupancySensor"
                 },
                 "RV-03": {
-                    "type": "OccupancySensor"
+                    "type": "OccupancySensor",
+                    "timeout": 1
                 },
                 "RK-01": {
                     "type": "MotionSensor"
