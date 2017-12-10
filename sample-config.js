@@ -23,21 +23,26 @@
 
             "devices": {
                 "RV-01": {
+                    "comment": "Home office",
                     "type": "OccupancySensor",
                     "timeout": 1
                 },
                 "RV-02": {
+                    "comment": "TV room",
                     "type": "OccupancySensor",
                     "timeout": 1
                 },
                 "RV-03": {
+                    "comment": "Living room",
                     "type": "OccupancySensor",
                     "timeout": 30
                 },
                 "RK-01": {
+                    "comment": "Door bell represented as a motion sensor",
                     "type": "MotionSensor"
                 },
                 "VS-05": {
+                    "comment": "Home security on/off",
                     "type": "Switch"
                 }
             }
