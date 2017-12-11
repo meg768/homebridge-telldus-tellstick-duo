@@ -14,7 +14,7 @@
             "name": "Telldus Tellstick Duo",
 
             "exclude": [
-                "PS-01", "PS-02", "PS-03",
+                "PS-01", "PS-03",
                 "FK-00-01", "FK-00-02", "FK-00-03",
                 "FK-01-01", "FK-01-02", "FK-01-03",
                 "FK-02-03",
@@ -25,17 +25,22 @@
                 "RV-01": {
                     "comment": "Home office",
                     "type": "OccupancySensor",
-                    "timeout": 1
+                    "timeout": 30
                 },
                 "RV-02": {
                     "comment": "TV room",
                     "type": "OccupancySensor",
-                    "timeout": 1
+                    "timeout": 30
                 },
                 "RV-03": {
                     "comment": "Living room",
                     "type": "OccupancySensor",
                     "timeout": 30
+                },
+                "RV-04": {
+                    "comment": "Garage",
+                    "type": "OccupancySensor",
+                    "timeout": 60
                 },
                 "RK-01": {
                     "comment": "Door bell represented as a motion sensor",
