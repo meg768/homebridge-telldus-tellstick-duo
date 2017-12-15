@@ -9,14 +9,24 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
     constructor(platform, config, device) {
         super(platform, config, device);
 
-        this.setupSwitch();
+        switch(config.type.toLowerCase()) {
+            case 'lightbulb' : {
+                this.setupSwitch(this.Service.Lightbulb);
+                break;
+            }
+            default : {
+                this.setupSwitch(this.Service.Switch);
+                break;
+            }
+        }
     }
 
-    setupSwitch() {
+
+    setupSwitch(Service) {
 
         this.state = this.getDeviceState();
 
-        var service = new this.Service.Switch(this.displayName, this.device.name);
+        var service = new Service(this.displayName, this.device.name);
         var characteristics = service.getCharacteristic(this.Characteristic.On);
 
         characteristics.updateValue(this.getState());

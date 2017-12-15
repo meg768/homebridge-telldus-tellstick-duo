@@ -26,100 +26,112 @@
 
             "devices": {
                 "VS-01": {
-                    "name": "Terassen"
+                    "type" : "Lightbulb",
+                    "name" : "Terassen",
+                    "on"   : "Terassen tänd."
                 },
 
                 "VS-02": {
-                    "name": "Saftblandare"
+                    "type" : "Lightbulb",
+                    "name" : "Saftblandare"
                 },
 
                 "VS-03": {
-                    "name": "Belysning i matrummet"
+                    "type" : "Lightbulb",
+                    "name" : "Belysning i matrummet"
                 },
 
                 "VS-04": {
-                    "name": "Belysning i vardagsrummet"
+                    "type" : "Lightbulb",
+                    "name" : "Belysning i vardagsrummet"
                 },
 
                 "VS-05": {
-                    "name": "Larm",
-                    "type": "NotificationSwitch",
-                    "on": "Larm aktiverat",
-                    "off": "Larm avaktiverat"
+                    "type" : "NotificationSwitch",
+                    "name" : "Larm",
+                    "on"   : "Larm aktiverat",
+                    "off"  : "Larm avaktiverat"
                 },
 
                 "VS-06": {
-                    "name": "Belysning på kontoret"
+                    "type" : "Lightbulb",
+                    "name" : "Belysning på kontoret"
                 },
 
                 "VS-07": {
-                    "name": "Sänglampa"
+                    "type" : "Lightbulb",
+                    "name" : "Sänglampa"
                 },
 
                 "FK-02-01": {
+                    "type" : "Lightbulb",
                     "name" : "Främre lampor i biorummet",
                     "on"   : "Främre lampor i biorummet tändes.",
                     "off"  : "Främre lampor i biorummet släcktes.",
                 },
 
                 "FK-02-02": {
+                    "type" : "Lightbulb",
                     "name" : "Bakre lampor i biorummet",
                     "on"   : "Brämre lampor i biorummet tändes.",
                     "off"  : "Brämre lampor i biorummet släcktes."
                 },
 
                 "RV-01": {
-                    "name": "Sensor på kontoret",
-                    "type": "OccupancySensor",
-                    "notify": "Rörelse på kontoret.",
-                    "timeout": 60
+                    "type"    : "OccupancySensor",
+                    "name"    : "Sensor på kontoret",
+                    "notify"  : "Rörelse på kontoret.",
+                    "timeout" : 60
                 },
 
                 "RV-02": {
-                    "name": "Sensor i biorummet",
-                    "type": "OccupancySensor",
-                    "timeout": 60,
-                    "notify": "Rörelse i biorummet."
+                    "type"    : "OccupancySensor",
+                    "name"    : "Sensor i biorummet",
+                    "timeout" : 60,
+                    "notify"  : "Rörelse i biorummet."
                 },
 
                 "RV-03": {
-                    "name": "Sensor i vardagsrummet",
-                    "type": "OccupancySensor",
-                    "notify": "Rörelse i vardagsrummet.",
-                    "timeout": 60
+                    "type"    : "OccupancySensor",
+                    "name"    : "Sensor i vardagsrummet",
+                    "notify"  : "Rörelse i vardagsrummet.",
+                    "timeout" : 60
                 },
 
                 "RV-04": {
-                    "name": "Sensor i snickarrummet",
-                    "type": "OccupancySensor",
-                    "notify": "Rörelse i snickarrummet.",
-                    "timeout": 60
+                    "type"    : "OccupancySensor",
+                    "name"    : "Sensor i snickarrummet",
+                    "notify"  : "Rörelse i snickarrummet.",
+                    "timeout" : 60
                 },
 
                 "RV-05": {
-                    "name": "Sensor i köket",
-                    "type": "MotionSensor",
-                    "notify": "Rörelse i köket.",
-                    "timeout": 10
+                    "type"    : "MotionSensor",
+                    "name"    : "Sensor i köket",
+                    "notify"  : "Rörelse i köket.",
+                    "timeout" : 10
                 },
 
                 "RK-01": {
-                    "name": "Ringklocka",
-                    "type": "MotionSensor",
-                    "alert": "Det ringer på dörren.",
-                    "timeout": 1
+                    "type"    : "MotionSensor",
+                    "name"    : "Ringklocka",
+                    "alert"   : "Det ringer på dörren.",
+                    "timeout" : 1
                 },
 
                 "PS-02": {
-                    "name": "Belysning i snickarrummet"
+                    "type"    : "Lightbulb",
+                    "name"    : "Belysning i snickarrummet"
                 },
 
                 "SR-01": {
-                    "name": "Skymmningsrelä"
+                    "type"    : "Switch",
+                    "name"    : "Skymmningsrelä"
                 },
 
                 "XMAS-01": {
-                    "name": "Julbelysning"
+                    "type"    : "Lightbulb",
+                    "name"    : "Julbelysning"
                 }
             }
 
