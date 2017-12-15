@@ -62,7 +62,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
             if (state && isNumber(this.config.autoOff)) {
                 timer.cancel();
 
-                timer.setTimer(this.config.autoOff * 1000, ()) => {
+                timer.setTimer(this.config.autoOff * 1000, () => {
                     this.log('Auto off activated. Turning off', this.device.name);
                     this.setState(false);
                 });
