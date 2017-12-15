@@ -1,5 +1,5 @@
 # homebridge-telldus-tellstick-duo
-Homebridge for Telldus Tellstick Duo.
+A Homebridge plugin for Telldus Tellstick Duo.
 
 A HomeBridge plugin for anyone with a working setup using a Telldus Tellstick Duo.
 This module uses the npm module https://www.npmjs.com/package/telldus instead of
@@ -62,12 +62,10 @@ The following Telldus models are supported
 
 Optionally, you may configure this plugin with the following additions.
 
-### Motion Sensors
+### Devices
 
-Since motion sensors registered in your Tellstick Duo acts like
-normal switches this plugin cannot distinguish between them. The following example tells this plugin that
-the device **RV-01** is a motion sensor and behaves like it in HomeKit, turning it on
-for a while when activated and then automatically turning it off.
+If you specify a section in your config file named **devices** only the
+specified devices will be added from the Tellstick Duo.
 
 ```javascript
 
@@ -79,10 +77,47 @@ for a while when activated and then automatically turning it off.
 
             "devices": {
                 "RV-01": {
+                    ...
+                },
+                "RV-02": {
+                    ...
+                }
+            }
+
+        }]
+        ...
+    }
+```
+
+
+#### Switches
+
+By default, every device is represented by a switch in HomeKit. See next section
+to configure a device as a motion/occupancy sensor rather than a switch.
+
+#### Motion Sensors
+
+Since motion sensors registered in your Tellstick Duo acts like
+normal switches this plugin cannot distinguish between them. The following
+example tells this plugin that the device **RV-01** is a motion sensor and
+behaves like it in HomeKit, turning it on
+for a while when activated and then automatically turning it off.
+
+```javascript
+
+    {
+        ...
+        "platforms": [{
+            ...
+            "devices": {
+                "RV-01": {
                     "type": "MotionSensor",
+                    "name": "Kitchen sensor",
+                    "notify": "Movement in the kitchen.",
                     "timeout": 10
                 }
             }
+            ...
 
         }]
         ...
@@ -93,7 +128,13 @@ The **timeout** entry is optional and specifies, in seconds,
 how long the motion sensor should be in a triggered state
 after motion has been detected. Default is 5 seconds.
 
-### Occupancy Sensors
+The **name**
+property is also optional. If not specified, the Telldus device name is used.
+
+By adding the **notify** property you may get notified when the motion
+sensor has been triggered.
+
+#### Occupancy Sensors
 
 Occupancy sensors are similar to motion sensors but remain in
 a triggered state as long as there has been movement during the timeout period.
@@ -103,15 +144,15 @@ a triggered state as long as there has been movement during the timeout period.
     {
         ...
         "platforms": [{
-            "platform": "Telldus Tellstick Duo",
-            "name": "Telldus Tellstick Duo",
-
+            ...
             "devices": {
-                "RV-01": {
-                    "type": "MotionSensor",
-                    "timeout": 10
+                "RV-02": {
+                    "type": "OccupancySensor",
+                    "name": "Office sensor",
+                    "timeout": 60
                 }
             }
+            ...
 
         }]
         ...
@@ -122,25 +163,103 @@ The **timeout** entry is optional and specifies, in minutes,
 how long the motion sensor should be in a triggered state after
 a movement has been detected. Default is 30 minutes.
 
-### Switches
 
-By default, every device is represented by a lightbulb in HomeKit. The following
-example shows how to change the device **VS-05** into a switch in HomeKit.
+### Sensors
+
+Since sensors does not behave as devices when using the Tellstick a
+special section named **sensors** may be created to give the
+sensors names and behaviours.
 
 ```javascript
     ...
     "platforms": [{
         ...
-
-        "devices": {
-            "VS-05": {
-                "type": "Switch"
+        "sensors": {
+            "135": {
+                "name": "Temperature in the office"
             }
-        }
+        },
 
+        ...
     }]
     ...
 ```
+
+You specify each sensor by representing its Tellstick Duo id and
+then specifying its properties.
+
+## Pushover Support
+
+By adding a **pushover** section in the configuration file you
+will be able to send messages using **Pushover**.
+
+```javascript
+    ...
+    "platforms": [{
+        ...
+        "pushover": {
+            "user": "my-pushover-user",
+            "token": "my-pushover-token"
+        }
+        ...
+    }]
+    ...
+```
+
+To send a message, use the **notify** or **alert** property under the device
+to specify the message.
+
+```javascript
+
+    {
+        ...
+        "platforms": [{
+            "platform": "Telldus Tellstick Duo",
+            "name": "Telldus Tellstick Duo",
+
+            "devices": {
+                ...
+                "RV-01": {
+                    "MotionSensor",
+                    "name": "Doorbell",
+                    "notify": "Someone at the door."
+                }
+                ...
+            }
+
+        }]
+        ...
+    }
+```
+
+The difference between **notify** and **alert** is that notifications
+may be turned on or off using a **NotifycationSwitch**. By using **alert**
+the message is always sent.
+
+```javascript
+
+    {
+        ...
+        "platforms": [{
+            "platform": "Telldus Tellstick Duo",
+            "name": "Telldus Tellstick Duo",
+
+            "devices": {
+                ...
+                "VS-05": {
+                    "name": "Notifications",
+                    "type": "NotificationSwitch",
+                    "on": "Notifications are now on.",
+                    "off": "Notifications are now off."
+                }
+                ...
+            }
+
+        }]
+        ...
+    }
+```
+
 
 
 ## Useful Links
