@@ -15,7 +15,7 @@
 
             "pushover": {
                 "user": "my-pushover-user",
-                "token": "my-pushover-key"
+                "token": "my-pushover-token"
             },
 
             "sensors": {
