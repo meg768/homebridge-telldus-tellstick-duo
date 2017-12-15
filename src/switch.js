@@ -4,6 +4,7 @@ var telldus  = require('telldus');
 var sprintf  = require('yow/sprintf');
 var isString = require('yow/is').isString;
 var isNumber = require('yow/is').isNumber;
+var Timer    = require('yow/timer');
 
 module.exports = class TelldusSwitch extends TelldusAccessory {
 
