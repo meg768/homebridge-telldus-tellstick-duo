@@ -34,7 +34,7 @@
                 "VS-02": {
                     "type"    : "Lightbulb",
                     "name"    : "Saftblandare",
-                    "autoOff" : 10
+                    "autoOff" : 120
                 },
 
                 "VS-03": {
@@ -65,7 +65,6 @@
                 },
 
                 "FK-02-01": {
-                    "autoOff" : 10,
                     "type"    : "Lightbulb",
                     "name"    : "Främre lampor i biorummet",
                     "on"      : "Främre lampor i biorummet tändes.",
