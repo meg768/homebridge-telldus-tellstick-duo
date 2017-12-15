@@ -36,13 +36,23 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
             if (this.state != state) {
                 this.log('Reflecting change to HomeKit. %s is now %s.', this.device.name, state);
                 characteristics.updateValue(this.state = state);
-                this.log('Done.');
+
+                this.notifyState();
             }
 
         });
 
         this.services.push(service);
     }
+
+    notifyState() {
+        if (this.state && this.config.on)
+            this.platform.notify(this.config.on);
+
+        if (!this.state && this.config.off)
+            this.platform.notify(this.config.off);
+    }
+
 
     getDeviceState() {
         return this.device.state;
