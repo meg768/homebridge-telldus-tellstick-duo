@@ -57,13 +57,15 @@
                 },
 
                 "FK-02-01": {
-                    "name": "Främre lampor i biorummet",
-                    "on": "Främre lampor i biorummet tändes."
+                    "name" : "Främre lampor i biorummet",
+                    "on"   : "Främre lampor i biorummet tändes.",
+                    "off"  : "Främre lampor i biorummet släcktes.",
                 },
 
                 "FK-02-02": {
-                    "name": "Bakre lampor i biorummet",
-                    "on": "Brämre lampor i biorummet tändes."
+                    "name" : "Bakre lampor i biorummet",
+                    "on"   : "Brämre lampor i biorummet tändes.",
+                    "off"  : "Brämre lampor i biorummet släcktes."
                 },
 
                 "RV-01": {

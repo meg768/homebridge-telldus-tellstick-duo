@@ -69,7 +69,9 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         else
             this.turnOff();
 
-        this.log('Settings value from HomeKit. %s is now %s.', this.device.name, state);
+        this.notifyState();
+
+        this.log('Setting value from HomeKit. %s is now %s.', this.device.name, state);
     }
 
     turnOn() {
@@ -84,6 +86,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         this.log(sprintf('Device %s turned on.', this.device.name));
 
         this.state = true;
+
     }
 
     turnOff() {
