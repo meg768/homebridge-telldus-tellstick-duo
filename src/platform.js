@@ -1,18 +1,19 @@
 "use strict";
 
-var Path = require('path');
-var Events  = require('events');
-var telldus = require('telldus');
+var Path     = require('path');
+var Events   = require('events');
+var telldus  = require('telldus');
 var Pushover = require('pushover-notifications');
 
-var Switch = require('./switch.js');
-var NotificationSwitch = require('./notification-switch.js');
-var AlertSwitch = require('./alert-switch.js');
-var MotionSensor = require('./motion-sensor.js');
-var OccupancySensor = require('./occupancy-sensor.js');
+var Switch                = require('./switch.js');
+var NotificationSwitch    = require('./notification-switch.js');
+var AlertSwitch           = require('./alert-switch.js');
+var MotionSensor          = require('./motion-sensor.js');
+var OccupancySensor       = require('./occupancy-sensor.js');
 var ThermometerHygrometer = require('./thermometer-hygrometer.js');
 
-var sprintf = require('yow/sprintf');
+var sprintf  = require('yow/sprintf');
+var isString = require('yow/is').isString;
 
 
 module.exports = class TelldusPlatform  {
@@ -246,10 +247,7 @@ module.exports = class TelldusPlatform  {
     }
 
     pushover(message) {
-        if (message) {
-            if (!this.config.pushover)
-                throw new Error('You must configure Pushover credentials.');
-
+        if (isString(message) && message.length > 0 && this.config.pushover) {
             if (!this.config.pushover.user)
                 throw new Error('You must configure Pushover user.');
 
