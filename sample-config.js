@@ -65,10 +65,11 @@
                 },
 
                 "FK-02-01": {
-                    "type" : "Lightbulb",
-                    "name" : "Främre lampor i biorummet",
-                    "on"   : "Främre lampor i biorummet tändes.",
-                    "off"  : "Främre lampor i biorummet släcktes."
+                    "autoOff" : 10,
+                    "type"    : "Lightbulb",
+                    "name"    : "Främre lampor i biorummet",
+                    "on"      : "Främre lampor i biorummet tändes.",
+                    "off"     : "Främre lampor i biorummet släcktes."
                 },
 
                 "FK-02-02": {
