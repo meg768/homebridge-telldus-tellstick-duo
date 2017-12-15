@@ -60,13 +60,15 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
             }
 
             // Auto off?
-            if (state && isNumber(this.config.autoOff)) {
+            if (state && isNumber(this.config.timer)) {
                 timer.cancel();
 
-                timer.setTimer(this.config.autoOff * 1000, () => {
-                    this.log('Auto off activated. Turning off', this.device.name);
+                timer.setTimer(this.config.timer * 1000, () => {
+                    this.log('Timer activated. Turning off', this.device.name);
 
                     this.state = false;
+
+                    // Turn off and make sure HomeKit knows about it
                     this.setState(this.state);
                     characteristics.updateValue(this.state);
                 });

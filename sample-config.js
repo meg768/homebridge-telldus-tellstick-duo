@@ -26,42 +26,42 @@
 
             "devices": {
                 "VS-01": {
-                    "type" : "Lightbulb",
-                    "name" : "Terassen",
-                    "on"   : "Terassen tänd."
+                    "type"    : "Lightbulb",
+                    "name"    : "Terassen",
+                    "on"      : "Terassen tänd."
                 },
 
                 "VS-02": {
                     "type"    : "Lightbulb",
                     "name"    : "Saftblandare",
-                    "autoOff" : 120
+                    "timer"   : 120
                 },
 
                 "VS-03": {
-                    "type" : "Lightbulb",
-                    "name" : "Belysning i matrummet"
+                    "type"    : "Lightbulb",
+                    "name"    : "Belysning i matrummet"
                 },
 
                 "VS-04": {
-                    "type" : "Lightbulb",
-                    "name" : "Belysning i vardagsrummet"
+                    "type"    : "Lightbulb",
+                    "name"    : "Belysning i vardagsrummet"
                 },
 
                 "VS-05": {
-                    "type" : "NotificationSwitch",
-                    "name" : "Larm",
-                    "on"   : "Larm aktiverat",
-                    "off"  : "Larm avaktiverat"
+                    "type"    : "NotificationSwitch",
+                    "name"    : "Larm",
+                    "on"      : "Larm aktiverat",
+                    "off"     : "Larm avaktiverat"
                 },
 
                 "VS-06": {
-                    "type" : "Lightbulb",
-                    "name" : "Belysning på kontoret"
+                    "type"    : "Lightbulb",
+                    "name"    : "Belysning på kontoret"
                 },
 
                 "VS-07": {
-                    "type" : "Lightbulb",
-                    "name" : "Sänglampa"
+                    "type"    : "Lightbulb",
+                    "name"    : "Sänglampa"
                 },
 
                 "FK-02-01": {
@@ -72,10 +72,10 @@
                 },
 
                 "FK-02-02": {
-                    "type" : "Lightbulb",
-                    "name" : "Bakre lampor i biorummet",
-                    "on"   : "Brämre lampor i biorummet tändes.",
-                    "off"  : "Brämre lampor i biorummet släcktes."
+                    "type"    : "Lightbulb",
+                    "name"    : "Bakre lampor i biorummet",
+                    "on"      : "Brämre lampor i biorummet tändes.",
+                    "off"     : "Brämre lampor i biorummet släcktes."
                 },
 
                 "RV-01": {
