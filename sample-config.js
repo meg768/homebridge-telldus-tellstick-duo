@@ -92,6 +92,13 @@
                     "timeout": 60
                 },
 
+                "RV-05": {
+                    "name": "Sensor i köket",
+                    "type": "MotionSensor",
+                    "notify": "Rörelse i köket.",
+                    "timeout": 10
+                },
+
                 "RK-01": {
                     "name": "Ringklocka",
                     "type": "MotionSensor",
