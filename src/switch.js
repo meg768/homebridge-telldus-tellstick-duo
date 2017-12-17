@@ -116,7 +116,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         this.platform.notify(this.config.notifyOn);
 
         telldus.turnOnSync(this.device.id);
-        //telldus.turnOnSync(this.device.id);
+        telldus.turnOnSync(this.device.id);
 
         this.log(sprintf('Device %s turned on.', this.device.name));
 
@@ -131,7 +131,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         this.platform.notify(this.config.notifyOff);
 
         telldus.turnOffSync(this.device.id);
-        //telldus.turnOffSync(this.device.id);
+        telldus.turnOffSync(this.device.id);
 
         this.log(sprintf('Device %s turned off.', this.device.name));
 
