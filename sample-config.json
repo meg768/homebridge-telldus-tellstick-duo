@@ -107,10 +107,10 @@
                 },
 
                 "RV-05": {
-                    "type"    : "MotionSensor",
-                    "name"    : "Sensor i köket",
-                    "notify"  : "Rörelse i köket.",
-                    "timeout" : 10
+                    "type"    : "OccupancySensor",
+                    "name"    : "Sensor i matrummet",
+                    "notify"  : "Rörelse i matrummet.",
+                    "timeout" : 30
                 },
 
                 "RK-01": {
