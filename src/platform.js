@@ -9,6 +9,7 @@ var Switch                = require('./switch.js');
 var NotificationSwitch    = require('./notification-switch.js');
 var AlertSwitch           = require('./alert-switch.js');
 var MotionSensor          = require('./motion-sensor.js');
+var MotionSensorSwitch    = require('./motion-sensor-switch.js');
 var OccupancySensor       = require('./occupancy-sensor.js');
 var ThermometerHygrometer = require('./thermometer-hygrometer.js');
 
