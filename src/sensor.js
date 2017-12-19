@@ -2,6 +2,7 @@
 
 var TelldusAccessory = require('./accessory.js');
 var Timer = require('yow/timer');
+var isString = require('yow/is').isString;
 
 module.exports = class TelldusSensor extends TelldusAccessory {
 
@@ -10,6 +11,11 @@ module.exports = class TelldusSensor extends TelldusAccessory {
         this.state = false;
         this.timer = new Timer();
 
+        if (isString(this.config.appearance) && this.config.appearance.toLowerCase() == "switch") {
+            Service = this.Service.Switch;
+            Characteristic = this.Characteristic.On;
+        }
+        
         var service = new Service(this.displayName, this.device.name);
         var characteristics = service.getCharacteristic(Characteristic);
 

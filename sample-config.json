@@ -79,45 +79,50 @@
                 },
 
                 "RV-01": {
-                    "type"    : "MotionSensorSwitch", 
-                    "name"    : "Sensor på kontoret",
-                    "notify"  : "Rörelse på kontoret.",
-                    "timeout" : 60
+                    "type"       : "OccupancySensor",
+                    "appearance" : "Switch",
+                    "name"       : "Sensor på kontoret",
+                    "notify"     : "Rörelse på kontoret.",
+                    "timeout"    : 60
                 },
 
                 "RV-02": {
-                    "type"    : "OccupancySensor",
-                    "name"    : "Sensor i biorummet",
-                    "timeout" : 60,
-                    "notify"  : "Rörelse i biorummet."
+                    "type"       : "OccupancySensor",
+                    "appearance" : "Switch",
+                    "name"       : "Sensor i biorummet",
+                    "timeout"    : 60,
+                    "notify"     : "Rörelse i biorummet."
                 },
 
                 "RV-03": {
-                    "type"    : "OccupancySensor",
-                    "name"    : "Sensor i vardagsrummet",
-                    "notify"  : "Rörelse i vardagsrummet.",
-                    "timeout" : 60
+                    "type"       : "OccupancySensor",
+                    "appearance" : "Switch",
+                    "name"       : "Sensor i vardagsrummet",
+                    "notify"     : "Rörelse i vardagsrummet.",
+                    "timeout"    : 60
                 },
 
                 "RV-04": {
-                    "type"    : "OccupancySensor",
-                    "name"    : "Sensor i snickarrummet",
-                    "notify"  : "Rörelse i snickarrummet.",
-                    "timeout" : 60
+                    "type"       : "OccupancySensor",
+                    "appearance" : "Switch",
+                    "name"       : "Sensor i snickarrummet",
+                    "notify"     : "Rörelse i snickarrummet.",
+                    "timeout"    : 60
                 },
 
                 "RV-05": {
-                    "type"    : "OccupancySensor",
-                    "name"    : "Sensor i matrummet",
-                    "notify"  : "Rörelse i matrummet.",
-                    "timeout" : 30
+                    "type"       : "OccupancySensor",
+                    "appearance" : "Switch",
+                    "name"       : "Sensor i matrummet",
+                    "notify"     : "Rörelse i matrummet.",
+                    "timeout"    : 30
                 },
 
                 "RK-01": {
                     "type"    : "MotionSensor",
                     "name"    : "Ringklocka",
                     "alert"   : "Det ringer på dörren.",
-                    "timeout" : 1
+                    "timeout" : 2
                 },
 
                 "PS-02": {
