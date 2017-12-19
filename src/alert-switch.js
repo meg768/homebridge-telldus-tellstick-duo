@@ -1,8 +1,8 @@
 "use strict";
-var TelldusSwitch = require('./switch.js');
+var Switch = require('./switch.js');
 var sprintf = require('yow/sprintf');
 
-module.exports = class AlertSwitch extends TelldusSwitch {
+module.exports = class AlertSwitch extends Switch {
 
     setState(state) {
         this.platform.alerts = state;

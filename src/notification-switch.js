@@ -1,9 +1,15 @@
 "use strict";
-var TelldusSwitch = require('./switch.js');
+var Switch = require('./switch.js');
 var sprintf = require('yow/sprintf');
 
-module.exports = class NotificationSwitch extends TelldusSwitch {
+module.exports = class NotificationSwitch extends Switch {
 
+
+    constructor(platform, config, device) {
+        super(platform, config, device);
+
+        this.platform.notifications = this.getState();
+    }
 
     setState(state) {
 
