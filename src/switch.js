@@ -120,7 +120,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         telldus.turnOnSync(this.device.id);
 
-        timer.setTimer(500, () => {
+        this.timer.setTimer(500, () => {
             telldus.turnOnSync(this.device.id);
         });
 
@@ -139,7 +139,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         telldus.turnOffSync(this.device.id);
 
-        timer.setTimer(500, () => {
+        this.timer.setTimer(500, () => {
             telldus.turnOffSync(this.device.id);
         });
 
