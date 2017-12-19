@@ -11,6 +11,8 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
     constructor(platform, config, device) {
         super(platform, config, device);
 
+        this.timer = new Timer();
+
         switch(config.type.toLowerCase()) {
             case 'lightbulb' : {
                 this.setupSwitch(this.Service.Lightbulb);
@@ -110,13 +112,17 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
     }
 
     turnOn() {
+        this.timer.cancel();
         this.log('Turning on', this.device.name);
 
         this.platform.alert(this.config.alertOn);
         this.platform.notify(this.config.notifyOn);
 
         telldus.turnOnSync(this.device.id);
-        telldus.turnOnSync(this.device.id);
+
+        timer.setTimer(500, () => {
+            telldus.turnOnSync(this.device.id);
+        });
 
         this.log(sprintf('Device %s turned on.', this.device.name));
 
@@ -125,13 +131,17 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
     }
 
     turnOff() {
+        this.timer.cancel();
         this.log('Turning off', this.device.name);
 
         this.platform.alert(this.config.alertOff);
         this.platform.notify(this.config.notifyOff);
 
         telldus.turnOffSync(this.device.id);
-        telldus.turnOffSync(this.device.id);
+
+        timer.setTimer(500, () => {
+            telldus.turnOffSync(this.device.id);
+        });
 
         this.log(sprintf('Device %s turned off.', this.device.name));
 
