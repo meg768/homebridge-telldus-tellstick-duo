@@ -79,8 +79,7 @@
                 },
 
                 "RV-01": {
-                    "type"       : "OccupancySensor",
-                    "appearance" : "Switch",
+                    "type"       : "Switch",
                     "name"       : "Sensor på kontoret",
                     "notify"     : "Rörelse på kontoret.",
                     "timeout"    : 60
