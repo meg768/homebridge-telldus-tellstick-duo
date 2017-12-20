@@ -119,9 +119,12 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         this.platform.notify(this.config.notifyOn);
 
         telldus.turnOnSync(this.device.id);
-        telldus.turnOnSync(this.device.id);
 
-        this.timer.setTimer(500, () => {
+        setImmediate(() => {
+            telldus.turnOnSync(this.device.id);
+        })
+
+        this.timer.setTimer(600, () => {
             telldus.turnOnSync(this.device.id);
         });
 
@@ -139,9 +142,12 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         this.platform.notify(this.config.notifyOff);
 
         telldus.turnOffSync(this.device.id);
-        telldus.turnOffSync(this.device.id);
 
-        this.timer.setTimer(500, () => {
+        setImmediate(() => {
+            telldus.turnOffSync(this.device.id);
+        })
+
+        this.timer.setTimer(600, () => {
             telldus.turnOffSync(this.device.id);
         });
 
