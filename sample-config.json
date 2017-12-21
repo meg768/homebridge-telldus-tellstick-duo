@@ -64,20 +64,6 @@
                     "name"    : "Sänglampa"
                 },
 
-                "FK-02-01": {
-                    "type"    : "Lightbulb",
-                    "name"    : "Främre lampor i biorummet",
-                    "on"      : "Främre lampor i biorummet tändes.",
-                    "off"     : "Främre lampor i biorummet släcktes."
-                },
-
-                "FK-02-02": {
-                    "type"    : "Lightbulb",
-                    "name"    : "Bakre lampor i biorummet",
-                    "on"      : "Brämre lampor i biorummet tändes.",
-                    "off"     : "Brämre lampor i biorummet släcktes."
-                },
-
                 "RV-01": {
                     "type"       : "OccupancySensor",
                     "appearance" : "Switch",
