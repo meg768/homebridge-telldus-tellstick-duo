@@ -64,28 +64,30 @@
                     "name"    : "Sänglampa"
                 },
 
+                "FK-02-02": {
+                    "type"    : "Lightbulb",
+                    "name"    : "Bokhyllan i biorummet"
+                },
+
                 "RV-01": {
                     "type"       : "OccupancySensor",
-                    "appearance" : "Switch",
                     "name"       : "Sensor på kontoret",
                     "notify"     : "Rörelse på kontoret.",
-                    "timeout"    : 60
+                    "timeout"    : 30
                 },
 
                 "RV-02": {
                     "type"       : "OccupancySensor",
-                    "appearance" : "Switch",
                     "name"       : "Sensor i biorummet",
-                    "timeout"    : 60,
+                    "timeout"    : 30,
                     "notify"     : "Rörelse i biorummet."
                 },
 
                 "RV-03": {
                     "type"       : "OccupancySensor",
-                    "appearance" : "Switch",
                     "name"       : "Sensor i vardagsrummet",
                     "notify"     : "Rörelse i vardagsrummet.",
-                    "timeout"    : 60
+                    "timeout"    : 30
                 },
 
                 "RV-04": {
