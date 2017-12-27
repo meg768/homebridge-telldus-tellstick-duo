@@ -122,11 +122,11 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         setImmediate(() => {
             telldus.turnOnSync(this.device.id);
-        })
+        });
 
         setImmediate(() => {
             telldus.turnOnSync(this.device.id);
-        })
+        });
 
         this.timer.setTimer(800, () => {
             telldus.turnOnSync(this.device.id);
@@ -149,13 +149,13 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         setImmediate(() => {
             telldus.turnOffSync(this.device.id);
-        })
+        });
 
         setImmediate(() => {
             telldus.turnOffSync(this.device.id);
-        })
+        });
 
-        this.timer.setTimer(8-00, () => {
+        this.timer.setTimer(800, () => {
             telldus.turnOffSync(this.device.id);
         });
 
