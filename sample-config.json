@@ -92,7 +92,6 @@
 
                 "RV-04": {
                     "type"       : "OccupancySensor",
-                    "appearance" : "Switch",
                     "name"       : "Sensor i snickarrummet",
                     "notify"     : "Rörelse i snickarrummet.",
                     "timeout"    : 60
@@ -100,7 +99,6 @@
 
                 "RV-05": {
                     "type"       : "OccupancySensor",
-                    "appearance" : "Switch",
                     "name"       : "Sensor i matrummet",
                     "notify"     : "Rörelse i matrummet.",
                     "timeout"    : 30
