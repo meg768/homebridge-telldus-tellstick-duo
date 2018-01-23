@@ -25,10 +25,10 @@
   "author": "meg768",
   "license": "ISC",
   "dependencies": {
-      "dotenv": "^4.0.0",
-      "pushover-notifications": "^0.2.4",
-      "telldus": "^1.1.0",
-      "yow": "^1.0.85"
+    "dotenv": "^4.0.0",
+    "pushover-notifications": "^0.2.4",
+    "telldus": "^1.1.2",
+    "yow": "^1.0.85"
   },
   "bugs": {
     "url": "https://github.com/meg768/homebridge-telldus-tellstick-duo/issues"
