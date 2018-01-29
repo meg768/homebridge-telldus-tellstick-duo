@@ -521,7 +521,7 @@
                         "on": "Rörelse på kontoret.",
                         "off": "Tomt på kontoret"
                     },
-                    "timeout"    : 1
+                    "timeout"    : 10
                 },
 
                 "RV-02": {
