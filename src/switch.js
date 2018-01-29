@@ -43,7 +43,7 @@ module.exports = class TelldusSwitch extends Accessory {
             // If not the same state as HomeKit, update HomeKit value
             if (this.state != state) {
                 this.log('Reflecting change to HomeKit. %s is now %s.', this.device.name, state);
-                characteristics.updateValue(this.state = state);
+                power.updateValue(this.state = state);
 
                 // Notify state change
                 this.notifyState();
@@ -60,7 +60,7 @@ module.exports = class TelldusSwitch extends Accessory {
 
                     // Turn off and make sure HomeKit knows about it
                     this.setState(this.state);
-                    characteristics.updateValue(this.state);
+                    power.updateValue(this.state);
                 });
 
             }
