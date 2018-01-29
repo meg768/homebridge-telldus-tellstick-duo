@@ -2,6 +2,7 @@
 
 var Events   = require('events');
 var sprintf  = require('yow/sprintf');
+var telldus  = require('telldus');
 
 module.exports = class Accessory extends Events {
 
