@@ -3,6 +3,7 @@ var TelldusAccessory = require('./accessory.js');
 var telldus  = require('telldus');
 var sprintf  = require('yow/sprintf');
 var isString = require('yow/is').isString;
+var isObject = require('yow/is').isObject;
 var isNumber = require('yow/is').isNumber;
 var Timer    = require('yow/timer');
 
@@ -89,11 +90,17 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
     }
 
     notifyState() {
-        if (this.state && this.config.on)
-            this.platform.notify(this.config.on);
+        if (isString(this.config.notify)) {
+            if (this.state)
+                this.platform.notify(this.config.notify);
+        }
+        else if (isObject(this.config.notify)) {
+            if (isString(this.config.notify.on) && this.state)
+                this.platform.notify(this.config.notify.on);
 
-        if (!this.state && this.config.off)
-            this.platform.notify(this.config.off);
+            if (isString(this.config.notify.off) && !this.state)
+                this.platform.notify(this.config.notify.off);
+        }
     }
 
 

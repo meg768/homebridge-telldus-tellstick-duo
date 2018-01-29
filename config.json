@@ -471,7 +471,7 @@
                 "VS-01": {
                     "type"    : "Lightbulb",
                     "name"    : "Terassen",
-                    "on"      : "Terassen tänd."
+                    "notify"  : "Terassen tänd."
                 },
 
                 "VS-02": {
@@ -491,10 +491,12 @@
                 },
 
                 "VS-05": {
-                    "type"    : "NotificationSwitch",
-                    "name"    : "Larm",
-                    "on"      : "Larm aktiverat",
-                    "off"     : "Larm avaktiverat"
+                    "type": "NotificationSwitch",
+                    "name": "Larm",
+                    "notify": {
+                        "on": "Larm aktiverat",
+                        "off": "Larm avaktiverat"
+                    }
                 },
 
                 "VS-06": {
@@ -515,8 +517,11 @@
                 "RV-01": {
                     "type"       : "OccupancySensor",
                     "name"       : "Sensor på kontoret",
-                    "notify"     : "Rörelse på kontoret.",
-                    "timeout"    : 30
+                    "notify": {
+                        "on": "Rörelse på kontoret.",
+                        "off": "Tomt på kontoret"
+                    },
+                    "timeout"    : 1
                 },
 
                 "RV-02": {
