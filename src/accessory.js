@@ -57,6 +57,7 @@ module.exports = class Accessory extends Events {
 
     notifyState() {
         if (this.state != undefined) {
+
             if (isString(this.config.notify)) {
                 if (this.state)
                     this.platform.notify(this.config.notify);
@@ -68,11 +69,7 @@ module.exports = class Accessory extends Events {
                 if (isString(this.config.notify.off) && !this.state)
                     this.platform.notify(this.config.notify.off);
             }
-        }
-    }
 
-    alertState() {
-        if (this.state != undefined) {
             if (isString(this.config.alert)) {
                 if (this.state)
                     this.platform.alert(this.config.alert);
@@ -84,8 +81,12 @@ module.exports = class Accessory extends Events {
                 if (isString(this.config.alert.off) && !this.state)
                     this.platform.alert(this.config.alert.off);
             }
+
+
         }
+
     }
+
 
     identify(callback) {
         this.log('Identify called for accessory', this.device.name);

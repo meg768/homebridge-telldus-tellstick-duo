@@ -192,7 +192,7 @@ to specify the message.
                 "RV-01": {
                     "MotionSensor",
                     "name": "Doorbell",
-                    "notify": "Someone at the door."
+                    "notify": {"on": "Someone at the door."}
                 }
                 ...
             }
@@ -219,8 +219,10 @@ the message is always sent.
                 "VS-05": {
                     "name": "Notifications",
                     "type": "NotificationSwitch",
-                    "on": "Notifications are now on.",
-                    "off": "Notifications are now off."
+                    "notify": {
+                        "on": "Notifications are now on.",
+                        "off": "Notifications are now off."    
+                    }
                 }
                 ...
             }

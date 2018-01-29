@@ -33,15 +33,14 @@ module.exports = class MotionSensor extends Accessory {
             if (!this.state) {
                 this.log('Movement detected on sensor', this.device.name);
 
-                this.notifyState();
-                this.alertState();
-
                 this.timer.cancel();
                 motion.updateValue(this.state = true);
+                this.notifyState();
 
                 this.timer.setTimer(timeout * 1000, () => {
                     this.log('Resetting movement for sensor', this.device.name);
                     motion.updateValue(this.state = false);
+                    this.notifyState();
                 });
             }
         });
