@@ -468,31 +468,31 @@
 
 
             "devices": {
-                "VS-XX": {
-                    "type"    : "Lightbulb",
-                    "name"    : "Terassen",
-                    "notify"  : "Terassen tänd."
+                "VS-01": {
+                    "name": "Terassen",
+                    "type": "Switch",
+                    "notify": "Terassen tänd."
                 },
 
                 "VS-02": {
-                    "type"    : "Lightbulb",
-                    "name"    : "Saftblandare",
-                    "timer"   : 120
+                    "name": "Saftblandare",
+                    "type": "Switch",
+                    "timer": 120
                 },
 
                 "VS-03": {
-                    "type"    : "Lightbulb",
-                    "name"    : "Belysning i matrummet"
+                    "name": "Belysning i matrummet",
+                    "type": "Switch"
                 },
 
                 "VS-04": {
-                    "type"    : "Lightbulb",
-                    "name"    : "Belysning i vardagsrummet"
+                    "name": "Belysning i vardagsrummet",
+                    "type": "Switch"
                 },
 
                 "VS-05": {
-                    "type": "NotificationSwitch",
                     "name": "Larm",
+                    "type": "NotificationSwitch",
                     "notify": {
                         "on": "Larm aktiverat",
                         "off": "Larm avaktiverat"
@@ -500,78 +500,73 @@
                 },
 
                 "VS-06": {
-                    "type"    : "Lightbulb",
-                    "name"    : "Belysning på kontoret"
+                    "name": "Belysning på kontoret",
+                    "type": "Switch"
                 },
 
                 "VS-07": {
-                    "type"    : "Lightbulb",
-                    "name"    : "Sänglampa"
+                    "name": "Sänglampa",
+                    "type": "Switch"
                 },
 
                 "FK-02-02": {
-                    "type"    : "Lightbulb",
-                    "name"    : "Bokhyllan i biorummet"
+                    "name": "Bokhyllan i biorummet",
+                    "type": "Switch"
                 },
 
                 "RV-01": {
-                    "type"       : "MotionSensor",
-                    "name"       : "Sensor på kontoret",
+                    "name": "Sensor på kontoret",
+                    "type": "MotionSensor",
                     "notify": {
                         "on": "Rörelse på kontoret.",
                         "off": "Tomt på kontoret"
                     },
-                    "timeout"    : 10
+                    "timeout": "1 * 10"
                 },
 
                 "RV-02": {
-                    "type"       : "MotionSensor",
-                    "name"       : "Sensor i biorummet",
-                    "timeout"    : 30,
-                    "notify"     : "Rörelse i biorummet."
+                    "name": "Sensor i biorummet",
+                    "type": "MotionSensor",
+                    "timeout": "60 * 30",
+                    "notify": "Rörelse i biorummet."
                 },
 
                 "RV-03": {
-                    "type"       : "MotionSensor",
-                    "name"       : "Sensor i vardagsrummet",
-                    "notify"     : "Rörelse i vardagsrummet.",
-                    "timeout"    : 30
+                    "name": "Sensor i vardagsrummet",
+                    "type": "MotionSensor",
+                    "notify": "Rörelse i vardagsrummet.",
+                    "timeout": 180
                 },
 
                 "RV-04": {
-                    "type"       : "MotionSensor",
-                    "name"       : "Sensor i snickarrummet",
-                    "notify"     : "Rörelse i snickarrummet.",
-                    "timeout"    : 60
+                    "name": "Sensor i snickarrummet",
+                    "type": "MotionSensor",
+                    "notify": "Rörelse i snickarrummet.",
+                    "timeout": 180
                 },
 
                 "RV-05": {
-                    "type"       : "MotionSensor",
-                    "name"       : "Sensor i matrummet",
-                    "notify"     : "Rörelse i matrummet.",
-                    "timeout"    : 30
+                    "name": "Sensor i matrummet",
+                    "type": "MotionSensor",
+                    "notify": "Rörelse i matrummet.",
+                    "timeout": 180
                 },
 
                 "RK-01": {
-                    "type"    : "MotionSensor",
-                    "name"    : "Ringklocka",
-                    "alert"   : "Det ringer på dörren.",
-                    "timeout" : 2
-                },
-
-                "PS-02": {
-                    "type"    : "Lightbulb",
-                    "name"    : "Belysning i snickarrummet"
+                    "name": "Ringklocka",
+                    "type": "MotionSensor",
+                    "alert": "Det ringer på dörren.",
+                    "timeout": 2
                 },
 
                 "SR-01": {
-                    "type"    : "Switch",
-                    "name"    : "Skymmningsrelä"
+                    "name": "Skymmningsrelä",
+                    "type": "Switch"
                 },
 
                 "XMAS-01": {
-                    "type"    : "Lightbulb",
-                    "name"    : "Julbelysning"
+                    "name": "Fönsterbelysning",
+                    "type": "Switch"
                 }
             }
 
