@@ -18,8 +18,6 @@ module.exports = class Accessory extends Events {
         var group = telldus.getDeviceParameterSync(device.id, 'group', '');
         var id    = sprintf('%s%s%s', house, unit, group);
 
-
-        this.uuid = this.generateUUID(id);
         this.log = platform.log;
         this.platform = platform;
         this.homebridge = platform.homebridge;
@@ -29,9 +27,9 @@ module.exports = class Accessory extends Events {
         this.device = device;
         this.config = config;
         this.services = [];
+        this.uuid = this.generateUUID(id);
 
         this.log('UUID:', house, unit, group);
-
 
         // Important, set uuid_base to a unique uuid otherwise
         // two accessories with the same name cannot be created...
