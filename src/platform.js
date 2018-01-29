@@ -40,6 +40,7 @@ module.exports = class TelldusPlatform  {
             };
         }
 
+        this.registerDevices();
 
         telldus.getDevicesSync().forEach((item) => {
 
@@ -193,8 +194,54 @@ module.exports = class TelldusPlatform  {
 
         });
 
+        telldus.addRawDeviceEventListener(function(id, data) {
+
+            var packet = {id:id};
+
+            data.split(';').forEach((item) => {
+                item = item.split(':');
+
+                if (item.length == 2)
+                    packet[item[0]] = item[1];
+            });
+
+            this.log(JSON.stringify(packet));
+        });
 
     }
+
+    registerDevices(config) {
+
+        var devices = config.tellstick;
+
+		if (devices != undefined) {
+            devices.sort(function(a, b) {
+    			return a.name.localeCompare(b.name);
+    		});
+
+            // Remove all previous devices
+    		telldus.getDevicesSync().forEach(function(device) {
+    			telldus.removeDeviceSync(device.id);
+    		});
+
+    		for (var index in devices) {
+    			var device = devices[index];
+
+    			var id = telldus.addDeviceSync();
+
+    			console.log(sprintf('Registering device \'%s\'...', device.name));
+
+    			telldus.setNameSync(id, device.name);
+    			telldus.setProtocolSync(id, device.protocol);
+    			telldus.setModelSync(id, device.model);
+
+    			for (var parameterName in device.parameters) {
+    				telldus.setDeviceParameterSync(id, parameterName, device.parameters[parameterName].toString());
+    			}
+    		}
+        }
+	}
+
 
     findDevice(id) {
 
