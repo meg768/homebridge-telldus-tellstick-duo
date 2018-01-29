@@ -76,15 +76,13 @@ module.exports = class TelldusPlatform  {
                                     this.devices.push(new NotificationSwitch(this, config, device));
                                     break;
                                 }
-                                case 'lightbulb': {
-                                    this.devices.push(new Switch(this, config, device));
-                                    break;
-                                }
+                                case 'lightbulb':
                                 case 'switch': {
                                     this.devices.push(new Switch(this, config, device));
                                     break;
                                 }
                                 default: {
+                                    this.devices.push(new Switch(this, config, device));
                                     break;
                                 }
                             }

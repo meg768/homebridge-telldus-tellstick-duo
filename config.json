@@ -515,7 +515,7 @@
                 },
 
                 "RV-01": {
-                    "type"       : "OccupancySensor",
+                    "type"       : "MotionSensor",
                     "name"       : "Sensor på kontoret",
                     "notify": {
                         "on": "Rörelse på kontoret.",
@@ -525,28 +525,28 @@
                 },
 
                 "RV-02": {
-                    "type"       : "OccupancySensor",
+                    "type"       : "MotionSensor",
                     "name"       : "Sensor i biorummet",
                     "timeout"    : 30,
                     "notify"     : "Rörelse i biorummet."
                 },
 
                 "RV-03": {
-                    "type"       : "OccupancySensor",
+                    "type"       : "MotionSensor",
                     "name"       : "Sensor i vardagsrummet",
                     "notify"     : "Rörelse i vardagsrummet.",
                     "timeout"    : 30
                 },
 
                 "RV-04": {
-                    "type"       : "OccupancySensor",
+                    "type"       : "MotionSensor",
                     "name"       : "Sensor i snickarrummet",
                     "notify"     : "Rörelse i snickarrummet.",
                     "timeout"    : 60
                 },
 
                 "RV-05": {
-                    "type"       : "OccupancySensor",
+                    "type"       : "MotionSensor",
                     "name"       : "Sensor i matrummet",
                     "notify"     : "Rörelse i matrummet.",
                     "timeout"    : 30

@@ -14,6 +14,7 @@ module.exports = class MotionSensor extends Accessory {
 
         var service = new this.Service.MotionSensor(this.name, this.uuid);
         var motion = service.getCharacteristic(this.Characteristic.MotionDetected);
+        var timeout = config.timeout || 5;
 
         motion.updateValue(this.state);
 
@@ -22,7 +23,6 @@ module.exports = class MotionSensor extends Accessory {
             this.timer.cancel();
             callback();
         });
-
 
         motion.on('get', (callback) => {
             callback(null, this.state);

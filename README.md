@@ -133,35 +133,6 @@ property is also optional. If not specified, the Telldus device name is used.
 By adding the **notify** property you may get notified when the motion
 sensor has been triggered.
 
-#### Occupancy Sensors
-
-Occupancy sensors are similar to motion sensors but remain in
-a triggered state as long as there has been movement during the timeout period.
-
-```javascript
-
-    {
-        ...
-        "platforms": [{
-            ...
-            "devices": {
-                "RV-02": {
-                    "type": "OccupancySensor",
-                    "name": "Office sensor",
-                    "timeout": 60
-                }
-            }
-            ...
-
-        }]
-        ...
-    }
-```
-
-The **timeout** entry is optional and specifies, in minutes,
-how long the motion sensor should be in a triggered state after
-a movement has been detected. Default is 30 minutes.
-
 
 ### Sensors
 
