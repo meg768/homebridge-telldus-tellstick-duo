@@ -6,7 +6,7 @@ module.exports = class AlertSwitch extends Switch {
 
     setState(state) {
         this.platform.alerts = state;
-        this.platform.pushover(sprintf('%s %s.', this.displayName, state ? 'på' : 'av'));
+        this.platform.pushover(sprintf('%s %s.', this.name, state ? 'ON' : 'OFF'));
 
         super.setState(state);
     }

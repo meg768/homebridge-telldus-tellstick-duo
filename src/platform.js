@@ -9,7 +9,6 @@ var Switch                = require('./switch.js');
 var NotificationSwitch    = require('./notification-switch.js');
 var AlertSwitch           = require('./alert-switch.js');
 var MotionSensor          = require('./motion-sensor.js');
-var OccupancySensor       = require('./occupancy-sensor.js');
 var ThermometerHygrometer = require('./thermometer-hygrometer.js');
 
 var sprintf  = require('yow/sprintf');
@@ -64,6 +63,7 @@ module.exports = class TelldusPlatform  {
                             var type = config.type ? config.type : 'switch';
 
                             switch(type.toLowerCase()) {
+                                case 'occupancysensor':
                                 case 'motionsensor': {
                                     this.devices.push(new MotionSensor(this, config, device));
                                     break;
@@ -74,10 +74,6 @@ module.exports = class TelldusPlatform  {
                                 }
                                 case 'notificationswitch': {
                                     this.devices.push(new NotificationSwitch(this, config, device));
-                                    break;
-                                }
-                                case 'occupancysensor': {
-                                    this.devices.push(new OccupancySensor(this, config, device));
                                     break;
                                 }
                                 case 'lightbulb': {
