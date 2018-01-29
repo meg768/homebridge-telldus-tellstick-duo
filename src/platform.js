@@ -205,7 +205,7 @@ module.exports = class TelldusPlatform  {
                     packet[item[0]] = item[1];
             });
 
-            this.log(JSON.stringify(packet));
+            this.log('Raw event', JSON.stringify(packet));
         });
 
     }

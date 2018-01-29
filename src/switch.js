@@ -34,7 +34,13 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         this.state = this.getDeviceState();
 
-        var service = new Service(this.displayName, this.device.name);
+        var house = telldus.getDeviceParameterSync(this.device.id, 'house', ''));
+        var unit  = telldus.getDeviceParameterSync(this.device.id, 'unit', ''));
+        var group = telldus.getDeviceParameterSync(this.device.id, 'group', ''));
+
+        this.log(house, unit, group);
+
+        var service = new Service(this.displayName, sprintf('%s%s%s'), house, unit, group);
         var characteristics = service.getCharacteristic(this.Characteristic.On);
 
         characteristics.updateValue(this.getState());
