@@ -20,6 +20,7 @@ module.exports = class TelldusSwitch extends Accessory {
     setupSwitch() {
 
         this.state = this.getDeviceState();
+        this.log('Initial state', this.device);
 
 
         var service = new this.Service.Switch(this.name, this.uuid);
