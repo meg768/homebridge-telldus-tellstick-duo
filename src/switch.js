@@ -40,7 +40,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         this.log(house, unit, group);
 
-        var service = new Service(this.displayName, sprintf('%s%s%s'), house, unit, group);
+        var service = new Service(this.displayName, sprintf('%s%s%s', house, unit, group));
         var characteristics = service.getCharacteristic(this.Characteristic.On);
 
         characteristics.updateValue(this.getState());
