@@ -40,7 +40,7 @@ module.exports = class TelldusPlatform  {
             };
         }
 
-        this.registerDevices();
+        this.registerTellstickDevices();
 
         telldus.getDevicesSync().forEach((item) => {
 
@@ -210,7 +210,7 @@ module.exports = class TelldusPlatform  {
 
     }
 
-    registerDevices(config) {
+    registerTellstickDevices(config) {
 
         var devices = config.tellstick;
 
@@ -229,7 +229,7 @@ module.exports = class TelldusPlatform  {
 
     			var id = telldus.addDeviceSync();
 
-    			console.log(sprintf('Registering device \'%s\'...', device.name));
+    			console.log(sprintf('Registering Tellstick device \'%s\'...', device.name));
 
     			telldus.setNameSync(id, device.name);
     			telldus.setProtocolSync(id, device.protocol);
