@@ -246,7 +246,7 @@
         			}
         		},
         		{
-        			"name": "VS-XX",
+        			"name": "VS-01",
 
         			"location": "Terassen",
         			"description": "Utebelysning",
@@ -468,7 +468,7 @@
 
 
             "devices": {
-                "VS-XX": {
+                "VS-01": {
                     "type"    : "Lightbulb",
                     "name"    : "Terassen",
                     "notify"  : "Terassen tänd."
