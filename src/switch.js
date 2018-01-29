@@ -13,25 +13,11 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
         super(platform, config, device);
 
         this.timer = new Timer();
-
-        switch(config.type.toLowerCase()) {
-            case 'lightbulb' : {
-                this.setupSwitch(this.Service.Lightbulb);
-                break;
-            }
-            case 'fan' : {
-                this.setupSwitch(this.Service.Fan);
-                break;
-            }
-            default : {
-                this.setupSwitch(this.Service.Switch);
-                break;
-            }
-        }
+        this.setupSwitch();
     }
 
 
-    setupSwitch(Service) {
+    setupSwitch() {
 
         this.state = this.getDeviceState();
 
@@ -41,7 +27,7 @@ module.exports = class TelldusSwitch extends TelldusAccessory {
 
         this.log(house, unit, group);
 
-        var service = new Service(this.displayName, sprintf('%s%s%s', house, unit, group));
+        var service = new this.Service.Switch(this.displayName, sprintf('%s%s%s', house, unit, group));
         var characteristics = service.getCharacteristic(this.Characteristic.On);
 
         characteristics.updateValue(this.getState());
