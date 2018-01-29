@@ -10,6 +10,12 @@
 
     "platforms": [
         {
+            "platform": "Ikea Trådfri Gateway",
+            "name": "Ikea Trådfri Gateway",
+            "host": "192.168.86.78"
+        },
+
+        {
             "platform": "Telldus Tellstick Duo",
             "name": "Telldus Tellstick Duo",
 
