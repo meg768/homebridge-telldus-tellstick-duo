@@ -18,7 +18,6 @@ module.exports = class Accessory extends Events {
         var group = telldus.getDeviceParameterSync(device.id, 'group', '');
         var id    = sprintf('%s%s%s', house, unit, group);
 
-        this.log('UUID:', house, unit, group);
 
         this.uuid = this.generateUUID(id);
         this.log = platform.log;
@@ -30,6 +29,8 @@ module.exports = class Accessory extends Events {
         this.device = device;
         this.config = config;
         this.services = [];
+
+        this.log('UUID:', house, unit, group);
 
 
         // Important, set uuid_base to a unique uuid otherwise
