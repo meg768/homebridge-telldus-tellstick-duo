@@ -194,7 +194,7 @@ module.exports = class TelldusPlatform  {
 
         });
 
-        telldus.addRawDeviceEventListener(function(id, data) {
+        telldus.addRawDeviceEventListener((id, data) => {
 
             var packet = {id:id};
 
@@ -215,12 +215,12 @@ module.exports = class TelldusPlatform  {
         var devices = this.config.tellstick;
 
 		if (devices != undefined) {
-            devices.sort(function(a, b) {
+            devices.sort((a, b) => {
     			return a.name.localeCompare(b.name);
     		});
 
             // Remove all previous devices
-    		telldus.getDevicesSync().forEach(function(device) {
+    		telldus.getDevicesSync().forEach((device) => {
     			telldus.removeDeviceSync(device.id);
     		});
 
@@ -229,7 +229,7 @@ module.exports = class TelldusPlatform  {
 
     			var id = telldus.addDeviceSync();
 
-    			console.log(sprintf('Registering Tellstick device \'%s\'...', device.name));
+    			this.log(sprintf('Registering Tellstick device \'%s\'...', device.name));
 
     			telldus.setNameSync(id, device.name);
     			telldus.setProtocolSync(id, device.protocol);
