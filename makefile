@@ -5,5 +5,5 @@ config:
 
 run:
 	git pull
-	cp cp config.json ~/.homebridge
+	cp config.json ~/.homebridge
 	homebridge
