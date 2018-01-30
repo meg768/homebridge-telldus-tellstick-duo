@@ -19,7 +19,7 @@ module.exports = class Accessory extends Events {
 
         // Get all parameters
         Object.keys(device.parameters).forEach((name) => {
-            parameters.push(device.parameter[name].toString());
+            parameters.push(device.parameters[name].toString());
         });
 
         // Sort them (so the order does not matter)
