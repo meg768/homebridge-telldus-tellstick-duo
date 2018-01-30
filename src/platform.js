@@ -44,15 +44,17 @@ module.exports = class TelldusPlatform  {
 
             if (item.type == 'DEVICE') {
 
-                this.log(item);
-
                 var uuid = this.getUniqueDeviceKey(item.id);
 
                 // Look up the device in config
-                var device = config.devices.find((iterator) => {
-                    return iterator.uuid == uuid;
-                });
+                var device = undefined;
 
+                if (config.devices) {
+                    config.devices.find((iterator) => {
+                        return iterator.uuid == uuid;
+                    });
+                }
+                
                 if (device == undefined) {
                     device = {};
                     device.id         = item.id;
@@ -72,7 +74,7 @@ module.exports = class TelldusPlatform  {
                 }
 
                 // Update initial state
-                device.state = item.status && item.status.name == 'ON';
+                device.state = (item.status != undefined && item.status.name == 'ON');
 
                 if (device.type == undefined)
                     device.type = 'switch';
