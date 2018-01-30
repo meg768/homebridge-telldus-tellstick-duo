@@ -355,8 +355,12 @@ number. See the the example below.
 }
 ```
 
-Note that the **house**, **unit** and **group** properties
-must be in specific ranges documented [here](https://developer.telldus.com/wiki/TellStick_conf). 
+Note that this is for the **arctech** protocol and the **house**, **unit**
+and **group** properties must be in specific ranges documented
+[here](https://developer.telldus.com/wiki/TellStick_conf).
+
+This means you may purchase self learning outlets without a remote
+control and still be able to control them from HomeKit.
 
 ## Useful Links
 
