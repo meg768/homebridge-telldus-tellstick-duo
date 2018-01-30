@@ -50,7 +50,7 @@ module.exports = class TelldusPlatform  {
                 var device = undefined;
 
                 if (config.devices) {
-                    config.devices.find((iterator) => {
+                    device = config.devices.find((iterator) => {
                         return iterator.uuid == uuid;
                     });
                 }
@@ -80,7 +80,7 @@ module.exports = class TelldusPlatform  {
                     device.type = 'switch';
 
                 console.log('********************', device.type);
-                
+
                 switch(device.model) {
                     case 'selflearning-switch':
                     case 'codeswitch': {
