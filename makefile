@@ -1,9 +1,9 @@
 
 
 config:
-	cp cp config.json ~/.homebridge
+	node ./scripts/install-config.js
 
 run:
 	git pull
-	cp config.json ~/.homebridge
+	node ./scripts/install-config.js
 	homebridge
