@@ -59,7 +59,7 @@ The following Telldus models are supported
 
 Optionally, you may configure this plugin with the following additions.
 
-### Devices
+## Devices
 
 If you specify a section in your config file named **devices**
 the plugin will use this information to set up the devices.
@@ -98,11 +98,11 @@ configuration file.**
 }
 ```
 
-#### Switches
+## Switches
 
 By default, every device is represented by a switch in HomeKit.
 
-#### Lighbulbs
+## Lighbulbs
 
 To display it as a lightbulb, set the **type** property to **"lightbulb"**
 as seen below.
@@ -134,7 +134,7 @@ as seen below.
     ...
 }
 ```
-#### Motion Sensors
+## Motion Sensors
 
 Since motion sensors registered in your Tellstick Duo acts like
 normal switches this plugin cannot distinguish between them. The following
@@ -224,7 +224,7 @@ the message is always sent.
 }
 ```
 
-#### Timers
+## Timers
 
 A switch or lightbulb may be configured to turn itself
 off after it has been turned on. Use the **timer**
