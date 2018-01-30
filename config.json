@@ -87,6 +87,7 @@
         		{
         			"name": "Terassen",
         			"location": "Utomhus",
+                    "type": "lightbulb",
                     "comment": "Brytaren sitter vid terass-dörren",
 
         			"protocol": "arctech",
@@ -112,6 +113,7 @@
         		{
         			"name": "Belysning",
         			"location": "Matrummet",
+                    "type": "lightbulb",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
@@ -124,6 +126,7 @@
         		{
         			"name": "Belysning",
         			"location": "Stora rummet",
+                    "type": "lightbulb",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
@@ -153,6 +156,7 @@
         		{
         			"name": "Belysning 1",
         			"location": "Kontoret",
+                    "type": "lightbulb",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
@@ -166,6 +170,7 @@
         		{
         			"name": "Belysning 2",
                     "location": "Kontoret",
+                    "type": "lightbulb",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
