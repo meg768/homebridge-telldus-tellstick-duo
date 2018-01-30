@@ -116,6 +116,7 @@
         		},
         		{
         			"name": "Saftblandare",
+                    "type": "lightbulb",
                     "timer": 120,
 
         			"protocol": "arctech",

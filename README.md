@@ -67,6 +67,10 @@ the plugin will use this information to set up the devices.
 The syntax is a JSON representation of the **/etc/tellstick.conf** file.
 See https://developer.telldus.com/wiki/TellStick_conf for more information.
 
+**Note that all devices specified in the /etc/tellstick.conf file
+will be removed and replaced by the devices specified in this
+configuration file.**
+
 ```javascript
 
     {
@@ -97,9 +101,40 @@ See https://developer.telldus.com/wiki/TellStick_conf for more information.
 
 #### Switches
 
-By default, every device is represented by a switch in HomeKit. See next section
-to configure a device as a motion/occupancy sensor rather than a switch.
+By default, every device is represented by a switch in HomeKit.
 
+#### Lighbulbs
+
+To display it as a lightbulb, set the **type** property to **"lightbulb"**
+as seen below.
+
+```javascript
+    {
+        ...
+        "platforms": [{
+            ...
+            "devices": [
+                {
+                    "name": "Kitchen lights",
+                    "type": "lightbulb",
+
+                    "protocol": "arctech",
+                    "model": "selflearning-switch",
+
+                    "parameters": {
+                        "group": "0",
+                        "unit": "10",
+                        "house": "19670382"
+                    }
+                },
+                ...
+            ]
+            ...
+
+        }]
+        ...
+    }
+```
 #### Motion Sensors
 
 Since motion sensors registered in your Tellstick Duo acts like
@@ -111,28 +146,25 @@ for a while when activated and then automatically turning it off.
 ```javascript
     {
         ...
-        "devices": [
-            {
-                "name": "Kitchen sensor",
-                "type": "motion-sensor",
-                "timeout": 120,
+        "devices": [{
+            "name": "Kitchen sensor",
+            "type": "motion-sensor",
+            "timeout": 120,
 
-                "notify": {
-                    "on": "Someone is in the kitchen",
-                    "off": "The kitchen is clear",
-                },
+            "notify": {
+                "on": "Someone is in the kitchen",
+                "off": "The kitchen is clear",
+            },
 
-                "protocol": "arctech",
-                "model": "selflearning-switch",
+            "protocol": "arctech",
+            "model": "selflearning-switch",
 
-                "parameters": {
-                    "group": "0",
-                    "unit": "10",
-                    "house": "19670382"
-                }
+            "parameters": {
+                "group": "0",
+                "unit": "10",
+                "house": "19670382"
             }
-        ]
-        ...
+        }]
     }
 ```
 
@@ -141,12 +173,12 @@ how long the motion sensor should be in a triggered state
 after motion has been detected. Default is 60 seconds.
 
 By adding the **notify** property you may get notified when the motion
-sensor has been triggered is Pushover is enabled.
+sensor has been triggered if notifications are enabled.
 
 ## Pushover Support
 
 By adding a **pushover** section in the configuration file you
-will be able to send messages using **Pushover**.
+will be enable to send messages using **Pushover**.
 
 ```javascript
     ...
@@ -164,29 +196,6 @@ will be able to send messages using **Pushover**.
 To send a message, use the **notify** or **alert** property under the device
 to specify the message.
 
-```javascript
-
-    {
-        ...
-        "platforms": [{
-            "platform": "Telldus Tellstick Duo",
-            "name": "Telldus Tellstick Duo",
-
-            "devices": {
-                ...
-                "RV-01": {
-                    "MotionSensor",
-                    "name": "Doorbell",
-                    "notify": {"on": "Someone at the door."}
-                }
-                ...
-            }
-
-        }]
-        ...
-    }
-```
-
 The difference between **notify** and **alert** is that notifications
 may be turned on or off using a **notifycation-switch**. By using **alert**
 the message is always sent.
@@ -195,30 +204,50 @@ the message is always sent.
 
     {
         ...
-        "devices": [
-            ...
-            {
-    			"name": "Notifications",
-                "type": "notification-switch",
+        "devices": [{
+			"name": "Notifications",
+            "type": "notification-switch",
 
-                "notify": {
-                    "on": "Notifications are on",
-                    "off": "Notifications are off"
-                },
+            "notify": {
+                "on": "Notifications are now on",
+                "off": "Notifications are now off"
+            },
 
-    			"protocol": "arctech",
-    			"model": "selflearning-switch",
-    			"parameters": {
-    				"house": "655218",
-    				"unit": "1",
-    				"group": "0"
-    			}
-    		}
-        ]
+			"protocol": "arctech",
+			"model": "selflearning-switch",
+			"parameters": {
+				"house": "655218",
+				"unit": "1",
+				"group": "0"
+			}
+    	}]
     }
 ```
 
+#### Timers
 
+A switch or lightbulb may be configured to turn itself
+off after it has been turned on. Use the **timer**
+property to set the number of seconds to remain active.
+
+```javascript
+    {
+        ...
+        "devices": [{
+            "name": "Saftblandare",
+            "type": "lightbulb",
+            "timer": 120,
+
+            "protocol": "arctech",
+            "model": "selflearning-switch",
+            "parameters": {
+                "unit": "10",
+                "house": "17052298",
+                "group": "0"
+            }
+    	}]
+    }
+```
 
 ## Useful Links
 
