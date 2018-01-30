@@ -314,10 +314,52 @@ values in the log. Set **model** to **"selflearning-switch"** if the log display
 
 Just remove the device from the **devices** section in **~/.homebridge/config.json**.
 
+## Virtual Signals
 
+You don't have to buy a new remote to generate signals to self learning outlets.
+Just add a virtual signal with a unique **house**, **unit** and **group**
+number. See the the example below.
+
+```javascript
+{
+    ...
+    "platforms": [{
+        ...
+        "devices": [
+            {
+                "name": "My virtual remote #1",
+
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "10000001",
+                    "unit": "0",
+                    "group": "0"
+                }
+            },
+            {
+                "name": "My virtual remote #2",
+
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "10000002",
+                    "unit": "0",
+                    "group": "0"
+                }
+            }
+        ]
+        ...
+    }]
+    ...
+}
+```
+
+Note that the **house**, **unit** and **group** properties
+must be in specific ranges documented [here](https://developer.telldus.com/wiki/TellStick_conf). 
 
 ## Useful Links
 
-*  https://developer.telldus.com/wiki/TellStick_conf
+* https://developer.telldus.com/wiki/TellStick_conf
 * https://github.com/nfarina/homebridge
 * http://blog.theodo.fr/2017/08/make-siri-perfect-home-companion-devices-not-supported-apple-homekit/
