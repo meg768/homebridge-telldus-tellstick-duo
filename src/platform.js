@@ -84,7 +84,7 @@ module.exports = class TelldusPlatform  {
                     case 'codeswitch': {
                         switch(device.type) {
                             case 'occupancy-sensor':
-                            case 'motion-sensor:': {
+                            case 'motion-sensor': {
                                 this.devices.push(new MotionSensor(this, device));
                                 break;
                             }
