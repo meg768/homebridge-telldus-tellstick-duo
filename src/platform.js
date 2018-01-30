@@ -231,6 +231,9 @@ module.exports = class TelldusPlatform  {
 
             if (value != '')
                 parameters[name] = value;
+            else {
+                console.log('NO PARAMETER %s!!', name);
+            }
         });
 
         console.log(parameters.join(':'));
