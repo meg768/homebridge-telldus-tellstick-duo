@@ -264,6 +264,49 @@ property to set the number of seconds to remain active.
     ...
 }
 ```
+## Adding Devices
+
+If you have bought a new remote control or motion sensor and want to control it
+with HomeKit, just examine the logs from this plugin.
+
+All events from the Telldus Tellstick Duo are displayed in the log. If you press
+a button on your new remote (or activate the motion sensor) something like
+the following will be displayed.
+
+    [2018-1-30 19:27:12] [Telldus Tellstick Duo] Raw event: {"id":1,"class":"command","protocol":"arctech","model":"selflearning","house":"9445358","unit":"16","group":"0","method":"turnon"}
+    [2018-1-30 19:27:12] [Telldus Tellstick Duo] Raw event: {"id":1,"class":"command","protocol":"sartano","model":"codeswitch","code":"0000011000","method":"turnon"}
+    [2018-1-30 19:27:12] [Telldus Tellstick Duo] Raw event: {"id":1,"class":"command","protocol":"everflourish","model":"selflearning","house":"510","unit":"4","method":"turnon"}
+
+The remote in this example sends several signal but you really need only one.
+In this example the protocol **arctech** is chosen.
+
+So in this case the device entered in the config.json would be
+
+```javascript
+{
+    ...
+    "platforms": [{
+        ...
+        "devices": [{
+            "name": "My new remote",
+
+            "protocol": "arctech",
+            "model": "selflearning-switch",
+            "parameters": {
+                "unit": "16",
+                "house": "9445358",
+                "group": "0"
+            }
+        }]
+        ...
+    }]
+    ...
+}
+```
+
+Make sure to set parameters **house**, **unit** and **group** to the displayed
+values in the log. Set **model** to **"selflearning-switch"** if the log displays
+**"model":"selflearning"**. Don't ask me why.
 
 
 ## Useful Links
