@@ -161,7 +161,7 @@
         			"protocol": "arctech",
         			"model": "selflearning-switch",
         			"parameters": {
-        				"house": "513402",
+        				"house": "592186",
         				"unit": "2",
         				"group": "0"
         			}
@@ -175,7 +175,7 @@
         			"protocol": "arctech",
         			"model": "selflearning-switch",
         			"parameters": {
-        				"house": "513402",
+        				"house": "592186",
         				"unit": "1",
         				"group": "0"
         			}
