@@ -233,6 +233,7 @@ module.exports = class TelldusPlatform  {
                 parameters[name] = value;
         });
 
+        console.log(parameters.join(':'));
         return this.generateUUID(parameters.join(':'));
 
     }
