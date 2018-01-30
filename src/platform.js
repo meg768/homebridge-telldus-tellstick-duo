@@ -44,6 +44,8 @@ module.exports = class TelldusPlatform  {
 
             if (item.type == 'DEVICE') {
 
+                this.log(item);
+
                 var uuid = this.getUniqueDeviceKey(item.id);
 
                 // Look up the device in config
