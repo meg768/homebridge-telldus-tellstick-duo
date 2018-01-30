@@ -72,31 +72,30 @@ will be removed and replaced by the devices specified in this
 configuration file.**
 
 ```javascript
-
-    {
+{
+    ...
+    "platforms": [{
         ...
-        "platforms": [{
+        "devices": [
+            {
+                "name": "Kitchen lights",
+
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+
+                "parameters": {
+                    "group": "0",
+                    "unit": "10",
+                    "house": "19670382"
+                }
+            },
             ...
-            "devices": [
-                {
-                    "name": "Kitchen lights",
-
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-
-                    "parameters": {
-                        "group": "0",
-                        "unit": "10",
-                        "house": "19670382"
-                    }
-                },
-                ...
-            ]
-            ...
-
-        }]
+        ]
         ...
-    }
+
+    }]
+    ...
+}
 ```
 
 #### Switches
@@ -109,31 +108,31 @@ To display it as a lightbulb, set the **type** property to **"lightbulb"**
 as seen below.
 
 ```javascript
-    {
+{
+    ...
+    "platforms": [{
         ...
-        "platforms": [{
+        "devices": [
+            {
+                "name": "Kitchen lights",
+                "type": "lightbulb",
+
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+
+                "parameters": {
+                    "group": "0",
+                    "unit": "10",
+                    "house": "19670382"
+                }
+            },
             ...
-            "devices": [
-                {
-                    "name": "Kitchen lights",
-                    "type": "lightbulb",
-
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-
-                    "parameters": {
-                        "group": "0",
-                        "unit": "10",
-                        "house": "19670382"
-                    }
-                },
-                ...
-            ]
-            ...
-
-        }]
+        ]
         ...
-    }
+
+    }]
+    ...
+}
 ```
 #### Motion Sensors
 
@@ -144,28 +143,28 @@ behaves like it in HomeKit, turning it on
 for a while when activated and then automatically turning it off.
 
 ```javascript
-    {
-        ...
-        "devices": [{
-            "name": "Kitchen sensor",
-            "type": "motion-sensor",
-            "timeout": 120,
+{
+    ...
+    "devices": [{
+        "name": "Kitchen sensor",
+        "type": "motion-sensor",
+        "timeout": 120,
 
-            "notify": {
-                "on": "Someone is in the kitchen",
-                "off": "The kitchen is clear",
-            },
+        "notify": {
+            "on": "Someone is in the kitchen",
+            "off": "The kitchen is clear",
+        },
 
-            "protocol": "arctech",
-            "model": "selflearning-switch",
+        "protocol": "arctech",
+        "model": "selflearning-switch",
 
-            "parameters": {
-                "group": "0",
-                "unit": "10",
-                "house": "19670382"
-            }
-        }]
-    }
+        "parameters": {
+            "group": "0",
+            "unit": "10",
+            "house": "19670382"
+        }
+    }]
+}
 ```
 
 The **timeout** entry is optional and specifies, in seconds,
@@ -181,6 +180,7 @@ By adding a **pushover** section in the configuration file you
 will be enable to send messages using **Pushover**.
 
 ```javascript
+{
     ...
     "platforms": [{
         ...
@@ -191,6 +191,7 @@ will be enable to send messages using **Pushover**.
         ...
     }]
     ...
+}
 ```
 
 To send a message, use the **notify** or **alert** property under the device
@@ -201,27 +202,26 @@ may be turned on or off using a **notifycation-switch**. By using **alert**
 the message is always sent.
 
 ```javascript
+{
+    ...
+    "devices": [{
+		"name": "Notifications",
+        "type": "notification-switch",
 
-    {
-        ...
-        "devices": [{
-			"name": "Notifications",
-            "type": "notification-switch",
+        "notify": {
+            "on": "Notifications are now on",
+            "off": "Notifications are now off"
+        },
 
-            "notify": {
-                "on": "Notifications are now on",
-                "off": "Notifications are now off"
-            },
-
-			"protocol": "arctech",
-			"model": "selflearning-switch",
-			"parameters": {
-				"house": "655218",
-				"unit": "1",
-				"group": "0"
-			}
-    	}]
-    }
+		"protocol": "arctech",
+		"model": "selflearning-switch",
+		"parameters": {
+			"house": "655218",
+			"unit": "1",
+			"group": "0"
+		}
+	}]
+}
 ```
 
 #### Timers
@@ -231,22 +231,22 @@ off after it has been turned on. Use the **timer**
 property to set the number of seconds to remain active.
 
 ```javascript
-    {
-        ...
-        "devices": [{
-            "name": "Siren",
-            "type": "lightbulb",
-            "timer": 120,
+{
+    ...
+    "devices": [{
+        "name": "Siren",
+        "type": "lightbulb",
+        "timer": 120,
 
-            "protocol": "arctech",
-            "model": "selflearning-switch",
-            "parameters": {
-                "unit": "10",
-                "house": "17052298",
-                "group": "0"
-            }
-    	}]
-    }
+        "protocol": "arctech",
+        "model": "selflearning-switch",
+        "parameters": {
+            "unit": "10",
+            "house": "17052298",
+            "group": "0"
+        }
+	}]
+}
 ```
 
 ## Useful Links
