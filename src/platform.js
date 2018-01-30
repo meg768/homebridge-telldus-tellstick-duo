@@ -79,6 +79,8 @@ module.exports = class TelldusPlatform  {
                 if (device.type == undefined)
                     device.type = 'switch';
 
+                console.log('********************', device.type);
+                
                 switch(device.model) {
                     case 'selflearning-switch':
                     case 'codeswitch': {
