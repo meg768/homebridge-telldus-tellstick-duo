@@ -90,6 +90,11 @@
                     "type": "lightbulb",
                     "comment": "Brytaren sitter vid terass-dörren",
 
+                    "notify": {
+                        "on": "Terassen tänd",
+                        "off": "Terassen släckt"
+                    },
+
         			"protocol": "arctech",
         			"model": "selflearning-switch",
         			"parameters": {
