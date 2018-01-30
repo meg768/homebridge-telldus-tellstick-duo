@@ -145,25 +145,30 @@ for a while when activated and then automatically turning it off.
 ```javascript
 {
     ...
-    "devices": [{
-        "name": "Kitchen sensor",
-        "type": "motion-sensor",
-        "timeout": 120,
+    "platforms": [{
+        ...
+        "devices": [{
+            "name": "Kitchen sensor",
+            "type": "motion-sensor",
+            "timeout": 120,
 
-        "notify": {
-            "on": "Someone is in the kitchen",
-            "off": "The kitchen is clear",
-        },
+            "notify": {
+                "on": "Someone is in the kitchen",
+                "off": "The kitchen is clear",
+            },
 
-        "protocol": "arctech",
-        "model": "selflearning-switch",
+            "protocol": "arctech",
+            "model": "selflearning-switch",
 
-        "parameters": {
-            "group": "0",
-            "unit": "10",
-            "house": "19670382"
-        }
+            "parameters": {
+                "group": "0",
+                "unit": "10",
+                "house": "19670382"
+            }
+        }]
+        ...
     }]
+    ...
 }
 ```
 
@@ -201,26 +206,32 @@ The difference between **notify** and **alert** is that notifications
 may be turned on or off using a **notifycation-switch**. By using **alert**
 the message is always sent.
 
+
 ```javascript
 {
     ...
-    "devices": [{
-		"name": "Notifications",
-        "type": "notification-switch",
+    "platforms": [{
+        ...
+        "devices": [{
+            "name": "Notifications",
+            "type": "notification-switch",
 
-        "notify": {
-            "on": "Notifications are now on",
-            "off": "Notifications are now off"
-        },
+            "notify": {
+                "on": "Notifications are now on",
+                "off": "Notifications are now off"
+            },
 
-		"protocol": "arctech",
-		"model": "selflearning-switch",
-		"parameters": {
-			"house": "655218",
-			"unit": "1",
-			"group": "0"
-		}
-	}]
+    		"protocol": "arctech",
+    		"model": "selflearning-switch",
+    		"parameters": {
+    			"house": "655218",
+    			"unit": "1",
+    			"group": "0"
+    		}
+        }]
+        ...
+    }]
+    ...
 }
 ```
 
@@ -233,19 +244,24 @@ property to set the number of seconds to remain active.
 ```javascript
 {
     ...
-    "devices": [{
-        "name": "Siren",
-        "type": "lightbulb",
-        "timer": 120,
+    "platforms": [{
+        ...
+        "devices": [{
+            "name": "Siren",
+            "type": "lightbulb",
+            "timer": 120,
 
-        "protocol": "arctech",
-        "model": "selflearning-switch",
-        "parameters": {
-            "unit": "10",
-            "house": "17052298",
-            "group": "0"
-        }
-	}]
+            "protocol": "arctech",
+            "model": "selflearning-switch",
+            "parameters": {
+                "unit": "10",
+                "house": "17052298",
+                "group": "0"
+            }
+        }]
+        ...
+    }]
+    ...
 }
 ```
 
