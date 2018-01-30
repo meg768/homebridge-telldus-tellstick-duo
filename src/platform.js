@@ -201,7 +201,7 @@ module.exports = class TelldusPlatform  {
 
     registerTellstickDevices() {
 
-        var devices = this.config.tellstick;
+        var devices = this.config.devices;
 
 		if (devices != undefined) {
             devices.sort((a, b) => {
