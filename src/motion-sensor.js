@@ -16,8 +16,6 @@ module.exports = class MotionSensor extends Accessory {
         var motion = service.getCharacteristic(this.Characteristic.MotionDetected);
         var timeout = eval(device.timeout || 60);
 
-        console.log('**************************************', this.name);
-        
         motion.updateValue(this.state);
 
         motion.on('set', (state, callback) => {
