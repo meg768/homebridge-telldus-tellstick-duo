@@ -42,6 +42,7 @@ module.exports = class TelldusPlatform  {
 
         telldus.getDevicesSync().forEach((item) => {
 
+            console.log(item);
             if (item.type == 'DEVICE') {
                 var device = {};
 
