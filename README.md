@@ -308,6 +308,11 @@ Make sure to set parameters **house**, **unit** and **group** to the displayed
 values in the log. Set **model** to **"selflearning-switch"** if the log displays
 **"model":"selflearning"**. Don't ask me why.
 
+## Removing Devices
+
+Just remove the device from the **devices** section in **~/.homebridge/config.json**.
+
+
 
 ## Useful Links
 
