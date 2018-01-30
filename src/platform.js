@@ -91,6 +91,7 @@ module.exports = class TelldusPlatform  {
         });
 
         // Add sensors
+        /*
         telldus.getSensorsSync().forEach((item) => {
 
             var config = this.config.sensors ? this.config.sensors[item.id] : {};
@@ -135,6 +136,7 @@ module.exports = class TelldusPlatform  {
 
             }
         });
+        */
 
         telldus.addDeviceEventListener((id, status) => {
 
