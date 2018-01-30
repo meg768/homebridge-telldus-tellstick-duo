@@ -98,6 +98,7 @@ module.exports = class TelldusPlatform  {
                                 break;
                             }
                             default: {
+                                this.log('Unknown type \'%s\'.', device.type);
                                 this.devices.push(new Switch(this, device));
                                 break;
                             }
