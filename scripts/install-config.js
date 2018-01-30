@@ -15,7 +15,7 @@ function install() {
 
         // Remove existing platform from homebridge
         homebridge.platforms = homebridge.platforms.filter((item) => {
-            return item.name.toLowerCase() != platform.name.toLowerCase();
+            return item.platform.toLowerCase() != platform.platform.toLowerCase();
         });
 
         // And add this one
@@ -24,7 +24,6 @@ function install() {
     });
 
     fs.writeFileSync(homebridgeConfig, JSON.stringify(homebridge, null, '    '));
-
 }
 
 install();
