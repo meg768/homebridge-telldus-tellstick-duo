@@ -16,14 +16,12 @@ module.exports = class TelldusSwitch extends Accessory {
         this.setupSwitch();
     }
 
-
     setupSwitch() {
 
         this.state = this.getDeviceState();
         this.log('Initial state', this.device);
 
-
-        var service = new this.Service.Switch(this.name, this.uuid);
+        var service = device.type == 'lightbulb' ? new this.Service.Lightbulb(this.name, this.uuid) : new this.Service.Switch(this.name, this.uuid);
         var power = service.getCharacteristic(this.Characteristic.On);
 
         power.updateValue(this.getState());

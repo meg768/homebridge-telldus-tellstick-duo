@@ -42,8 +42,6 @@ module.exports = class TelldusPlatform  {
 
         telldus.getDevicesSync().forEach((item) => {
 
-            console.log(item);
-
             if (item.type == 'DEVICE') {
 
                 var uuid = this.getUniqueDeviceKey(item.id);
@@ -233,7 +231,6 @@ module.exports = class TelldusPlatform  {
                 parameters.push(value);
         });
 
-        console.log(parameters.join(':'));
         return this.generateUUID(parameters.join(':'));
 
     }
@@ -267,7 +264,6 @@ module.exports = class TelldusPlatform  {
                 // Update with unique key and tellstick id
                 device.id = id;
                 device.uuid = this.getUniqueDeviceKey(device.id);
-                console.log(device.id, device.uuid);
     		}
         }
 	}

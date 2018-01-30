@@ -20,7 +20,7 @@ module.exports = class Accessory extends Events {
         this.homebridge = platform.homebridge;
         this.Characteristic = platform.homebridge.hap.Characteristic;
         this.Service = platform.homebridge.hap.Service;
-        this.name = device.name;
+        this.name = device.location ? sprintf('%s - %s', device.name, device.location) : device.name;
         this.uuid = device.uuid;
         this.device = device;
         this.services = [];
@@ -28,7 +28,6 @@ module.exports = class Accessory extends Events {
         // Important, set uuid_base to a unique uuid otherwise
         // two accessories with the same name cannot be created...
         this.uuid_base = this.uuid;
-
 
         this.setupAccessoryInformation();
     }
