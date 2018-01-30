@@ -58,7 +58,7 @@
 
         		{
         			"name": "Rörelsevakt",
-        			"location": "Stora rummet",
+        			"location": "Vardagsrummet",
                     "type": "motion-sensor",
 
         			"protocol": "arctech",
@@ -72,7 +72,7 @@
 
         		{
         			"name": "Rörelsevakt",
-        			"location": "Snickarrummet",
+        			"location": "Köket",
                     "type": "motion-sensor",
 
         			"protocol": "arctech",
@@ -141,7 +141,7 @@
         		},
         		{
         			"name": "Belysning",
-        			"location": "Stora rummet",
+        			"location": "Vardagsrummet",
                     "type": "lightbulb",
 
         			"protocol": "arctech",
