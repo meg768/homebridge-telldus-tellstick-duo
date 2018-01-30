@@ -52,7 +52,9 @@ The following Telldus models are supported
 
 - selflearning-switch
 - codeswitch
--
+- temperaturehumidity
+- temperature
+
 
 ## Additional Configuration
 
