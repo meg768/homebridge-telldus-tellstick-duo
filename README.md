@@ -36,8 +36,6 @@ Configure your **~/.homebridge/config.json** with the following platform.
         "platform": "Telldus Tellstick Duo",
         "name": "Telldus Tellstick Duo"
     }]
-
-
 }
 ```
 
@@ -54,6 +52,7 @@ The following Telldus models are supported
 
 - selflearning-switch
 - codeswitch
+-
 
 ## Additional Configuration
 
@@ -269,5 +268,6 @@ property to set the number of seconds to remain active.
 
 ## Useful Links
 
+*  https://developer.telldus.com/wiki/TellStick_conf
 * https://github.com/nfarina/homebridge
 * http://blog.theodo.fr/2017/08/make-siri-perfect-home-companion-devices-not-supported-apple-homekit/
