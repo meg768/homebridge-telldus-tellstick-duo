@@ -12,7 +12,8 @@
         {
             "platform": "Telldus Tellstick Duo",
             "name": "Telldus Tellstick Duo",
-
+            "comment": "-",
+            
             "pushover": {
                 "user": "my-pushover-user",
                 "token": "my-pushover-token"
