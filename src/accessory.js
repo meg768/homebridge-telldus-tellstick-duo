@@ -15,30 +15,15 @@ module.exports = class Accessory extends Events {
         if (!device.name)
             throw new Error('An accessory must have a name.');
 
-        var parameters = [];
-
-        // Get all parameters
-        Object.keys(device.parameters).forEach((name) => {
-            parameters.push(device.parameters[name].toString());
-        });
-
-        // Sort them (so the order does not matter)
-        parameters.sort();
-
-        // Create a unique key so we may generate a UUID
-        var uniqueKey = parameters.join(':');
-
         this.log = platform.log;
         this.platform = platform;
         this.homebridge = platform.homebridge;
         this.Characteristic = platform.homebridge.hap.Characteristic;
         this.Service = platform.homebridge.hap.Service;
         this.name = device.name;
+        this.uuid = device.uuid;
         this.device = device;
         this.services = [];
-        this.uuid = this.generateUUID(uniqueKey);
-
-        this.log('UUID:', uniqueKey);
 
         // Important, set uuid_base to a unique uuid otherwise
         // two accessories with the same name cannot be created...
@@ -54,7 +39,7 @@ module.exports = class Accessory extends Events {
 
     setupAccessoryInformation() {
         var service = new this.Service.AccessoryInformation();
-        service.setCharacteristic(this.Characteristic.Manufacturer, 'Thyren 3');
+        service.setCharacteristic(this.Characteristic.Manufacturer, 'Telldus');
         service.setCharacteristic(this.Characteristic.Model, this.device.model);
         service.setCharacteristic(this.Characteristic.SerialNumber, this.device.name);
 

@@ -43,14 +43,20 @@ module.exports = class TelldusPlatform  {
         telldus.getDevicesSync().forEach((item) => {
 
             console.log(item);
+
             if (item.type == 'DEVICE') {
+
+                var uuid = this.getUniqueDeviceKey(item.id);
 
                 // Look up the device in config
                 var device = config.devices.find((iterator) => {
-                    return iterator.name == item.name;
+                    return iterator.uuid == uuid;
                 });
 
                 if (device == undefined) {
+                    device = {};
+                    device.id         = item.id;
+                    device.uuid       = uuid;
                     device.name       = item.name;
                     device.protocol   = item.protocol;
                     device.model      = item.model;
@@ -59,7 +65,7 @@ module.exports = class TelldusPlatform  {
 
                     // Read parameters
                     ['house', 'group', 'unit', 'code'].forEach((name) => {
-                        var value = telldus.getDeviceParameterSync(item.id, name, '');
+                        var value = telldus.getDeviceParameterSync(device.id, name, '');
 
                         if (value != '')
                             device.parameters[name] = value;
@@ -68,9 +74,6 @@ module.exports = class TelldusPlatform  {
 
                 if (device.type == undefined)
                     device.type = 'switch';
-
-                // Update device ID
-                device.id = item.id;
 
                 switch(device.model) {
                     case 'selflearning-switch':
@@ -213,6 +216,27 @@ module.exports = class TelldusPlatform  {
 
     }
 
+    generateUUID(id) {
+        return this.homebridge.hap.uuid.generate(id.toString());
+    }
+
+    getUniqueDeviceKey(id) {
+        var parameters = [];
+
+        parameters.push(telldus.getProtocolSync(id));
+        parameters.push(telldus.getModelSync(id));
+
+        ['house', 'group', 'unit', 'code'].forEach((name) => {
+            var value = telldus.getDeviceParameterSync(id, name, '');
+
+            if (value != '')
+                parameters[name] = value;
+        });
+
+        return this.generateUUID(parameters.join(':'));
+
+    }
+
     registerTellstickDevices() {
 
         var devices = this.config.devices;
@@ -238,6 +262,10 @@ module.exports = class TelldusPlatform  {
     			for (var parameterName in device.parameters) {
     				telldus.setDeviceParameterSync(id, parameterName, device.parameters[parameterName].toString());
     			}
+
+                // Update with unique key and tellstick id
+                device.id = id;
+                device.uuid = this.getUniqueDeviceKey(device.id);
     		}
         }
 	}
