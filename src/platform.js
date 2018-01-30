@@ -58,7 +58,6 @@ module.exports = class TelldusPlatform  {
                     device.name       = item.name;
                     device.protocol   = item.protocol;
                     device.model      = item.model;
-                    device.state      = item.status && item.status.name == 'ON';
                     device.parameters = {};
 
                     // Read parameters
@@ -69,6 +68,9 @@ module.exports = class TelldusPlatform  {
                             device.parameters[name] = value;
                     });
                 }
+
+                // Update initial state
+                device.state = item.status && item.status.name == 'ON';
 
                 if (device.type == undefined)
                     device.type = 'switch';

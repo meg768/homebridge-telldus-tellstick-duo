@@ -19,7 +19,6 @@ module.exports = class TelldusSwitch extends Accessory {
     setupSwitch() {
 
         this.state = this.getDeviceState();
-        this.log('Initial state', this.device);
 
         var service = this.device.type == 'lightbulb' ? new this.Service.Lightbulb(this.name, this.uuid) : new this.Service.Switch(this.name, this.uuid);
         var power = service.getCharacteristic(this.Characteristic.On);
