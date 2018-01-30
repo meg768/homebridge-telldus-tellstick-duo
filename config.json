@@ -12,7 +12,7 @@
         {
             "platform": "Telldus Tellstick Duo",
             "name": "Telldus Tellstick Duo",
-            
+
             "pushover": {
                 "user": "my-pushover-user",
                 "token": "my-pushover-token"
@@ -21,7 +21,7 @@
             "sensors": [
                 {
                     "id": 135,
-                    "name": "Utomhustemperatur"
+                    "name": "Utomhus"
                 }
             ],
 
@@ -215,6 +215,7 @@
         		{
         			"name": "Bokhyllan",
                     "location": "Biorummet",
+                    "type": "lightbulb",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
@@ -238,12 +239,37 @@
         		},
 
                 {
-        			"name": "Ledig",
+        			"name": "Ledig 1",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
         			"parameters": {
         				"house": "10000003",
+        				"unit": "0",
+        				"group": "0"
+        			}
+        		},
+
+                {
+        			"name": "Ledig 2",
+
+        			"protocol": "arctech",
+        			"model": "selflearning-switch",
+        			"parameters": {
+        				"house": "10000004",
+        				"unit": "0",
+        				"group": "0"
+        			}
+        		},
+
+
+                {
+        			"name": "Ledig 3",
+
+        			"protocol": "arctech",
+        			"model": "selflearning-switch",
+        			"parameters": {
+        				"house": "10000005",
         				"unit": "0",
         				"group": "0"
         			}
