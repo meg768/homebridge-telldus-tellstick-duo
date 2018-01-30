@@ -199,6 +199,7 @@ will be enable to send messages using **Pushover**.
 }
 ```
 
+
 To send a message, use the **notify** or **alert** property under the device
 to specify the message.
 
@@ -221,13 +222,13 @@ the message is always sent.
                 "off": "Notifications are now off"
             },
 
-    		"protocol": "arctech",
-    		"model": "selflearning-switch",
-    		"parameters": {
-    			"house": "655218",
-    			"unit": "1",
-    			"group": "0"
-    		}
+            "protocol": "arctech",
+            "model": "selflearning-switch",
+            "parameters": {
+                "house": "655218",
+                "unit": "1",
+                "group": "0"
+            }
         }]
         ...
     }]
@@ -264,6 +265,7 @@ property to set the number of seconds to remain active.
     ...
 }
 ```
+
 
 ## Useful Links
 
