@@ -266,6 +266,7 @@ module.exports = class TelldusPlatform  {
                 // Update with unique key and tellstick id
                 device.id = id;
                 device.uuid = this.getUniqueDeviceKey(device.id);
+                console.log(device.uuid);
     		}
         }
 	}
