@@ -234,7 +234,7 @@ property to set the number of seconds to remain active.
     {
         ...
         "devices": [{
-            "name": "Saftblandare",
+            "name": "Siren",
             "type": "lightbulb",
             "timer": 120,
 
