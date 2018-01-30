@@ -4,8 +4,8 @@ var Accessory = require('./accessory.js');
 
 module.exports = class ThermometerHygrometer extends Accessory {
 
-    constructor(platform, config, device) {
-        super(platform, config, device);
+    constructor(platform, device) {
+        super(platform, device);
 
         switch (this.device.model) {
             case 'temperaturehumidity': {

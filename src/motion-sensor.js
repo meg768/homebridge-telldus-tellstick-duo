@@ -6,15 +6,15 @@ var isString = require('yow/is').isString;
 
 module.exports = class MotionSensor extends Accessory {
 
-    constructor(platform, config, device) {
-        super(platform, config, device);
+    constructor(platform, device) {
+        super(platform, device);
 
         this.state = false;
         this.timer = new Timer();
 
         var service = new this.Service.MotionSensor(this.name, this.uuid);
         var motion = service.getCharacteristic(this.Characteristic.MotionDetected);
-        var timeout = eval(config.timeout || 5);
+        var timeout = eval(device.timeout || 5);
 
         motion.updateValue(this.state);
 

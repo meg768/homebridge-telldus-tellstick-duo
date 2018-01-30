@@ -44,48 +44,59 @@ module.exports = class TelldusPlatform  {
 
             console.log(item);
             if (item.type == 'DEVICE') {
-                var device = {};
 
-                device.id       = item.id;
-                device.name     = item.name;
-                device.type     = 'device';
-                device.protocol = item.protocol;
-                device.model    = item.model;
-                device.state    = item.status && item.status.name == 'ON';
+                // Look up the device in config
+                var device = config.devices.find((iterator) => {
+                    return iterator.name == item.name;
+                });
 
-                var config = this.config.devices ? this.config.devices[device.name] : {};
+                if (device == undefined) {
+                    device.name       = item.name;
+                    device.protocol   = item.protocol;
+                    device.model      = item.model;
+                    device.state      = item.status && item.status.name == 'ON';
+                    device.parameters = {};
 
-                if (config) {
+                    // Read parameters
+                    ['house', 'group', 'unit'].forEach((name) => {
+                        var value = telldus.getDeviceParameterSync(item.id, name, '');
 
-                    switch(device.model) {
-                        case 'selflearning-switch':
-                        case 'codeswitch': {
-                            var type = config.type ? config.type : 'switch';
+                        if (value != '')
+                            device.parameters[name] = value;
+                    });
+                }
 
-                            switch(type.toLowerCase()) {
-                                case 'occupancysensor':
-                                case 'motionsensor': {
-                                    this.devices.push(new MotionSensor(this, config, device));
-                                    break;
-                                }
-                                case 'notificationswitch': {
-                                    this.devices.push(new NotificationSwitch(this, config, device));
-                                    break;
-                                }
-                                case 'lightbulb':
-                                case 'switch': {
-                                    this.devices.push(new Switch(this, config, device));
-                                    break;
-                                }
-                                default: {
-                                    this.devices.push(new Switch(this, config, device));
-                                    break;
-                                }
+                if (device.type == undefined)
+                    device.type = 'switch';
+
+                // Update device ID
+                device.id = item.id;
+
+                switch(device.model) {
+                    case 'selflearning-switch':
+                    case 'codeswitch': {
+                        switch(device.type.toLowerCase()) {
+                            case 'occupancysensor':
+                            case 'motionsensor': {
+                                this.devices.push(new MotionSensor(this, device));
+                                break;
+                            }
+                            case 'notificationswitch': {
+                                this.devices.push(new NotificationSwitch(this, device));
+                                break;
+                            }
+                            case 'lightbulb':
+                            case 'switch': {
+                                this.devices.push(new Switch(this, device));
+                                break;
+                            }
+                            default: {
+                                this.devices.push(new Switch(this, device));
+                                break;
                             }
                         }
                     }
                 }
-
             }
 
 
@@ -207,9 +218,6 @@ module.exports = class TelldusPlatform  {
         var devices = this.config.devices;
 
 		if (devices != undefined) {
-            devices.sort((a, b) => {
-    			return a.name.localeCompare(b.name);
-    		});
 
             // Remove all previous devices
     		telldus.getDevicesSync().forEach((device) => {

@@ -8,16 +8,16 @@ var telldus  = require('telldus');
 
 module.exports = class Accessory extends Events {
 
-    constructor(platform, config, device) {
+    constructor(platform, device) {
 
         super();
 
         if (!device.name)
             throw new Error('An accessory must have a name.');
 
-        var house = telldus.getDeviceParameterSync(device.id, 'house', '');
-        var unit  = telldus.getDeviceParameterSync(device.id, 'unit', '');
-        var group = telldus.getDeviceParameterSync(device.id, 'group', '');
+        var house = device.parameters.house  || '';
+        var unit  = device.parameters.unit   || '';
+        var group = device.parameters.group  || '';
         var id    = sprintf('%s%s%s', house, unit, group);
 
         this.log = platform.log;
@@ -25,9 +25,8 @@ module.exports = class Accessory extends Events {
         this.homebridge = platform.homebridge;
         this.Characteristic = platform.homebridge.hap.Characteristic;
         this.Service = platform.homebridge.hap.Service;
-        this.name = config.name || device.name;
+        this.name = device.name;
         this.device = device;
-        this.config = config;
         this.services = [];
         this.uuid = this.generateUUID(id);
 
@@ -58,28 +57,28 @@ module.exports = class Accessory extends Events {
     notifyState() {
         if (this.state != undefined) {
 
-            if (isString(this.config.notify)) {
+            if (isString(this.device.notify)) {
                 if (this.state)
-                    this.platform.notify(this.config.notify);
+                    this.platform.notify(this.device.notify);
             }
-            else if (isObject(this.config.notify)) {
-                if (isString(this.config.notify.on) && this.state)
-                    this.platform.notify(this.config.notify.on);
+            else if (isObject(this.device.notify)) {
+                if (isString(this.device.notify.on) && this.state)
+                    this.platform.notify(this.device.notify.on);
 
-                if (isString(this.config.notify.off) && !this.state)
-                    this.platform.notify(this.config.notify.off);
+                if (isString(this.device.notify.off) && !this.state)
+                    this.platform.notify(this.device.notify.off);
             }
 
-            if (isString(this.config.alert)) {
+            if (isString(this.device.alert)) {
                 if (this.state)
-                    this.platform.alert(this.config.alert);
+                    this.platform.alert(this.device.alert);
             }
-            else if (isObject(this.config.alert)) {
-                if (isString(this.config.alert.on) && this.state)
-                    this.platform.alert(this.config.alert.on);
+            else if (isObject(this.device.alert)) {
+                if (isString(this.device.alert.on) && this.state)
+                    this.platform.alert(this.device.alert.on);
 
-                if (isString(this.config.alert.off) && !this.state)
-                    this.platform.alert(this.config.alert.off);
+                if (isString(this.device.alert.off) && !this.state)
+                    this.platform.alert(this.device.alert.off);
             }
 
 

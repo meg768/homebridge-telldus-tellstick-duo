@@ -51,10 +51,10 @@ module.exports = class TelldusSwitch extends Accessory {
             }
 
             // Auto off?
-            if (state && isNumber(this.config.timer)) {
+            if (state && isNumber(this.device.timer)) {
                 timer.cancel();
 
-                timer.setTimer(this.config.timer * 1000, () => {
+                timer.setTimer(this.device.timer * 1000, () => {
                     this.log('Timer activated. Turning off', this.device.name);
 
                     this.state = false;
@@ -98,9 +98,6 @@ module.exports = class TelldusSwitch extends Accessory {
         this.timer.cancel();
         this.log('Turning on', this.device.name);
 
-        this.platform.alert(this.config.alertOn);
-        this.platform.notify(this.config.notifyOn);
-
         telldus.turnOnSync(this.device.id);
 
         setImmediate(() => {
@@ -124,9 +121,6 @@ module.exports = class TelldusSwitch extends Accessory {
     turnOff() {
         this.timer.cancel();
         this.log('Turning off', this.device.name);
-
-        this.platform.alert(this.config.alertOff);
-        this.platform.notify(this.config.notifyOff);
 
         telldus.turnOffSync(this.device.id);
 
