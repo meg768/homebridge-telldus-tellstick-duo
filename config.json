@@ -18,6 +18,13 @@
                 "token": "my-pushover-token"
             },
 
+            "sensors": [
+                {
+                    "id": 135,
+                    "name": "Utomhustemperatur"
+                }
+            ],
+
             "devices": [
         		{
         			"name": "Rörelsevakt",

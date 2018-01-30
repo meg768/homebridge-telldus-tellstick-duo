@@ -109,20 +109,24 @@ module.exports = class TelldusPlatform  {
 
         });
 
-        // Add sensors
-        /*
+        // Add defined sensors
+
         telldus.getSensorsSync().forEach((item) => {
 
-            var config = this.config.sensors ? this.config.sensors[item.id] : {};
+            var config = this.config.sensors.find((iterator) => {
+                return iterator.id == item.id;
+            });
 
             if (config) {
                 var device = {};
 
                 device.id = item.id;
-                device.name = sprintf('Sensor %d', item.id);
+                device.name = config.name;
                 device.type = 'sensor';
                 device.protocol = item.protocol;
                 device.model = item.model;
+                device.id = item.id;
+                device.uuid = this.generateUUID(item.id);
 
                 if (device.model == 'EA4C')
                     device.model = 'temperature';
@@ -138,7 +142,6 @@ module.exports = class TelldusPlatform  {
                             device.humidity = entry.value;
 
                         device.timestamp = entry.timestamp;
-
                     });
 
                 }
@@ -147,7 +150,7 @@ module.exports = class TelldusPlatform  {
                     case 'humidity':
                     case 'temperature':
                     case 'temperaturehumidity': {
-                        this.sensors.push(new ThermometerHygrometer(this, config, device));
+                        this.sensors.push(new ThermometerHygrometer(this, device));
                         break;
                     }
                 }
@@ -155,7 +158,6 @@ module.exports = class TelldusPlatform  {
 
             }
         });
-        */
 
         telldus.addDeviceEventListener((id, status) => {
 
@@ -215,7 +217,7 @@ module.exports = class TelldusPlatform  {
                     packet[item[0]] = item[1];
             });
 
-            this.log('Raw event', JSON.stringify(packet));
+            this.log('Raw event:', JSON.stringify(packet));
         });
 
     }
