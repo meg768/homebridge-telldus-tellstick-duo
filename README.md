@@ -54,8 +54,6 @@ The following Telldus models are supported
 
 - selflearning-switch
 - codeswitch
-- temperature
-- temperaturehumidity
 
 ## Additional Configuration
 
@@ -63,31 +61,39 @@ Optionally, you may configure this plugin with the following additions.
 
 ### Devices
 
-If you specify a section in your config file named **devices** only the
-specified devices will be added from the Tellstick Duo.
+If you specify a section in your config file named **devices**
+the plugin will use this information to set up the devices.
+
+The syntax is a JSON representation of the **/etc/tellstick.conf** file.
+See https://developer.telldus.com/wiki/TellStick_conf for more information.
 
 ```javascript
 
     {
         ...
         "platforms": [{
-            "platform": "Telldus Tellstick Duo",
-            "name": "Telldus Tellstick Duo",
+            ...
+            "devices": [
+                {
+                    "name": "Kitchen lights",
 
-            "devices": {
-                "RV-01": {
-                    ...
+                    "protocol": "arctech",
+                    "model": "selflearning-switch",
+
+                    "parameters": {
+                        "group": "0",
+                        "unit": "10",
+                        "house": "19670382"
+                    }
                 },
-                "RV-02": {
-                    ...
-                }
-            }
+                ...
+            ]
+            ...
 
         }]
         ...
     }
 ```
-
 
 #### Switches
 
@@ -98,65 +104,44 @@ to configure a device as a motion/occupancy sensor rather than a switch.
 
 Since motion sensors registered in your Tellstick Duo acts like
 normal switches this plugin cannot distinguish between them. The following
-example tells this plugin that the device **RV-01** is a motion sensor and
+example tells this plugin that a is a motion sensor and
 behaves like it in HomeKit, turning it on
 for a while when activated and then automatically turning it off.
 
 ```javascript
-
     {
         ...
-        "platforms": [{
-            ...
-            "devices": {
-                "RV-01": {
-                    "type": "MotionSensor",
-                    "name": "Kitchen sensor",
-                    "notify": "Movement in the kitchen.",
-                    "timeout": 10
+        "devices": [
+            {
+                "name": "Kitchen sensor",
+                "type": "motion-sensor",
+                "timeout": 120,
+
+                "notify": {
+                    "on": "Someone is in the kitchen",
+                    "off": "The kitchen is clear",
+                },
+
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+
+                "parameters": {
+                    "group": "0",
+                    "unit": "10",
+                    "house": "19670382"
                 }
             }
-            ...
-
-        }]
+        ]
         ...
     }
 ```
 
 The **timeout** entry is optional and specifies, in seconds,
 how long the motion sensor should be in a triggered state
-after motion has been detected. Default is 5 seconds.
-
-The **name**
-property is also optional. If not specified, the Telldus device name is used.
+after motion has been detected. Default is 60 seconds.
 
 By adding the **notify** property you may get notified when the motion
-sensor has been triggered.
-
-
-### Sensors
-
-Since sensors does not behave as devices when using the Tellstick a
-special section named **sensors** may be created to give the
-sensors names and behaviours.
-
-```javascript
-    ...
-    "platforms": [{
-        ...
-        "sensors": {
-            "135": {
-                "name": "Temperature in the office"
-            }
-        },
-
-        ...
-    }]
-    ...
-```
-
-You specify each sensor by representing its Tellstick Duo id and
-then specifying its properties.
+sensor has been triggered is Pushover is enabled.
 
 ## Pushover Support
 
@@ -203,32 +188,33 @@ to specify the message.
 ```
 
 The difference between **notify** and **alert** is that notifications
-may be turned on or off using a **NotifycationSwitch**. By using **alert**
+may be turned on or off using a **notifycation-switch**. By using **alert**
 the message is always sent.
 
 ```javascript
 
     {
         ...
-        "platforms": [{
-            "platform": "Telldus Tellstick Duo",
-            "name": "Telldus Tellstick Duo",
+        "devices": [
+            ...
+            {
+    			"name": "Notifications",
+                "type": "notification-switch",
 
-            "devices": {
-                ...
-                "VS-05": {
-                    "name": "Notifications",
-                    "type": "NotificationSwitch",
-                    "notify": {
-                        "on": "Notifications are now on.",
-                        "off": "Notifications are now off."    
-                    }
-                }
-                ...
-            }
+                "notify": {
+                    "on": "Notifications are on",
+                    "off": "Notifications are off"
+                },
 
-        }]
-        ...
+    			"protocol": "arctech",
+    			"model": "selflearning-switch",
+    			"parameters": {
+    				"house": "655218",
+    				"unit": "1",
+    				"group": "0"
+    			}
+    		}
+        ]
     }
 ```
 

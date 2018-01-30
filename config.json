@@ -22,6 +22,7 @@
         		{
         			"name": "Rörelsevakt",
         			"location": "Kontoret",
+                    "type": "motion-sensor",
                     "timeout": 10,
 
         			"protocol": "arctech",
@@ -37,6 +38,7 @@
         		{
         			"name": "Rörelsevakt",
         			"location": "Biorummet",
+                    "type": "motion-sensor",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
@@ -50,6 +52,7 @@
         		{
         			"name": "Rörelsevakt",
         			"location": "Stora rummet",
+                    "type": "motion-sensor",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
@@ -63,6 +66,7 @@
         		{
         			"name": "Rörelsevakt",
         			"location": "Snickarrummet",
+                    "type": "motion-sensor",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
@@ -143,7 +147,7 @@
         		},
         		{
         			"name": "Larm",
-                    "type": "NotificationSwitch",
+                    "type": "notification-switch",
 
                     "notify": {
                         "on": "Larm aktiverat",

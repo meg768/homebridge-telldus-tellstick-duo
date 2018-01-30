@@ -54,7 +54,7 @@ module.exports = class TelldusPlatform  {
                         return iterator.uuid == uuid;
                     });
                 }
-                
+
                 if (device == undefined) {
                     device = {};
                     device.id         = item.id;
@@ -82,13 +82,13 @@ module.exports = class TelldusPlatform  {
                 switch(device.model) {
                     case 'selflearning-switch':
                     case 'codeswitch': {
-                        switch(device.type.toLowerCase()) {
-                            case 'occupancysensor':
-                            case 'motionsensor': {
+                        switch(device.type) {
+                            case 'occupancy-sensor':
+                            case 'motion-sensor:' {
                                 this.devices.push(new MotionSensor(this, device));
                                 break;
                             }
-                            case 'notificationswitch': {
+                            case 'notification-switch': {
                                 this.devices.push(new NotificationSwitch(this, device));
                                 break;
                             }
