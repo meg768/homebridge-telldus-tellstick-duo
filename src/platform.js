@@ -230,10 +230,7 @@ module.exports = class TelldusPlatform  {
             var value = telldus.getDeviceParameterSync(id, name, '');
 
             if (value != '')
-                parameters[name] = value;
-            else {
-                console.log('NO PARAMETER %s!!', name);
-            }
+                parameters.push(value);
         });
 
         console.log(parameters.join(':'));
