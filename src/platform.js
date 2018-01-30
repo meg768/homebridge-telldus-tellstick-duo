@@ -58,7 +58,7 @@ module.exports = class TelldusPlatform  {
                     device.parameters = {};
 
                     // Read parameters
-                    ['house', 'group', 'unit'].forEach((name) => {
+                    ['house', 'group', 'unit', 'code'].forEach((name) => {
                         var value = telldus.getDeviceParameterSync(item.id, name, '');
 
                         if (value != '')

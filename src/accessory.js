@@ -15,10 +15,18 @@ module.exports = class Accessory extends Events {
         if (!device.name)
             throw new Error('An accessory must have a name.');
 
-        var house = device.parameters.house  || '';
-        var unit  = device.parameters.unit   || '';
-        var group = device.parameters.group  || '';
-        var id    = sprintf('%s%s%s', house, unit, group);
+        var parameters = [];
+
+        // Get all parameters
+        Object.keys(device.parameters).forEach((name) => {
+            parameters.push(device.parameter[name].toString());
+        });
+
+        // Sort them (so the order does not matter)
+        parameters.sort();
+
+        // Create a unique key so we may generate a UUID
+        var uniqueKey = parameters.join(':');
 
         this.log = platform.log;
         this.platform = platform;
@@ -28,9 +36,9 @@ module.exports = class Accessory extends Events {
         this.name = device.name;
         this.device = device;
         this.services = [];
-        this.uuid = this.generateUUID(id);
+        this.uuid = this.generateUUID(uniqueKey);
 
-        this.log('UUID:', house, unit, group);
+        this.log('UUID:', uniqueKey);
 
         // Important, set uuid_base to a unique uuid otherwise
         // two accessories with the same name cannot be created...
