@@ -360,7 +360,9 @@ and **group** properties must be in specific ranges documented
 [here](https://developer.telldus.com/wiki/TellStick_conf).
 
 This means you may purchase self learning outlets without a remote
-control and still be able to control them from HomeKit.
+control, set the outlet in learning mode, send the virtual signal
+by turning on the device in the Apple Home app and the outlet will
+remember your virtual signal and respond to it in the future.
 
 ## Useful Links
 
