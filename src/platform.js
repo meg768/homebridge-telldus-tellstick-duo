@@ -7,6 +7,8 @@ var Pushover = require('pushover-notifications');
 
 var Switch                = require('./switch.js');
 var NotificationSwitch    = require('./notification-switch.js');
+var Lightbulb             = require('./lightbulb.js');
+var Outlet                = require('./outlet.js');
 var MotionSensor          = require('./motion-sensor.js');
 var ThermometerHygrometer = require('./thermometer-hygrometer.js');
 
@@ -91,7 +93,10 @@ module.exports = class TelldusPlatform  {
                                 this.devices.push(new NotificationSwitch(this, device));
                                 break;
                             }
-                            case 'lightbulb':
+                            case 'lightbulb': {
+                                this.devices.push(new Lightbulb(this, device));
+                                break;
+                            }
                             case 'outlet':
                             case 'switch': {
                                 this.devices.push(new Switch(this, device));

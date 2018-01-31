@@ -45,12 +45,33 @@ module.exports = class Device extends Accessory {
         this.addService(service);
     }
 
-    stateChanged(state) {
-        this.setState(state);
-    }
 
     setState(state) {
-        this.state = state;
+
+        if (this.state != state) {
+            this.state = state;
+
+            var notify = this.device.notify;
+            var alert  = this.device.alert;
+
+            if (isObject(notify)) {
+                if (isString(notify.on) && state)
+                    this.platform.notify(notify.on);
+
+                if (isString(notify.off) && !state)
+                    this.platform.notify(notify.off);
+            }
+
+            if (isObject(alert)) {
+                if (isString(alert.on) && state)
+                    this.platform.alert(alert.on);
+
+                if (isString(alert.off) && !state)
+                    this.platform.alert(alert.off);
+            }
+        }
+
+
     }
 
     getState() {
