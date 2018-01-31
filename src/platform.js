@@ -145,6 +145,7 @@ module.exports = class TelldusPlatform  {
                 device.protocol = item.protocol;
                 device.model = item.model;
                 device.id = item.id;
+                console.log('******************', item.id);
                 device.uuid = this.generateUUID(sprintf('%s:%s:%s', item.protocol, item.model, item.id));
 
 
