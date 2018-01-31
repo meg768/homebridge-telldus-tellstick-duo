@@ -20,14 +20,14 @@ module.exports = class ThermometerHygrometer extends Sensor {
     }
 
     addTemperatureSensor() {
-        var service = new this.Service.TemperatureSensor(this.name, this.uuid);
+        var service = new this.Service.TemperatureSensor(this.name, this.uuid, 'temperature');
 
         this.enableCurrentTemperature(service);
         this.addService(service);
     }
 
     addHumiditySensor() {
-        var service = new this.Service.HumiditySensor(this.name, this.uuid);
+        var service = new this.Service.HumiditySensor(this.name, this.uuid, 'humidity');
 
         this.enableCurrentRelativeHumidity(service);
         this.addService(service);
