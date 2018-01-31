@@ -15,7 +15,7 @@ module.exports = class ThermometerHygrometer extends Sensor {
     }
 
     addServices() {
-        this.addTemperatureSensor();
+    //s-    this.addTemperatureSensor();
     //    this.addHumiditySensor();
     }
 
