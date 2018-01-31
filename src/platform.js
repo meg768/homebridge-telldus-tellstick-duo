@@ -263,10 +263,10 @@ module.exports = class TelldusPlatform  {
     		telldus.getDevicesSync().forEach((device) => {
                 var uuid = this.getUniqueDeviceKey(device.id);
                 var state = (device.status != undefined && device.status.name == 'ON');
-                console.log('Initial state for %s is %s', device.name, state);
+                console.log('Initial state for %s is %s (%s)', device.name, state, uuid);
 
                 initialState[uuid] = state;
-                
+
     			telldus.removeDeviceSync(device.id);
     		});
 
@@ -289,6 +289,7 @@ module.exports = class TelldusPlatform  {
                 device.id = id;
                 device.uuid = this.getUniqueDeviceKey(id);
                 device.state = initialState[device.uuid];
+                console.log('Restored state for %s is %s (%s)', device.name, device.state, device.id);
     		}
         }
 	}
