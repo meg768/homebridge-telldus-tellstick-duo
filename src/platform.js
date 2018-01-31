@@ -102,7 +102,7 @@ module.exports = class TelldusPlatform  {
                 var device = undefined;
 
                 if (this.config.devices) {
-                    device = config.devices.find((iterator) => {
+                    device = this.config.devices.find((iterator) => {
                         return iterator.uuid == uuid;
                     });
                 }
