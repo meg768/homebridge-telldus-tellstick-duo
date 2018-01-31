@@ -64,6 +64,7 @@ module.exports = class TelldusPlatform  {
                     device.protocol   = item.protocol;
                     device.model      = item.model;
                     device.uuid       = uuid;
+                    device.state      = (item.status != undefined && item.status.name == 'ON');
                     device.parameters = {};
 
                     // Read parameters
@@ -256,9 +257,13 @@ module.exports = class TelldusPlatform  {
 
 		if (devices != undefined) {
 
+            var initialState = {};
+
             // Remove all previous devices
     		telldus.getDevicesSync().forEach((device) => {
     			telldus.removeDeviceSync(device.id);
+
+                initialState[getUniqueDeviceKey(device.id)] = (device.status != undefined && device.status.name == 'ON');
     		});
 
     		for (var index in devices) {
@@ -279,6 +284,7 @@ module.exports = class TelldusPlatform  {
                 // Update device with ID and UUID
                 device.id = id;
                 device.uuid = this.getUniqueDeviceKey(id);
+                device.state = initialState[device.uuid];
     		}
         }
 	}
