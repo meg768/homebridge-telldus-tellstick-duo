@@ -44,6 +44,7 @@ module.exports = class TelldusPlatform  {
 
             if (item.type == 'DEVICE') {
 
+                console.log(item);
                 var uuid = this.getUniqueDeviceKey(item.id);
                 var initialState = (item.status != undefined && item.status.name == 'ON');
 
