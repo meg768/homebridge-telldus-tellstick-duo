@@ -133,19 +133,20 @@ module.exports = class TelldusPlatform  {
             if (config) {
                 var device = {};
 
+                if (device.model == 'EA4C')
+                    device.model = 'temperature';
+
+                if (device.model == '1A2D')
+                    device.model = 'temperaturehumidity';
+
                 device.id = item.id;
                 device.name = config.name;
                 device.type = 'sensor';
                 device.protocol = item.protocol;
                 device.model = item.model;
                 device.id = item.id;
-                device.uuid = this.generateUUID(item.id);
+                device.uuid = this.generateUUID(sprintf('%s:%s:%s', item.protocol, item.model, item.id);
 
-                if (device.model == 'EA4C')
-                    device.model = 'temperature';
-
-                if (device.model == '1A2D')
-                    device.model = 'temperaturehumidity';
 
                 if (item.data) {
                     item.data.forEach((entry) => {
