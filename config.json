@@ -241,6 +241,7 @@
 
                 {
         			"name": "Ledig 1",
+                    "type": "outlet",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
@@ -253,6 +254,7 @@
 
                 {
         			"name": "Ledig 2",
+                    "type": "outlet",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
@@ -266,6 +268,7 @@
 
                 {
         			"name": "Ledig 3",
+                    "type": "outlet",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
