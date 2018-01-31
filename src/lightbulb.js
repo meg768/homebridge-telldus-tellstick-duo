@@ -1,5 +1,5 @@
 "use strict";
-var Switch = require('./Switch.js');
+var Switch = require('./switch.js');
 
 module.exports = class Lightbulb extends Switch {
 
