@@ -1,69 +1,108 @@
 "use strict";
+var Accessory = require('./accessory.js');
 var telldus   = require('telldus');
 var sprintf   = require('yow/sprintf');
 var isString  = require('yow/is').isString;
 var isObject  = require('yow/is').isObject;
 var isNumber  = require('yow/is').isNumber;
 var Timer     = require('yow/timer');
-var Device    = require('./device.js');
 
-module.exports = class Switch extends Device {
+module.exports = class TelldusSwitch extends Accessory {
 
-    constructor(platform, device) {
-        super(platform, device);
+    constructor(platform, config, device) {
+        super(platform, config, device);
 
-        var timer = new Timer();
-        var service = new this.Service.Switch(this.name, this.uuid);
-        var characteristic = service.getCharacteristic(this.Characteristic.On);
+        this.timer = new Timer();
+        this.setupSwitch();
+    }
 
-        characteristic.updateValue(this.getState());
+    setupSwitch() {
 
-        characteristic.on('get', (callback) => {
+        this.state = this.getDeviceState();
+
+        var service = undefined;
+
+
+        switch(this.device.type) {
+            case 'lightbulb':
+                service = new this.Service.Lightbulb(this.name, this.uuid);
+                break;
+            case 'outlet':
+                service = new this.Service.Outlet(this.name, this.uuid);
+                break;
+            default:
+                service = new this.Service.Switch(this.name, this.uuid);
+                break;
+        }
+
+        var power = service.getCharacteristic(this.Characteristic.On);
+
+        power.updateValue(this.getState());
+
+        power.on('get', (callback) => {
             callback(null, this.getState());
         });
 
-        characteristic.on('set', (state, callback, context) => {
+        power.on('set', (state, callback, context) => {
             this.setState(state);
             callback();
         });
 
-        this.on('stateChanged', (state) => {
-
-            timer.cancel();
+        this.on('stateChanged', () => {
+            var timer = new Timer();
+            var state = this.getDeviceState();
 
             // If not the same state as HomeKit, update HomeKit value
             if (this.state != state) {
-                super.setState(state);
-
                 this.log('Reflecting change to HomeKit. %s is now %s.', this.device.name, state);
-                characteristic.updateValue(state);
+                power.updateValue(this.state = state);
+
+                // Notify state change
+                this.notifyState();
             }
 
             // Auto off?
             if (state && isNumber(this.device.timer)) {
+                timer.cancel();
 
                 timer.setTimer(this.device.timer * 1000, () => {
                     this.log('Timer activated. Turning off', this.device.name);
 
+                    this.state = false;
+
                     // Turn off and make sure HomeKit knows about it
-                    this.setState(false);
-                    characteristic.updateValue(this.getState());
+                    this.setState(this.state);
+                    power.updateValue(this.state);
                 });
 
             }
+
         });
+
+        this.services.push(service);
     }
 
 
+
+
+    getDeviceState() {
+        return this.device.state;
+    }
+
+    getState() {
+        return this.state;
+    }
+
     setState(state) {
+
         if (state)
             this.turnOn();
         else
             this.turnOff();
 
-        this.log('Setting value from HomeKit. %s is now %s.', this.device.name, state);
+        this.notifyState();
 
-        super.setState(state);
+        this.log('Setting value from HomeKit. %s is now %s.', this.device.name, state);
     }
 
     turnOn() {
@@ -85,6 +124,9 @@ module.exports = class Switch extends Device {
         });
 
         this.log(sprintf('Device %s turned on.', this.device.name));
+
+        this.state = true;
+
     }
 
     turnOff() {
@@ -106,6 +148,8 @@ module.exports = class Switch extends Device {
         });
 
         this.log(sprintf('Device %s turned off.', this.device.name));
+
+        this.state = false;
     }
 
 };

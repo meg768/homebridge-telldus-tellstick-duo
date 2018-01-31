@@ -58,10 +58,10 @@ module.exports = class TelldusPlatform  {
                 if (device == undefined) {
                     device = {};
                     device.id         = item.id;
-                    device.uuid       = uuid;
                     device.name       = item.name;
                     device.protocol   = item.protocol;
                     device.model      = item.model;
+                    device.uuid       = uuid;
                     device.parameters = {};
 
                     // Read parameters
@@ -73,11 +73,10 @@ module.exports = class TelldusPlatform  {
                     });
                 }
 
-                // Update initial state
-                device.state = (item.status != undefined && item.status.name == 'ON');
-
                 if (device.type == undefined)
                     device.type = 'switch';
+
+                var accessory = undefined;
 
                 switch(device.model) {
                     case 'selflearning-switch':
@@ -85,26 +84,31 @@ module.exports = class TelldusPlatform  {
                         switch(device.type) {
                             case 'occupancy-sensor':
                             case 'motion-sensor': {
-                                this.devices.push(new MotionSensor(this, device));
+                                accessory = new MotionSensor(this, device);
                                 break;
                             }
                             case 'notification-switch': {
-                                this.devices.push(new NotificationSwitch(this, device));
+                                accessory = new NotificationSwitch(this, device);
                                 break;
                             }
                             case 'lightbulb':
                             case 'outlet':
                             case 'switch': {
-                                this.devices.push(new Switch(this, device));
+                                accessory = new Switch(this, device);
                                 break;
                             }
                             default: {
                                 this.log('Unknown type \'%s\'.', device.type);
-                                this.devices.push(new Switch(this, device));
+                                accessory = new Switch(this, device);
                                 break;
                             }
                         }
                     }
+                }
+
+                if (accessory != undefined) {
+                    this.devices.push(accessory);
+                    accessory.stateChanged((item.status != undefined && item.status.name == 'ON'));
                 }
             }
 
@@ -112,7 +116,7 @@ module.exports = class TelldusPlatform  {
         });
 
         // Add defined sensors
-
+/*
         telldus.getSensorsSync().forEach((item) => {
 
             var config = this.config.sensors.find((iterator) => {
@@ -160,25 +164,23 @@ module.exports = class TelldusPlatform  {
 
             }
         });
-
+*/
         telldus.addDeviceEventListener((id, status) => {
 
-            var accessory = this.findDevice(id);
+            var accessory = this.devices.find((item) => {
+                return item.device.id == id;
+            });
 
             if (accessory != undefined) {
-                var device = accessory.device;
-
-                device.state = status.name == 'ON';
-                accessory.emit('stateChanged', device.state);
-
-                this.log('Device event:', JSON.stringify(device));
+                accessory.emit('stateChanged', status.name == 'ON');
+                this.log('Device event:', JSON.stringify({id:id, status:status});
 
             }
             else {
                 this.log('Device', id, 'not found.');
             }
         });
-
+/*
         telldus.addSensorEventListener((id, protocol, model, type, value, timestamp) => {
 
             var accessory = this.findSensor(id);
@@ -207,7 +209,7 @@ module.exports = class TelldusPlatform  {
             }
 
         });
-
+*/
         telldus.addRawDeviceEventListener((id, data) => {
 
             var packet = {id:id};
@@ -271,41 +273,14 @@ module.exports = class TelldusPlatform  {
     				telldus.setDeviceParameterSync(id, parameterName, device.parameters[parameterName].toString());
     			}
 
-                // Update with unique key and tellstick id
+                // Update device with ID and UUID
                 device.id = id;
-                device.uuid = this.getUniqueDeviceKey(device.id);
+                device.uuid = this.getUniqueDeviceKey(id);
     		}
         }
 	}
 
 
-    findDevice(id) {
-
-        for (var i = 0; i < this.devices.length; i++) {
-            var accessory = this.devices[i];
-
-            if (id == accessory.device.id)
-                return accessory;
-
-            if (id == accessory.device.name) {
-                return accessory;
-            }
-        };
-    }
-
-    findSensor(id) {
-
-        for (var i = 0; i < this.sensors.length; i++) {
-            var accessory = this.sensors[i];
-
-            if (id == accessory.device.id)
-                return accessory;
-
-            if (id == accessory.device.name) {
-                return accessory;
-            }
-        };
-    }
 
     notify(message) {
         if (this.notifications)
