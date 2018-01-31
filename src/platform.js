@@ -44,7 +44,7 @@ module.exports = class TelldusPlatform  {
 
         this.installDevices();
         this.createDeviceAccessories();
-        this.createSensorsAccessories();
+        this.createSensorAccessories();
         this.addEventListeners();
 
     }
