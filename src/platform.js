@@ -230,7 +230,7 @@ module.exports = class TelldusPlatform  {
         telldus.addDeviceEventListener((id, status) => {
 
             var accessory = this.devices.find((item) => {
-                return item.device.id == id;
+                return item.config.id == id;
             });
 
             if (accessory != undefined) {
@@ -243,7 +243,7 @@ module.exports = class TelldusPlatform  {
         telldus.addSensorEventListener((id, protocol, model, type, value, timestamp) => {
 
             var accessory = this.sensors.find((item) => {
-                return item.device.id == id;
+                return item.config.id == id;
             });
 
             if (accessory != undefined) {
