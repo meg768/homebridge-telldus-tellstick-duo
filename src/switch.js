@@ -12,10 +12,20 @@ module.exports = class Switch extends Device {
     constructor(platform, device) {
         super(platform, device);
 
+        // Timer to help turnOn() and turnOff()
         this.timer = new Timer();
 
-        var timer = new Timer();
+        this.addServices();
+    }
+
+    addServices() {
         var service = new this.Service.Switch(this.name, this.uuid);
+        this.enablePower(service);
+        this.addService(service);
+    }
+
+    enablePower(service) {
+        var timer = new Timer();
         var characteristic = service.getCharacteristic(this.Characteristic.On);
 
         characteristic.updateValue(this.getState());
@@ -55,9 +65,7 @@ module.exports = class Switch extends Device {
             }
         });
 
-        this.addService(service);
     }
-
 
     setState(state) {
         if (state)
