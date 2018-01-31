@@ -5,11 +5,11 @@ var Sensor = require('./sensor.js');
 
 module.exports = class ThermometerHygrometer extends Sensor {
 
-    constructor(platform, device) {
-        super(platform, device);
+    constructor(platform, config) {
+        super(platform, config);
 
-        this.temperature = device.temperature;
-        this.humidity = device.humidity;
+        this.temperature = config.temperature;
+        this.humidity = config.humidity;
     }
 
     addServices() {
@@ -44,7 +44,7 @@ module.exports = class ThermometerHygrometer extends Sensor {
         this.on('temperatureChanged', (temperature) => {
             this.temperature = temperature;
 
-            this.log('Reflecting temperature to HomeKit. %s is now %s.', this.device.name, temperature);
+            this.log('Reflecting temperature to HomeKit. %s is now %s.', this.config.name, temperature);
             characteristics.updateValue(this.temperature);
         });
     }
@@ -61,7 +61,7 @@ module.exports = class ThermometerHygrometer extends Sensor {
         this.on('humidityChanged', (humidity) => {
             this.humidity = humidity;
 
-            this.log('Reflecting humidity to HomeKit. %s is now %s.', this.device.name, humidity);
+            this.log('Reflecting humidity to HomeKit. %s is now %s.', this.config.name, humidity);
             characteristics.updateValue(this.humidity);
         });
     }

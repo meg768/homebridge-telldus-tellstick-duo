@@ -5,8 +5,8 @@ var sprintf = require('yow/sprintf');
 module.exports = class NotificationSwitch extends Switch {
 
 
-    constructor(platform, device) {
-        super(platform, device);
+    constructor(platform, config) {
+        super(platform, config);
 
         this.platform.notifications = this.getState();
     }

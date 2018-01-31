@@ -4,11 +4,11 @@ var Accessory = require('./accessory.js');
 
 module.exports = class Device extends Accessory {
 
-    constructor(platform, device) {
+    constructor(platform, config) {
 
-        super(platform, device.name, device.uuid);
+        super(platform, config.name, config.uuid);
 
-        this.device = device;
+        this.config = config;
 
         this.addAccessoryInformation();
         this.addServices();
@@ -23,7 +23,7 @@ module.exports = class Device extends Accessory {
     }
 
     getModel() {
-        return this.device.model;
+        return this.config.model;
     }
 
     getFirmwareVersion() {
@@ -31,7 +31,7 @@ module.exports = class Device extends Accessory {
     }
 
     getSerialNumber() {
-        return this.device.id;
+        return this.config.id;
     }
 
 

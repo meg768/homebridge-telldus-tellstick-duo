@@ -9,8 +9,8 @@ var Device    = require('./device.js');
 
 module.exports = class Switch extends Device {
 
-    constructor(platform, device) {
-        super(platform, device);
+    constructor(platform, config) {
+        super(platform, config);
 
         // Timer to help turnOn() and turnOff()
         this.timer = new Timer();
@@ -46,15 +46,15 @@ module.exports = class Switch extends Device {
             if (this.state != state) {
                 super.setState(state);
 
-                this.log('Reflecting change to HomeKit. %s is now %s.', this.device.name, state);
+                this.log('Reflecting change to HomeKit. %s is now %s.', this.config.name, state);
                 characteristic.updateValue(state);
             }
 
             // Auto off?
-            if (state && isNumber(this.device.timer)) {
+            if (state && isNumber(this.config.timer)) {
 
-                timer.setTimer(this.device.timer * 1000, () => {
-                    this.log('Timer activated. Turning off', this.device.name);
+                timer.setTimer(this.config.timer * 1000, () => {
+                    this.log('Timer activated. Turning off', this.config.name);
 
                     // Turn off and make sure HomeKit knows about it
                     this.setState(false);
@@ -72,51 +72,51 @@ module.exports = class Switch extends Device {
         else
             this.turnOff();
 
-        this.log('Setting value from HomeKit. %s is now %s.', this.device.name, state);
+        this.log('Setting value from HomeKit. %s is now %s.', this.config.name, state);
 
         super.setState(state);
     }
 
     turnOn() {
         this.timer.cancel();
-        this.log('Turning on', this.device.name);
+        this.log('Turning on', this.config.name);
 
-        telldus.turnOnSync(this.device.id);
+        telldus.turnOnSync(this.config.id);
 
         setImmediate(() => {
-            telldus.turnOnSync(this.device.id);
+            telldus.turnOnSync(this.config.id);
         });
 
         setImmediate(() => {
-            telldus.turnOnSync(this.device.id);
+            telldus.turnOnSync(this.config.id);
         });
 
         this.timer.setTimer(800, () => {
-            telldus.turnOnSync(this.device.id);
+            telldus.turnOnSync(this.config.id);
         });
 
-        this.log(sprintf('Device %s turned on.', this.device.name));
+        this.log(sprintf('Device %s turned on.', this.config.name));
     }
 
     turnOff() {
         this.timer.cancel();
-        this.log('Turning off', this.device.name);
+        this.log('Turning off', this.config.name);
 
-        telldus.turnOffSync(this.device.id);
+        telldus.turnOffSync(this.config.id);
 
         setImmediate(() => {
-            telldus.turnOffSync(this.device.id);
+            telldus.turnOffSync(this.config.id);
         });
 
         setImmediate(() => {
-            telldus.turnOffSync(this.device.id);
+            telldus.turnOffSync(this.config.id);
         });
 
         this.timer.setTimer(800, () => {
-            telldus.turnOffSync(this.device.id);
+            telldus.turnOffSync(this.config.id);
         });
 
-        this.log(sprintf('Device %s turned off.', this.device.name));
+        this.log(sprintf('Device %s turned off.', this.config.name));
     }
 
 };

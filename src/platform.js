@@ -51,9 +51,7 @@ module.exports = class TelldusPlatform  {
 
     installDevices() {
 
-        var devices = this.config.devices;
-
-		if (devices != undefined) {
+		if (this.config.devices != undefined) {
 
             var initialState = {};
 
@@ -68,24 +66,22 @@ module.exports = class TelldusPlatform  {
     			telldus.removeDeviceSync(device.id);
     		});
 
-    		for (var index in devices) {
-    			var device = devices[index];
-
+    		this.config.devices.forEach((config) => {
     			var id = telldus.addDeviceSync();
 
-    			telldus.setNameSync(id, device.name);
-    			telldus.setProtocolSync(id, device.protocol);
-    			telldus.setModelSync(id, device.model);
+    			telldus.setNameSync(id, config.name);
+    			telldus.setProtocolSync(id, config.protocol);
+    			telldus.setModelSync(id, config.model);
 
-    			for (var parameterName in device.parameters) {
-    				telldus.setDeviceParameterSync(id, parameterName, device.parameters[parameterName].toString());
+    			for (var parameterName in config.parameters) {
+    				telldus.setDeviceParameterSync(id, parameterName, config.parameters[parameterName].toString());
     			}
 
                 // Update device with ID and UUID
-                device.id = id;
-                device.uuid = this.getUniqueDeviceKey(id);
-                device.state = initialState[device.uuid];
-    		}
+                config.id = id;
+                config.uuid = this.getUniqueDeviceKey(id);
+                config.state = initialState[config.uuid];
+    		})
         }
 	}
 
@@ -99,62 +95,62 @@ module.exports = class TelldusPlatform  {
                 var uuid = this.getUniqueDeviceKey(item.id);
 
                 // Look up the device in config
-                var device = undefined;
+                var config = undefined;
 
                 if (this.config.devices) {
-                    device = this.config.devices.find((iterator) => {
+                    config = this.config.devices.find((iterator) => {
                         return iterator.uuid == uuid;
                     });
                 }
 
-                if (device == undefined) {
-                    device = {};
-                    device.id         = item.id;
-                    device.name       = item.name;
-                    device.protocol   = item.protocol;
-                    device.model      = item.model;
-                    device.uuid       = uuid;
-                    device.state      = (item.status != undefined && item.status.name == 'ON');
-                    device.parameters = {};
+                if (config == undefined) {
+                    config = {};
+                    config.id         = item.id;
+                    config.name       = item.name;
+                    config.protocol   = item.protocol;
+                    config.model      = item.model;
+                    config.uuid       = uuid;
+                    config.state      = (item.status != undefined && item.status.name == 'ON');
+                    config.parameters = {};
 
                     // Read parameters
                     ['house', 'group', 'unit', 'code'].forEach((name) => {
-                        var value = telldus.getDeviceParameterSync(device.id, name, '');
+                        var value = telldus.getDeviceParameterSync(config.id, name, '');
 
                         if (value != '')
-                            device.parameters[name] = value;
+                            config.parameters[name] = value;
                     });
                 }
 
 
-                if (device.type == undefined)
-                    device.type = 'switch';
+                if (config.type == undefined)
+                    config.type = 'switch';
 
-                switch(device.model) {
+                switch(config.model) {
                     case 'selflearning-switch':
                     case 'codeswitch': {
-                        switch(device.type) {
+                        switch(config.type) {
                             case 'occupancy-sensor':
                             case 'motion-sensor': {
-                                this.devices.push(new MotionSensor(this, device));
+                                this.devices.push(new MotionSensor(this, config));
                                 break;
                             }
                             case 'notification-switch': {
-                                this.devices.push(new NotificationSwitch(this, device));
+                                this.devices.push(new NotificationSwitch(this, config));
                                 break;
                             }
                             case 'lightbulb': {
-                                this.devices.push(new Lightbulb(this, device));
+                                this.devices.push(new Lightbulb(this, config));
                                 break;
                             }
                             case 'outlet':
                             case 'switch': {
-                                this.devices.push(new Switch(this, device));
+                                this.devices.push(new Switch(this, config));
                                 break;
                             }
                             default: {
-                                this.log('Unknown type \'%s\'.', device.type);
-                                this.devices.push(new Switch(this, device));
+                                this.log('Unknown type \'%s\'.', config.type);
+                                this.devices.push(new Switch(this, config));
                                 break;
                             }
                         }
@@ -183,44 +179,42 @@ module.exports = class TelldusPlatform  {
 
 
             if (config) {
-                var device = {};
+                if (config.model == 'EA4C')
+                    config.model = 'temperature';
 
-                if (device.model == 'EA4C')
-                    device.model = 'temperature';
+                if (config.model == '1A2D')
+                    config.model = 'temperaturehumidity';
 
-                if (device.model == '1A2D')
-                    device.model = 'temperaturehumidity';
-
-                device.id = item.id;
-                device.name = config.name;
-                device.type = 'sensor';
-                device.protocol = item.protocol;
-                device.model = item.model;
-                device.id = item.id;
-                device.uuid = this.generateUUID(sprintf('%s:%s:%s', item.protocol, item.model, item.id));
+                config.id = item.id;
+                config.name = config.name;
+                config.type = 'sensor';
+                config.protocol = item.protocol;
+                config.model = item.model;
+                config.id = item.id;
+                config.uuid = this.generateUUID(sprintf('%s:%s:%s', item.protocol, item.model, item.id));
 
                 if (item.data) {
                     item.data.forEach((entry) => {
                         if (entry.type == 'TEMPERATURE')
-                            device.temperature = parseFloat(entry.value);
+                            config.temperature = parseFloat(entry.value);
                         if (entry.type == 'HUMIDITY')
-                            device.humidity = parseFloat(entry.value);
+                            config.humidity = parseFloat(entry.value);
 
-                        device.timestamp = entry.timestamp;
+                        config.timestamp = entry.timestamp;
                     });
                 }
 
-                switch (device.model) {
+                switch (config.model) {
                     case 'humidity': {
-                        this.sensors.push(new Humidity(this, device));
+                        this.sensors.push(new Humidity(this, config));
                         break;
                     }
                     case 'temperature': {
-                        this.sensors.push(new Thermometer(this, device));
+                        this.sensors.push(new Thermometer(this, config));
                         break;
                     }
                     case 'temperaturehumidity': {
-                        this.sensors.push(new ThermometerHygrometer(this, device));
+                        this.sensors.push(new ThermometerHygrometer(this, config));
                         break;
                     }
                 }

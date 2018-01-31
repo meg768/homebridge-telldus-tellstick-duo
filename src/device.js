@@ -9,12 +9,12 @@ var Accessory = require('./accessory.js');
 
 module.exports = class Device extends Accessory {
 
-    constructor(platform, device) {
+    constructor(platform, config) {
 
-        super(platform, device.location ? sprintf('%s - %s', device.name, device.location) : device.name, device.uuid);
+        super(platform, config.location ? sprintf('%s - %s', config.name, config.location) : config.name, config.uuid);
 
-        this.device = device;
-        this.state = device.state;
+        this.config = config;
+        this.state = config.state;
 
         this.addAccessoryInformation();
         this.addServices();
@@ -28,8 +28,8 @@ module.exports = class Device extends Accessory {
         if (this.state != state) {
             this.state = state;
 
-            var notify = this.device.notify;
-            var alert  = this.device.alert;
+            var notify = this.config.notify;
+            var alert  = this.config.alert;
 
             if (isObject(notify)) {
                 if (isString(notify.on) && state)
@@ -60,7 +60,7 @@ module.exports = class Device extends Accessory {
     }
 
     getModel() {
-        return this.device.model;
+        return this.config.model;
     }
 
     getFirmwareVersion() {
@@ -68,7 +68,7 @@ module.exports = class Device extends Accessory {
     }
 
     getSerialNumber() {
-        return this.device.id;
+        return this.config.id;
     }
 
 

@@ -6,8 +6,8 @@ var isString = require('yow/is').isString;
 
 module.exports = class MotionSensor extends Device {
 
-    constructor(platform, device) {
-        super(platform, device);
+    constructor(platform, config) {
+        super(platform, config);
     }
 
     addServices() {
@@ -19,7 +19,7 @@ module.exports = class MotionSensor extends Device {
 
     enableMotionDetected(service) {
         var characteristic = service.getCharacteristic(this.Characteristic.MotionDetected);
-        var timeout = eval(this.device.timeout || 60);
+        var timeout = eval(this.config.timeout || 60);
         var timer = new Timer();
 
         characteristic.updateValue(this.getState());
@@ -37,7 +37,7 @@ module.exports = class MotionSensor extends Device {
         this.on('stateChanged', (state) => {
 
             if (!state) {
-                this.log('Movement detected on sensor', this.device.name);
+                this.log('Movement detected on sensor', this.config.name);
 
                 this.setState(true);
                 characteristic.updateValue(this.getState());
@@ -45,7 +45,7 @@ module.exports = class MotionSensor extends Device {
                 timer.cancel();
 
                 timer.setTimer(timeout * 1000, () => {
-                    this.log('Resetting movement for sensor', this.device.name);
+                    this.log('Resetting movement for sensor', this.config.name);
                     this.setState(false);
                     characteristic.updateValue(this.getState());
                 });
