@@ -17,9 +17,12 @@ module.exports = class Device extends Accessory {
         this.state = device.state;
 
         this.addAccessoryInformation();
-
+        this.addServices();
     }
 
+    addServices() {
+        
+    }
 
     addAccessoryInformation() {
         var service = new this.Service.AccessoryInformation();

@@ -15,7 +15,6 @@ module.exports = class Switch extends Device {
         // Timer to help turnOn() and turnOff()
         this.timer = new Timer();
 
-        this.addServices();
     }
 
     addServices() {

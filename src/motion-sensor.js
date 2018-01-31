@@ -8,8 +8,16 @@ module.exports = class MotionSensor extends Device {
 
     constructor(platform, device) {
         super(platform, device);
+    }
 
+    addServices() {
         var service = new this.Service.MotionSensor(this.name, this.uuid);
+
+        this.enableMotionDetected(service);
+        this.addService(service);
+    }
+
+    enableMotionDetected(service) {
         var characteristic = service.getCharacteristic(this.Characteristic.MotionDetected);
         var timeout = eval(device.timeout || 60);
         var timer = new Timer();
@@ -36,7 +44,7 @@ module.exports = class MotionSensor extends Device {
 
                 timer.cancel();
 
-                this.timer.setTimer(timeout * 1000, () => {
+                timer.setTimer(timeout * 1000, () => {
                     this.log('Resetting movement for sensor', this.device.name);
                     this.setState(false);
                     characteristic.updateValue(this.getState());
@@ -44,7 +52,6 @@ module.exports = class MotionSensor extends Device {
             }
         });
 
-        this.addService(service);
     }
 
 
