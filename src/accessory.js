@@ -14,7 +14,7 @@ module.exports = class Accessory extends Events {
         super();
 
         if (uuids[uuid] != undefined)
-            throw new Error('Yo bro! Already registerred UUID \'%s'\'. Must be unique.', uuid);
+            throw new Error("Yo bro! Already registerred UUID '%s'. Must be unique.", uuid);
 
         uuids[uuid] = uuid;
 
