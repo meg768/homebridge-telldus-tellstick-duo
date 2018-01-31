@@ -189,9 +189,6 @@ module.exports = class TelldusPlatform  {
                 this.log('Device event:', JSON.stringify({id:id, status:status}));
 
             }
-            else {
-                this.log('Device', id, 'not found.');
-            }
         });
 
         telldus.addSensorEventListener((id, protocol, model, type, value, timestamp) => {
@@ -201,24 +198,16 @@ module.exports = class TelldusPlatform  {
             });
 
             if (accessory != undefined) {
-                var device = accessory.device;
-
-                console.log('********************************  sensor UPDATE');
-                
                 if (protocol == 'temperature' || (protocol == 'temperaturehumidity' && type == 1)) {
                     accessory.emit('temperatureChanged', parseFloat(value), timestamp);
                 }
 
                 if (protocol == 'humidity' || (protocol == 'temperaturehumidity' && type == 2)) {
                     accessory.emit('humidityChanged', parseFloat(value), timestamp);
-
                 }
 
                 this.log('Sensor event:', JSON.stringify({id:id, protocol:protocol, type:type, value:value, timestamp:timestamp}));
 
-            }
-            else {
-                this.log('Sensor', id, 'not found.');
             }
 
         });
