@@ -11,7 +11,7 @@ module.exports = class Device extends Accessory {
 
     constructor(platform, device) {
 
-        super(platform, device.location ? sprintf('%s - %s', device.name, device.location) : device.name, this.device.uuid);
+        super(platform, device.location ? sprintf('%s - %s', device.name, device.location) : device.name, device.uuid);
 
         this.device = device;
         this.state = false;
