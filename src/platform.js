@@ -43,6 +43,54 @@ module.exports = class TelldusPlatform  {
         }
 
         this.installDevices();
+        this.createDeviceAccessories();
+        this.createSensorsAccessories();
+        this.addEventListeners();
+
+    }
+
+    installDevices() {
+
+        var devices = this.config.devices;
+
+		if (devices != undefined) {
+
+            var initialState = {};
+
+            // Remove all previous devices
+            // But save their state
+    		telldus.getDevicesSync().forEach((device) => {
+                var uuid = this.getUniqueDeviceKey(device.id);
+                var state = (device.status != undefined && device.status.name == 'ON');
+
+                initialState[uuid] = state;
+
+    			telldus.removeDeviceSync(device.id);
+    		});
+
+    		for (var index in devices) {
+    			var device = devices[index];
+
+    			var id = telldus.addDeviceSync();
+
+    			telldus.setNameSync(id, device.name);
+    			telldus.setProtocolSync(id, device.protocol);
+    			telldus.setModelSync(id, device.model);
+
+    			for (var parameterName in device.parameters) {
+    				telldus.setDeviceParameterSync(id, parameterName, device.parameters[parameterName].toString());
+    			}
+
+                // Update device with ID and UUID
+                device.id = id;
+                device.uuid = this.getUniqueDeviceKey(id);
+                device.state = initialState[device.uuid];
+    		}
+        }
+	}
+
+
+    createDeviceAccessories() {
 
         telldus.getDevicesSync().forEach((item) => {
 
@@ -116,6 +164,9 @@ module.exports = class TelldusPlatform  {
 
 
         });
+    }
+
+    createSensorAccessories() {
 
         // Add defined sensors
 
@@ -178,6 +229,10 @@ module.exports = class TelldusPlatform  {
             }
         });
 
+    }
+
+    addEventListeners() {
+
         telldus.addDeviceEventListener((id, status) => {
 
             var accessory = this.devices.find((item) => {
@@ -225,7 +280,6 @@ module.exports = class TelldusPlatform  {
 
             this.log('Raw event:', JSON.stringify(packet));
         });
-
     }
 
     generateUUID(id) {
@@ -248,47 +302,6 @@ module.exports = class TelldusPlatform  {
         return this.generateUUID(parameters.join(':'));
 
     }
-
-    installDevices() {
-
-        var devices = this.config.devices;
-
-		if (devices != undefined) {
-
-            var initialState = {};
-
-            // Remove all previous devices
-            // But save their state
-    		telldus.getDevicesSync().forEach((device) => {
-                var uuid = this.getUniqueDeviceKey(device.id);
-                var state = (device.status != undefined && device.status.name == 'ON');
-
-                initialState[uuid] = state;
-
-    			telldus.removeDeviceSync(device.id);
-    		});
-
-    		for (var index in devices) {
-    			var device = devices[index];
-
-    			var id = telldus.addDeviceSync();
-
-    			telldus.setNameSync(id, device.name);
-    			telldus.setProtocolSync(id, device.protocol);
-    			telldus.setModelSync(id, device.model);
-
-    			for (var parameterName in device.parameters) {
-    				telldus.setDeviceParameterSync(id, parameterName, device.parameters[parameterName].toString());
-    			}
-
-                // Update device with ID and UUID
-                device.id = id;
-                device.uuid = this.getUniqueDeviceKey(id);
-                device.state = initialState[device.uuid];
-    		}
-        }
-	}
-
 
 
     notify(message) {
