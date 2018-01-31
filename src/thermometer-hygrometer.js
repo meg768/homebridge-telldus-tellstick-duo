@@ -37,7 +37,7 @@ module.exports = class ThermometerHygrometer extends Sensor {
         var characteristics = service.getCharacteristic(this.Characteristic.CurrentTemperature);
 
         characteristics.setProps({minValue: -50});
-        characteristics.updateValue(this.getTemperature());
+        characteristics.updateValue(this.temperature);
 
         characteristics.on('get', (callback) => {
             callback(null, this.temperature);
@@ -54,7 +54,7 @@ module.exports = class ThermometerHygrometer extends Sensor {
     enableCurrentRelativeHumidity(service) {
         var characteristics = service.getCharacteristic(this.Characteristic.CurrentRelativeHumidity);
 
-        characteristics.updateValue(this.getHumidity());
+        characteristics.updateValue(this.humidity);
 
         characteristics.on('get', (callback) => {
             callback(null, this.humidity);
