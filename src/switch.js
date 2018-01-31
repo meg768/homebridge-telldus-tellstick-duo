@@ -12,7 +12,8 @@ module.exports = class Switch extends Device {
     constructor(platform, device) {
         super(platform, device);
 
-        var this.timer = new Timer();
+        this.timer = new Timer();
+
         var timer = new Timer();
         var service = new this.Service.Switch(this.name, this.uuid);
         var characteristic = service.getCharacteristic(this.Characteristic.On);
