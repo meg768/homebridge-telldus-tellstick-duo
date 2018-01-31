@@ -5,7 +5,7 @@ var isString = require('yow/is').isString;
 var isObject = require('yow/is').isObject;
 var sprintf  = require('yow/sprintf');
 
-module.exports = class Accessory extents Events {
+module.exports = class Accessory extends Events {
 
     constructor(platform, name, uuid) {
 
