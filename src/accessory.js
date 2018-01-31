@@ -32,6 +32,31 @@ module.exports = class Accessory extends Events {
 
     }
 
+    addAccessoryInformation() {
+        var service = new this.Service.AccessoryInformation();
+
+        var manufacturer = this.getManufacturer();
+        var model = this.getModel();
+        var firmwareVersion = this.getFirmwareVersion();
+        var serialNumber = this.getSerialNumber();
+
+        if (manufacturer)
+            service.setCharacteristic(this.Characteristic.Manufacturer, manufacturer);
+
+        if (model)
+            service.setCharacteristic(this.Characteristic.Model, model);
+
+        if (firmwareVersion)
+            service.setCharacteristic(this.Characteristic.FirmwareRevision, firmwareVersion);
+
+        if (serialNumber)
+            service.setCharacteristic(this.Characteristic.SerialNumber, serialNumber);
+
+
+        this.addService(service);
+    }
+
+
     addService(service) {
         this.services.push(service);
     }
@@ -39,6 +64,22 @@ module.exports = class Accessory extends Events {
     identify(callback) {
         this.log('Identify called for accessory', this.device.name);
         callback();
+    }
+
+    getManufacturer() {
+        return 'Telldus';
+    }
+
+    getModel() {
+        return 'model';
+    }
+
+    getFirmwareVersion() {
+        return '1.0';
+    }
+
+    getSerialNumber() {
+        return 'XYZ';
     }
 
     getServices() {

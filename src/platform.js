@@ -11,6 +11,8 @@ var Lightbulb             = require('./lightbulb.js');
 var Outlet                = require('./outlet.js');
 var MotionSensor          = require('./motion-sensor.js');
 var ThermometerHygrometer = require('./thermometer-hygrometer.js');
+var Thermometer           = require('./thermometer.js');
+var Hygrometer            = require('./hygrometer.js');
 
 var sprintf  = require('yow/sprintf');
 var isString = require('yow/is').isString;
@@ -40,7 +42,7 @@ module.exports = class TelldusPlatform  {
             };
         }
 
-        this.registerTellstickDevices();
+        this.installDevices();
 
         telldus.getDevicesSync().forEach((item) => {
 
@@ -116,7 +118,7 @@ module.exports = class TelldusPlatform  {
         });
 
         // Add defined sensors
-/*
+
         telldus.getSensorsSync().forEach((item) => {
 
             var config = this.config.sensors.find((iterator) => {
@@ -143,9 +145,9 @@ module.exports = class TelldusPlatform  {
                 if (item.data) {
                     item.data.forEach((entry) => {
                         if (entry.type == 'TEMPERATURE')
-                            device.temperature = entry.value;
+                            device.temperature = parseFloat(entry.value);
                         if (entry.type == 'HUMIDITY')
-                            device.humidity = entry.value;
+                            device.humidity = parseFloat(entry.value);
 
                         device.timestamp = entry.timestamp;
                     });
@@ -153,8 +155,14 @@ module.exports = class TelldusPlatform  {
                 }
 
                 switch (device.model) {
-                    case 'humidity':
-                    case 'temperature':
+                    case 'humidity': {
+                        this.sensors.push(new Humidity(this, device));
+                        break;
+                    }
+                    case 'temperature': {
+                        this.sensors.push(new Thermometer(this, device));
+                        break;
+                    }
                     case 'temperaturehumidity': {
                         this.sensors.push(new ThermometerHygrometer(this, device));
                         break;
@@ -164,7 +172,7 @@ module.exports = class TelldusPlatform  {
 
             }
         });
-*/
+
         telldus.addDeviceEventListener((id, status) => {
 
             var accessory = this.devices.find((item) => {
@@ -247,7 +255,7 @@ module.exports = class TelldusPlatform  {
 
     }
 
-    registerTellstickDevices() {
+    installDevices() {
 
         var devices = this.config.devices;
 
@@ -256,10 +264,10 @@ module.exports = class TelldusPlatform  {
             var initialState = {};
 
             // Remove all previous devices
+            // But save their state
     		telldus.getDevicesSync().forEach((device) => {
                 var uuid = this.getUniqueDeviceKey(device.id);
                 var state = (device.status != undefined && device.status.name == 'ON');
-                console.log('Initial state for %s is %s (%s)', device.name, state, uuid);
 
                 initialState[uuid] = state;
 
@@ -270,8 +278,6 @@ module.exports = class TelldusPlatform  {
     			var device = devices[index];
 
     			var id = telldus.addDeviceSync();
-
-    			this.log(sprintf('Registering Tellstick device \'%s\'...', device.name));
 
     			telldus.setNameSync(id, device.name);
     			telldus.setProtocolSync(id, device.protocol);
@@ -285,7 +291,6 @@ module.exports = class TelldusPlatform  {
                 device.id = id;
                 device.uuid = this.getUniqueDeviceKey(id);
                 device.state = initialState[device.uuid];
-                console.log('Restored state for %s is %s (%s)', device.name, device.state, device.id);
     		}
         }
 	}

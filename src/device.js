@@ -21,7 +21,7 @@ module.exports = class Device extends Accessory {
     }
 
     addServices() {
-        
+
     }
 
     addAccessoryInformation() {
