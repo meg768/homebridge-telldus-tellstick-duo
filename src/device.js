@@ -21,33 +21,7 @@ module.exports = class Device extends Accessory {
     }
 
     addServices() {
-
     }
-
-    addAccessoryInformation() {
-        var service = new this.Service.AccessoryInformation();
-
-        var manufacturer = this.getManufacturer();
-        var model = this.getModel();
-        var firmwareVersion = this.getFirmwareVersion();
-        var serialNumber = this.getSerialNumber();
-
-        if (manufacturer)
-            service.setCharacteristic(this.Characteristic.Manufacturer, manufacturer);
-
-        if (model)
-            service.setCharacteristic(this.Characteristic.Model, model);
-
-        if (firmwareVersion)
-            service.setCharacteristic(this.Characteristic.FirmwareRevision, firmwareVersion);
-
-        if (serialNumber)
-            service.setCharacteristic(this.Characteristic.SerialNumber, serialNumber);
-
-
-        this.addService(service);
-    }
-
 
     setState(state) {
 
@@ -94,7 +68,7 @@ module.exports = class Device extends Accessory {
     }
 
     getSerialNumber() {
-        return 'ABC-123';
+        return this.device.id;
     }
 
 

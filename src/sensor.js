@@ -31,7 +31,7 @@ module.exports = class Device extends Accessory {
     }
 
     getSerialNumber() {
-        return 'ABC-123';
+        return this.device.id;
     }
 
 
