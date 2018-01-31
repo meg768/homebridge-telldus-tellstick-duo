@@ -173,7 +173,7 @@ module.exports = class TelldusPlatform  {
 
             if (accessory != undefined) {
                 accessory.emit('stateChanged', status.name == 'ON');
-                this.log('Device event:', JSON.stringify({id:id, status:status});
+                this.log('Device event:', JSON.stringify({id:id, status:status}));
 
             }
             else {
