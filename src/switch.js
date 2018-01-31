@@ -54,6 +54,8 @@ module.exports = class Switch extends Device {
 
             }
         });
+
+        this.addService(service);
     }
 
 
