@@ -263,7 +263,7 @@ module.exports = class TelldusPlatform  {
     		telldus.getDevicesSync().forEach((device) => {
     			telldus.removeDeviceSync(device.id);
 
-                initialState[getUniqueDeviceKey(device.id)] = (device.status != undefined && device.status.name == 'ON');
+                initialState[thie.getUniqueDeviceKey(device.id)] = (device.status != undefined && device.status.name == 'ON');
     		});
 
     		for (var index in devices) {
