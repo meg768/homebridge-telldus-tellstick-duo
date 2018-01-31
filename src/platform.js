@@ -130,7 +130,7 @@ module.exports = class TelldusPlatform  {
 
             }
 
-            if (config == 7) {
+            if (config) {
                 var device = {};
 
                 if (device.model == 'EA4C')
