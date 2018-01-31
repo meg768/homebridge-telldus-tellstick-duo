@@ -9,6 +9,8 @@ module.exports = class Accessory extends Events {
 
     constructor(platform, name, uuid) {
 
+        super();
+        
         if (!name)
             throw new Error('An accessory must have a name.');
 
