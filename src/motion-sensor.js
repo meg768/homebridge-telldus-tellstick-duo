@@ -6,8 +6,8 @@ var isString = require('yow/is').isString;
 
 module.exports = class MotionSensor extends Device {
 
-    constructor(platform, device, state) {
-        super(platform, device, state);
+    constructor(platform, device) {
+        super(platform, device);
 
         var service = new this.Service.MotionSensor(this.name, this.uuid);
         var characteristic = service.getCharacteristic(this.Characteristic.MotionDetected);

@@ -88,22 +88,22 @@ module.exports = class TelldusPlatform  {
                         switch(device.type) {
                             case 'occupancy-sensor':
                             case 'motion-sensor': {
-                                accessory = new MotionSensor(this, device, initialState);
+                                accessory = new MotionSensor(this, device);
                                 break;
                             }
                             case 'notification-switch': {
-                                accessory = new NotificationSwitch(this, device, initialState);
+                                accessory = new NotificationSwitch(this, device);
                                 break;
                             }
                             case 'lightbulb':
                             case 'outlet':
                             case 'switch': {
-                                accessory = new Switch(this, device, initialState);
+                                accessory = new Switch(this, device);
                                 break;
                             }
                             default: {
                                 this.log('Unknown type \'%s\'.', device.type);
-                                accessory = new Switch(this, device, initialState);
+                                accessory = new Switch(this, device);
                                 break;
                             }
                         }
