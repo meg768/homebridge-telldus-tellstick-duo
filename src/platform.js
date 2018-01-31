@@ -93,6 +93,7 @@ module.exports = class TelldusPlatform  {
                                 break;
                             }
                             case 'lightbulb':
+                            case 'outlet':
                             case 'switch': {
                                 this.devices.push(new Switch(this, device));
                                 break;
