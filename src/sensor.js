@@ -1,10 +1,5 @@
 "use strict";
 
-var isString = require('yow/is').isString;
-var isObject = require('yow/is').isObject;
-var Events   = require('events');
-var sprintf  = require('yow/sprintf');
-var telldus  = require('telldus');
 var Accessory = require('./accessory.js');
 
 module.exports = class Device extends Accessory {
