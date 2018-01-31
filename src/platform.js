@@ -121,9 +121,14 @@ module.exports = class TelldusPlatform  {
 
         telldus.getSensorsSync().forEach((item) => {
 
-            var config = this.config.sensors.find((iterator) => {
-                return iterator.id == item.id;
-            });
+            var config;
+
+            if (this.config.sensors) {
+                config = this.config.sensors.find((iterator) => {
+                    return iterator.id == item.id;
+                });
+
+            }
 
             if (config) {
                 var device = {};
