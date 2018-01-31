@@ -1,6 +1,6 @@
 "use strict";
 
-var Device = require('./Device.js');
+var Device = require('./device.js');
 var Timer = require('yow/timer');
 var isString = require('yow/is').isString;
 
@@ -45,5 +45,6 @@ module.exports = class MotionSensor extends Device {
 
         this.addService(service);
     }
+
 
 };
