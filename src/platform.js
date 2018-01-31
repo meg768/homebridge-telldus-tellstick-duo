@@ -29,7 +29,6 @@ module.exports = class TelldusPlatform  {
         this.alerts        = true;
         this.devices       = [];
         this.sensors       = [];
-        this.index = 0;
 
         // Load .env
         require('dotenv').config({path: Path.join(process.env.HOME, '.homebridge/.env')});
@@ -150,8 +149,6 @@ module.exports = class TelldusPlatform  {
                 console.log('******************', item.id);
                 device.uuid = this.generateUUID(sprintf('%s:%s:%s', item.protocol, item.model, item.id));
 
-                device.uuid = this.generateUUID(this.index++);
-                //sprintf('%s:%s:%s', item.protocol, item.model, item.id));
 
                 if (item.data) {
                     item.data.forEach((entry) => {

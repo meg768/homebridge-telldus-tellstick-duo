@@ -5,11 +5,18 @@ var isString = require('yow/is').isString;
 var isObject = require('yow/is').isObject;
 var sprintf  = require('yow/sprintf');
 
+var uuids = {};
+
 module.exports = class Accessory extends Events {
 
     constructor(platform, name, uuid) {
 
         super();
+
+        if (uuids[uuid] != undefined)
+            throw new Error('Yow bro! Already reagisterred UUID %s!', uuid);
+
+        uuids[uuid] = uuid;
 
         if (!name)
             throw new Error('An accessory must have a name.');
