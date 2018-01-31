@@ -45,6 +45,7 @@ module.exports = class TelldusPlatform  {
             if (item.type == 'DEVICE') {
 
                 var uuid = this.getUniqueDeviceKey(item.id);
+                var initialState = (item.status != undefined && item.status.name == 'ON');
 
                 // Look up the device in config
                 var device = undefined;
@@ -73,6 +74,7 @@ module.exports = class TelldusPlatform  {
                     });
                 }
 
+
                 if (device.type == undefined)
                     device.type = 'switch';
 
@@ -84,22 +86,22 @@ module.exports = class TelldusPlatform  {
                         switch(device.type) {
                             case 'occupancy-sensor':
                             case 'motion-sensor': {
-                                accessory = new MotionSensor(this, device);
+                                accessory = new MotionSensor(this, device, initialState);
                                 break;
                             }
                             case 'notification-switch': {
-                                accessory = new NotificationSwitch(this, device);
+                                accessory = new NotificationSwitch(this, device, initialState);
                                 break;
                             }
                             case 'lightbulb':
                             case 'outlet':
                             case 'switch': {
-                                accessory = new Switch(this, device);
+                                accessory = new Switch(this, device, initialState);
                                 break;
                             }
                             default: {
                                 this.log('Unknown type \'%s\'.', device.type);
-                                accessory = new Switch(this, device);
+                                accessory = new Switch(this, device, initialState);
                                 break;
                             }
                         }
@@ -107,8 +109,8 @@ module.exports = class TelldusPlatform  {
                 }
 
                 if (accessory != undefined) {
+
                     this.devices.push(accessory);
-                    accessory.stateChanged((item.status != undefined && item.status.name == 'ON'));
                 }
             }
 

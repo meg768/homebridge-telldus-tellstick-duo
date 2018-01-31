@@ -9,8 +9,8 @@ var Device    = require('./device.js');
 
 module.exports = class Switch extends Device {
 
-    constructor(platform, device) {
-        super(platform, device);
+    constructor(platform, device, state) {
+        super(platform, device, state);
 
         this.timer = new Timer();
 

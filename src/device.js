@@ -9,12 +9,12 @@ var Accessory = require('./accessory.js');
 
 module.exports = class Device extends Accessory {
 
-    constructor(platform, device) {
+    constructor(platform, device, state) {
 
         super(platform, device.location ? sprintf('%s - %s', device.name, device.location) : device.name, device.uuid);
 
         this.device = device;
-        this.state = false;
+        this.state = state;
 
         this.addAccessoryInformation();
 
