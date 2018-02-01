@@ -2,7 +2,7 @@
 
 var Accessory = require('./accessory.js');
 
-module.exports = class Device extends Accessory {
+module.exports = class Sensor extends Accessory {
 
     constructor(platform, config) {
 

@@ -72,8 +72,6 @@ module.exports = class Switch extends Device {
         else
             this.turnOff();
 
-        this.log('Setting value from HomeKit. %s is now %s.', this.config.name, state);
-
         super.setState(state);
     }
 

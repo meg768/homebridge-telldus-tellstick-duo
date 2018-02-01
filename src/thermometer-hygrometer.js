@@ -1,6 +1,5 @@
 "use strict";
 
-
 var Sensor = require('./sensor.js');
 
 module.exports = class ThermometerHygrometer extends Sensor {

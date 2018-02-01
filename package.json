@@ -1,6 +1,6 @@
 {
   "name": "homebridge-telldus-tellstick-duo",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "description": "Homebridge for Telldus Tellstick Duo",
   "main": "index.js",
   "scripts": {
