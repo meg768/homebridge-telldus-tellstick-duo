@@ -8,6 +8,9 @@ module.exports = class MotionSensor extends Device {
 
     constructor(platform, config) {
         super(platform, config);
+
+        // Do not remember state since this is always ON
+        this.state = false;
     }
 
     addServices() {
