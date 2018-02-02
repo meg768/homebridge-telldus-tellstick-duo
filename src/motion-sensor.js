@@ -19,7 +19,7 @@ module.exports = class MotionSensor extends Device {
 
     enableMotionDetected(service) {
         var characteristic = service.getCharacteristic(this.Characteristic.MotionDetected);
-        var timeout = eval(this.config.timeout || 60);
+        var timeout = parseInt(eval(this.config.timeout || 60));
         var timer = new Timer();
 
         characteristic.updateValue(this.getState());
@@ -36,8 +36,9 @@ module.exports = class MotionSensor extends Device {
 
         this.on('stateChanged', (state) => {
 
+
             if (!state) {
-                this.log('Movement detected on sensor', this.config.name);
+                this.log('Movement detected on sensor. Setting timeout to %s seconds.', this.config.name, timeout);
 
                 this.setState(true);
                 characteristic.updateValue(this.getState());
