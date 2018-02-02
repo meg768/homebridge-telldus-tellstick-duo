@@ -46,7 +46,7 @@
         			"name": "Rörelsevakt",
         			"location": "Biorummet",
                     "type": "motion-sensor",
-                    "timeout": 10,
+                    "timeout": "60 * 30",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
