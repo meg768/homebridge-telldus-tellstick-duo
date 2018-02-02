@@ -24,6 +24,7 @@ module.exports = class Accessory extends Events {
         if (!uuid)
             throw new Error('An accessory must have a anique UUID.');
 
+        this.debug = platform.debug;
         this.log = platform.log;
         this.platform = platform;
         this.homebridge = platform.homebridge;

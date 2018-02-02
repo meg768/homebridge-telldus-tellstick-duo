@@ -24,6 +24,7 @@ module.exports = class TelldusPlatform  {
 
         this.config        = config;
         this.log           = log;
+        this.debug         = log;
         this.homebridge    = homebridge;
         this.notifications = false;
         this.alerts        = true;
