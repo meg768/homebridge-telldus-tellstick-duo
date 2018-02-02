@@ -369,3 +369,7 @@ remember your virtual signal and respond to it in the future.
 * https://developer.telldus.com/wiki/TellStick_conf
 * https://github.com/nfarina/homebridge
 * http://blog.theodo.fr/2017/08/make-siri-perfect-home-companion-devices-not-supported-apple-homekit/
+
+## Fixes
+
+* 20018-02-02 - Motion sensors did not respond correctly.
