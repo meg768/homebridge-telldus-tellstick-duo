@@ -39,7 +39,7 @@ module.exports = class MotionSensor extends Device {
 
         this.on('stateChanged', (state) => {
 
-            this.log('State changed to (%s) for motion sensor %s.', this.config.name);
+            this.log('State changed to (%s) for motion sensor %s.', state, this.config.name);
 
             if (!state) {
                 this.log('Movement detected on sensor %s. Setting timeout to %s seconds.', this.config.name, timeout);
