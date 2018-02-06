@@ -11,6 +11,7 @@ module.exports = class MotionSensor extends Device {
 
         // Do not remember state since this is always ON
         this.state = false;
+        this.timeout = new Timer();
     }
 
     addServices() {
@@ -23,13 +24,12 @@ module.exports = class MotionSensor extends Device {
     enableMotionDetected(service) {
         var characteristic = service.getCharacteristic(this.Characteristic.MotionDetected);
         var timeout = parseInt(eval(this.config.timeout || 60));
-        var timer = new Timer();
 
         characteristic.updateValue(this.getState());
 
         characteristic.on('set', (state, callback) => {
             this.setState(state);
-            timer.cancel();
+            this.timeout.cancel();
             callback();
         });
 
@@ -39,17 +39,17 @@ module.exports = class MotionSensor extends Device {
 
         this.on('stateChanged', (state) => {
 
-            this.debug('State changed to %s for motion sensor %s.', state, this.config.name);
+            this.debug('State changed to %s for motion sensor %s (%s).', state, this.config.name, this.config.id);
 
             if (state) {
-                this.log('Movement detected on sensor %s. Setting timeout to %s seconds.', this.config.name, timeout);
+                this.log('Movement detected on sensor %s (%s). Setting timeout to %s seconds.', this.config.name, this.config.id, timeout);
 
                 this.setState(true);
                 characteristic.updateValue(this.getState());
 
-                timer.cancel();
+                this.timeout.cancel();
 
-                timer.setTimer(timeout * 1000, () => {
+                this.timeout.setTimer(timeout * 1000, () => {
                     this.log('Resetting movement for sensor', this.config.name);
                     this.setState(false);
                     characteristic.updateValue(this.getState());
