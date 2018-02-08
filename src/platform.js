@@ -59,7 +59,7 @@ module.exports = class TelldusPlatform  {
         var range = require('yow/range');
 		var timeout = 10000;
 		var rule    = new Schedule.RecurrenceRule();
-		rule.minute = range(0, 60, 1);
+		rule.minute = range(0, 60, 5);
 
 		Schedule.scheduleJob(rule, () => {
 			var device = this.config.devices[0];
