@@ -55,7 +55,7 @@ module.exports = class TelldusPlatform  {
 
 
 
-	function enablePing() {
+	enablePing() {
 		var timeout = 10000;
 		var rule    = new Schedule.RecurrenceRule();
 		rule.minute = range(0, 60, 1);
