@@ -25,6 +25,7 @@
   "author": "meg768",
   "license": "ISC",
   "dependencies": {
+      "node-schedule": "^1.2.0",
     "dotenv": "^4.0.0",
     "pushover-notifications": "^0.2.4",
     "telldus": "^1.1.2",

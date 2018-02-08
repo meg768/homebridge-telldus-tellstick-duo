@@ -4,6 +4,7 @@ var Path     = require('path');
 var Events   = require('events');
 var telldus  = require('telldus');
 var Pushover = require('pushover-notifications');
+var Schedule = require('node-schedule');
 
 var Switch                = require('./switch.js');
 var NotificationSwitch    = require('./notification-switch.js');
@@ -30,6 +31,7 @@ module.exports = class TelldusPlatform  {
         this.alerts        = true;
         this.devices       = [];
         this.sensors       = [];
+        this.ping          = new Date();
 
         // Load .env
         require('dotenv').config({path: Path.join(process.env.HOME, '.homebridge/.env')});
@@ -47,8 +49,42 @@ module.exports = class TelldusPlatform  {
         this.createDeviceAccessories();
         this.createSensorAccessories();
         this.addEventListeners();
+        this.enablePing();
 
     }
+
+
+
+	function enablePing() {
+		var timeout = 10000;
+		var rule    = new Schedule.RecurrenceRule();
+		rule.minute = range(0, 60, 1);
+
+		Schedule.scheduleJob(rule, () => {
+			var device = this.config.devices[0];
+
+			if (device != undefined) {
+				this.log('Pinging device %s.', device.name));
+
+				this.ping = new Date();
+				telldus.turnOnSync(device.id);
+
+				setTimeout(() => {
+					var now = new Date();
+					var delta = now - this.ping;
+
+					if (delta >= timeout) {
+						this.log('Tellstick not responding.');
+					}
+
+				}, timeout);
+			}
+			else {
+				this.log('Ping device not found.');
+			}
+		});
+
+	}
 
     installDevices() {
 
@@ -236,6 +272,7 @@ module.exports = class TelldusPlatform  {
 
             if (accessory != undefined) {
                 this.log('Device event:', JSON.stringify({id:id, status:status}));
+                this.ping = new Date();
                 accessory.emit('stateChanged', status.name == 'ON');
             }
             else {
