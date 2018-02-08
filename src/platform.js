@@ -64,7 +64,7 @@ module.exports = class TelldusPlatform  {
 			var device = this.config.devices[0];
 
 			if (device != undefined) {
-				this.log('Pinging device %s.', device.name));
+				this.log('Pinging device %s.', device.name);
 
 				this.ping = new Date();
 				telldus.turnOnSync(device.id);
