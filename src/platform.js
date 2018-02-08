@@ -56,6 +56,7 @@ module.exports = class TelldusPlatform  {
 
 
 	enablePing() {
+        var range = require('yow/range');
 		var timeout = 10000;
 		var rule    = new Schedule.RecurrenceRule();
 		rule.minute = range(0, 60, 1);
