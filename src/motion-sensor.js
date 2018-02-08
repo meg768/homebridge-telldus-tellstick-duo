@@ -17,7 +17,7 @@ module.exports = class MotionSensor extends Device {
     addServices() {
         var service = new this.Service.MotionSensor(this.name, this.uuid);
 
-        this.enableMotionDetected(service);
+        //this.enableMotionDetected(service);
         this.addService(service);
     }
 
