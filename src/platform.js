@@ -235,8 +235,8 @@ module.exports = class TelldusPlatform  {
             });
 
             if (accessory != undefined) {
-                accessory.emit('stateChanged', status.name == 'ON');
                 this.log('Device event:', JSON.stringify({id:id, status:status}));
+                accessory.emit('stateChanged', status.name == 'ON');
             }
             else {
                 this.log('Device %s not found.');
@@ -250,6 +250,8 @@ module.exports = class TelldusPlatform  {
             });
 
             if (accessory != undefined) {
+                this.log('Sensor event:', JSON.stringify({id:id, protocol:protocol, type:type, value:value, timestamp:timestamp}));
+
                 if (protocol == 'temperature' || (protocol == 'temperaturehumidity' && type == 1)) {
                     accessory.emit('temperatureChanged', parseFloat(value), timestamp);
                 }
@@ -257,9 +259,6 @@ module.exports = class TelldusPlatform  {
                 if (protocol == 'humidity' || (protocol == 'temperaturehumidity' && type == 2)) {
                     accessory.emit('humidityChanged', parseFloat(value), timestamp);
                 }
-
-                this.log('Sensor event:', JSON.stringify({id:id, protocol:protocol, type:type, value:value, timestamp:timestamp}));
-
             }
 
         });
