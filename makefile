@@ -11,5 +11,8 @@ config:
 install:
 	npm install -g
 
+restart:
+	pm2 restart homebridge
+	
 run:
 	homebridge
