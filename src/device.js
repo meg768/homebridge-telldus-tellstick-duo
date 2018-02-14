@@ -17,10 +17,10 @@ module.exports = class Device extends Accessory {
         this.state = config.state;
 
         this.addAccessoryInformation();
-        this.addServices();
+
     }
 
-    addServices() {
+    initialize() {
     }
 
     setState(state) {

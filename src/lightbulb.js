@@ -3,7 +3,7 @@ var Switch = require('./switch.js');
 
 module.exports = class Lightbulb extends Switch {
 
-    addServices() {
+    initialize() {
         var service = new this.Service.Lightbulb(this.name, this.uuid);
         this.enablePower(service);
         this.addService(service);

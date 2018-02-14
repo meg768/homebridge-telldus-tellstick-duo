@@ -14,26 +14,27 @@ module.exports = class MotionSensor extends Device {
         this.timeout = new Timer();
     }
 
-    addServices() {
+    initialize() {
+
         var service = new this.Service.MotionSensor(this.name, this.uuid);
 
-        //this.enableMotionDetected(service);
+        this.enableMotionDetected(service);
         this.addService(service);
     }
 
     enableMotionDetected(service) {
-        var characteristic = service.getCharacteristic(this.Characteristic.MotionDetected);
+        var motion = service.getCharacteristic(this.Characteristic.MotionDetected);
         var timeout = parseInt(eval(this.config.timeout || 60));
 
-        characteristic.updateValue(this.getState());
+        motion.updateValue(this.getState());
 
-        characteristic.on('set', (state, callback) => {
+        motion.on('set', (state, callback) => {
             this.setState(state);
             this.timeout.cancel();
             callback();
         });
 
-        characteristic.on('get', (callback) => {
+        motion.on('get', (callback) => {
             callback(null, this.getState());
         });
 
@@ -45,14 +46,14 @@ module.exports = class MotionSensor extends Device {
                 this.log('Movement detected on sensor %s (%s). Setting timeout to %s seconds.', this.config.name, this.config.id, timeout);
 
                 this.setState(true);
-                characteristic.updateValue(this.getState());
+                motion.updateValue(this.getState());
 
                 this.timeout.cancel();
 
                 this.timeout.setTimer(timeout * 1000, () => {
                     this.log('Resetting movement for sensor', this.config.name);
                     this.setState(false);
-                    characteristic.updateValue(this.getState());
+                    motion.updateValue(this.getState());
                 });
             }
         });

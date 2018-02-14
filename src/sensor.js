@@ -11,12 +11,10 @@ module.exports = class Sensor extends Accessory {
         this.config = config;
 
         this.addAccessoryInformation();
-        this.addServices();
     }
 
-    addServices() {
+    initialize() {
     }
-
 
     getManufacturer() {
         return 'Telldus';

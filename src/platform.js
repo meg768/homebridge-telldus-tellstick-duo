@@ -164,36 +164,41 @@ module.exports = class TelldusPlatform  {
                 if (config.type == undefined)
                     config.type = 'switch';
 
+                var device = undefined;
+
                 switch(config.model) {
                     case 'selflearning-switch':
                     case 'codeswitch': {
                         switch(config.type) {
                             case 'occupancy-sensor':
                             case 'motion-sensor': {
-                                this.devices.push(new MotionSensor(this, config));
+                                device = new MotionSensor(this, config);
                                 break;
                             }
                             case 'notification-switch': {
-                                this.devices.push(new NotificationSwitch(this, config));
+                                device = new NotificationSwitch(this, config);
                                 break;
                             }
                             case 'lightbulb': {
-                                this.devices.push(new Lightbulb(this, config));
+                                device = new Lightbulb(this, config);
                                 break;
                             }
                             case 'outlet':
                             case 'switch': {
-                                this.devices.push(new Switch(this, config));
+                                device = new Switch(this, config);
                                 break;
                             }
                             default: {
                                 this.log('Unknown type \'%s\'.', config.type);
-                                this.devices.push(new Switch(this, config));
+                                device = new Switch(this, config);
                                 break;
                             }
                         }
                     }
                 }
+
+                this.devices.push(device);
+
             }
 
 

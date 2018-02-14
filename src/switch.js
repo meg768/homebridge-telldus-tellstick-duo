@@ -17,8 +17,10 @@ module.exports = class Switch extends Device {
 
     }
 
-    addServices() {
+    initialize() {
+
         var service = new this.Service.Switch(this.name, this.uuid);
+
         this.enablePower(service);
         this.addService(service);
     }
