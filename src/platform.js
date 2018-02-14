@@ -172,6 +172,7 @@ module.exports = class TelldusPlatform  {
                         switch(config.type) {
                             case 'occupancy-sensor':
                             case 'motion-sensor': {
+                                this.log('**********************');
                                 device = new MotionSensor(this, config);
                                 break;
                             }
