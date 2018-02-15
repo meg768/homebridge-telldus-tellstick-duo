@@ -32,6 +32,10 @@
                     "type": "motion-sensor",
                     "timeout": 10,
 
+                    "notify": {
+                        "on": "Rörelse på kontoret"
+                    },
+
         			"protocol": "arctech",
         			"model": "selflearning-switch",
 
@@ -48,6 +52,10 @@
                     "type": "motion-sensor",
                     "timeout": "60 * 30",
 
+                    "notify": {
+                        "on": "Rörelse i biorummet"
+                    },
+
         			"protocol": "arctech",
         			"model": "selflearning-switch",
         			"parameters": {
@@ -61,6 +69,10 @@
         			"name": "Rörelsevakt",
         			"location": "Vardagsrummet",
                     "type": "motion-sensor",
+
+                    "notify": {
+                        "on": "Rörelse i vardagsrummet"
+                    },
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
