@@ -30,7 +30,7 @@
         			"name": "Rörelsevakt",
         			"location": "Kontoret",
                     "type": "motion-sensor",
-                    "timeout": 10,
+                    "timeout": "60 * 5",
 
                     "notify": {
                         "on": "Rörelse på kontoret"
@@ -69,6 +69,7 @@
         			"name": "Rörelsevakt",
         			"location": "Vardagsrummet",
                     "type": "motion-sensor",
+                    "timeout": "60 * 30",
 
                     "notify": {
                         "on": "Rörelse i vardagsrummet"
@@ -87,6 +88,7 @@
         			"name": "Rörelsevakt",
         			"location": "Köket",
                     "type": "motion-sensor",
+                    "timeout": "60 * 30",
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
