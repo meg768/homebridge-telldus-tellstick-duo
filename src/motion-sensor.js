@@ -11,7 +11,7 @@ module.exports = class MotionSensor extends Device {
 
         // Do not remember state since this is always ON
         this.state = false;
-        this.timeout = undefined;
+        this.timeout = new Timer();
     }
 
     initialize() {
