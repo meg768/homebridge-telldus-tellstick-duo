@@ -61,11 +61,16 @@ module.exports = class TelldusPlatform  {
 		var rule    = new Schedule.RecurrenceRule();
 		rule.minute = range(0, 60, 1);
 
-		Schedule.scheduleJob(rule, () => {
-			var device = this.config.devices[0];
+        var device = this.config.devices.find((iterator) => {
+            return iterator.name == 'Ping';
+        });
 
-			if (device != undefined) {
-				this.log('Pinging device %s.', device.name);
+        if (device != undefined) {
+
+            this.log('Enabling ping...');
+
+            Schedule.scheduleJob(rule, () => {
+				this.log('Pinging device \'%s\'.', device.name);
 
 				this.ping = new Date();
 				telldus.turnOnSync(device.id);
@@ -79,11 +84,9 @@ module.exports = class TelldusPlatform  {
 					}
 
 				}, timeout);
-			}
-			else {
-				this.log('Ping device not found.');
-			}
-		});
+    		});
+
+        }
 
 	}
 
