@@ -53,11 +53,14 @@ module.exports = class MotionSensor extends Device {
                 this.timeout.cancel();
 
                 this.log('Setting new timer.');
+
                 this.timeout.setTimer(timeout * 1000, () => {
                     this.log('Resetting movement for sensor', this.config.name);
                     this.setState(false);
                     motion.updateValue(this.getState());
                 });
+
+                this.log('Done.');
             }
         });
 
