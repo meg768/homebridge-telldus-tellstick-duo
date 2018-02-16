@@ -30,7 +30,7 @@
         			"name": "Rörelsevakt",
         			"location": "Kontoret",
                     "type": "motion-sensor",
-                    "timeout": "60 * 5",
+                    "timeout": "10",
 
                     "notify": {
                         "on": "Rörelse på kontoret"
