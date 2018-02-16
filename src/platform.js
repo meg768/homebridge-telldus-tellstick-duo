@@ -1,40 +1,42 @@
 "use strict";
 
-var Path     = require('path');
-var Events   = require('events');
-var telldus  = require('telldus');
+var Path = require('path');
+var Events = require('events');
+var telldus = require('telldus');
 var Pushover = require('pushover-notifications');
 var Schedule = require('node-schedule');
 
-var Switch                = require('./switch.js');
-var NotificationSwitch    = require('./notification-switch.js');
-var Lightbulb             = require('./lightbulb.js');
-var Outlet                = require('./outlet.js');
-var MotionSensor          = require('./motion-sensor.js');
+var Switch = require('./switch.js');
+var NotificationSwitch = require('./notification-switch.js');
+var Lightbulb = require('./lightbulb.js');
+var Outlet = require('./outlet.js');
+var MotionSensor = require('./motion-sensor.js');
 var ThermometerHygrometer = require('./thermometer-hygrometer.js');
-var Thermometer           = require('./thermometer.js');
-var Hygrometer            = require('./hygrometer.js');
+var Thermometer = require('./thermometer.js');
+var Hygrometer = require('./hygrometer.js');
 
-var sprintf  = require('yow/sprintf');
+var sprintf = require('yow/sprintf');
 var isString = require('yow/is').isString;
 
 
-module.exports = class TelldusPlatform  {
+module.exports = class TelldusPlatform {
 
     constructor(log, config, homebridge) {
 
-        this.config        = config;
-        this.log           = log;
-        this.debug         = log;
-        this.homebridge    = homebridge;
+        this.config = config;
+        this.log = log;
+        this.debug = log;
+        this.homebridge = homebridge;
         this.notifications = false;
-        this.alerts        = true;
-        this.devices       = [];
-        this.sensors       = [];
-        this.ping          = new Date();
+        this.alerts = true;
+        this.devices = [];
+        this.sensors = [];
+        this.ping = new Date();
 
         // Load .env
-        require('dotenv').config({path: Path.join(process.env.HOME, '.homebridge/.env')});
+        require('dotenv').config({
+            path: Path.join(process.env.HOME, '.homebridge/.env')
+        });
 
         if (process.env.PUSHOVER_USER && process.env.PUSHOVER_TOKEN) {
             this.log('Using Pushover credentials from .env');
@@ -55,11 +57,13 @@ module.exports = class TelldusPlatform  {
 
 
 
-	enablePing() {
+    enablePing() {
         var range = require('yow/range');
-		var timeout = 10000;
-		var rule    = new Schedule.RecurrenceRule();
-		rule.minute = range(0, 60, 1);
+        var timeout = 10000;
+        var rule = new Schedule.RecurrenceRule();
+        var state = false;
+
+        rule.minute = range(0, 60, 1);
 
         var device = this.config.devices.find((iterator) => {
             return iterator.name == 'Ping';
@@ -70,61 +74,67 @@ module.exports = class TelldusPlatform  {
             this.log('Enabling ping...');
 
             Schedule.scheduleJob(rule, () => {
-				this.log('Pinging device \'%s\'.', device.name);
+                state = !state;
 
-				this.ping = new Date();
-				telldus.turnOnSync(device.id);
+                this.log('Pinging device \'%s\'. Setting to %s.', device.name, state);
 
-				setTimeout(() => {
-					var now = new Date();
-					var delta = now - this.ping;
+                this.ping = new Date();
 
-					if (delta >= timeout) {
-						this.log('Tellstick not responding.');
-					}
+                if (state)
+                    telldus.turnOnSync(device.id);
+                else
+                    telldus.turnOffSync(device.id);
 
-				}, timeout);
-    		});
+                setTimeout(() => {
+                    var now = new Date();
+                    var delta = now - this.ping;
+
+                    if (delta >= timeout) {
+                        this.log('Tellstick not responding.');
+                    }
+
+                }, timeout);
+            });
 
         }
 
-	}
+    }
 
     installDevices() {
 
-		if (this.config.devices != undefined) {
+        if (this.config.devices != undefined) {
 
             var initialState = {};
 
             // Remove all previous devices
             // But save their state
-    		telldus.getDevicesSync().forEach((device) => {
+            telldus.getDevicesSync().forEach((device) => {
                 var uuid = this.getUniqueDeviceKey(device.id);
                 var state = (device.status != undefined && device.status.name == 'ON');
 
                 initialState[uuid] = state;
 
-    			telldus.removeDeviceSync(device.id);
-    		});
+                telldus.removeDeviceSync(device.id);
+            });
 
-    		this.config.devices.forEach((config) => {
-    			var id = telldus.addDeviceSync();
+            this.config.devices.forEach((config) => {
+                var id = telldus.addDeviceSync();
 
-    			telldus.setNameSync(id, config.name);
-    			telldus.setProtocolSync(id, config.protocol);
-    			telldus.setModelSync(id, config.model);
+                telldus.setNameSync(id, config.name);
+                telldus.setProtocolSync(id, config.protocol);
+                telldus.setModelSync(id, config.model);
 
-    			for (var parameterName in config.parameters) {
-    				telldus.setDeviceParameterSync(id, parameterName, config.parameters[parameterName].toString());
-    			}
+                for (var parameterName in config.parameters) {
+                    telldus.setDeviceParameterSync(id, parameterName, config.parameters[parameterName].toString());
+                }
 
                 // Update device with ID and UUID
                 config.id = id;
                 config.uuid = this.getUniqueDeviceKey(id);
                 config.state = initialState[config.uuid];
-    		})
+            })
         }
-	}
+    }
 
 
     createDeviceAccessories() {
@@ -146,12 +156,12 @@ module.exports = class TelldusPlatform  {
 
                 if (config == undefined) {
                     config = {};
-                    config.id         = item.id;
-                    config.name       = item.name;
-                    config.protocol   = item.protocol;
-                    config.model      = item.model;
-                    config.uuid       = uuid;
-                    config.state      = (item.status != undefined && item.status.name == 'ON');
+                    config.id = item.id;
+                    config.name = item.name;
+                    config.protocol = item.protocol;
+                    config.model = item.model;
+                    config.uuid = uuid;
+                    config.state = (item.status != undefined && item.status.name == 'ON');
                     config.parameters = {};
 
                     // Read parameters
@@ -169,35 +179,41 @@ module.exports = class TelldusPlatform  {
 
                 var device = undefined;
 
-                switch(config.model) {
+                switch (config.model) {
                     case 'selflearning-switch':
-                    case 'codeswitch': {
-                        switch(config.type) {
-                            case 'occupancy-sensor':
-                            case 'motion-sensor': {
-                                device = new MotionSensor(this, config);
-                                break;
-                            }
-                            case 'notification-switch': {
-                                device = new NotificationSwitch(this, config);
-                                break;
-                            }
-                            case 'lightbulb': {
-                                device = new Lightbulb(this, config);
-                                break;
-                            }
-                            case 'outlet':
-                            case 'switch': {
-                                device = new Switch(this, config);
-                                break;
-                            }
-                            default: {
-                                this.log('Unknown type \'%s\'.', config.type);
-                                device = new Switch(this, config);
-                                break;
+                    case 'codeswitch':
+                        {
+                            switch (config.type) {
+                                case 'occupancy-sensor':
+                                case 'motion-sensor':
+                                    {
+                                        device = new MotionSensor(this, config);
+                                        break;
+                                    }
+                                case 'notification-switch':
+                                    {
+                                        device = new NotificationSwitch(this, config);
+                                        break;
+                                    }
+                                case 'lightbulb':
+                                    {
+                                        device = new Lightbulb(this, config);
+                                        break;
+                                    }
+                                case 'outlet':
+                                case 'switch':
+                                    {
+                                        device = new Switch(this, config);
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        this.log('Unknown type \'%s\'.', config.type);
+                                        device = new Switch(this, config);
+                                        break;
+                                    }
                             }
                         }
-                    }
                 }
 
                 device.initialize();
@@ -253,18 +269,21 @@ module.exports = class TelldusPlatform  {
                 }
 
                 switch (config.model) {
-                    case 'humidity': {
-                        this.sensors.push(new Humidity(this, config));
-                        break;
-                    }
-                    case 'temperature': {
-                        this.sensors.push(new Thermometer(this, config));
-                        break;
-                    }
-                    case 'temperaturehumidity': {
-                        this.sensors.push(new ThermometerHygrometer(this, config));
-                        break;
-                    }
+                    case 'humidity':
+                        {
+                            this.sensors.push(new Humidity(this, config));
+                            break;
+                        }
+                    case 'temperature':
+                        {
+                            this.sensors.push(new Thermometer(this, config));
+                            break;
+                        }
+                    case 'temperaturehumidity':
+                        {
+                            this.sensors.push(new ThermometerHygrometer(this, config));
+                            break;
+                        }
                 }
 
 
@@ -282,11 +301,13 @@ module.exports = class TelldusPlatform  {
             });
 
             if (accessory != undefined) {
-                this.log('Device event:', JSON.stringify({id:id, status:status}));
+                this.log('Device event:', JSON.stringify({
+                    id: id,
+                    status: status
+                }));
                 this.ping = new Date();
                 accessory.emit('stateChanged', status.name == 'ON');
-            }
-            else {
+            } else {
                 this.log('Device %s not found.');
             }
         });
@@ -315,7 +336,9 @@ module.exports = class TelldusPlatform  {
 */
         telldus.addRawDeviceEventListener((id, data) => {
 
-            var packet = {id:id};
+            var packet = {
+                id: id
+            };
 
             data.split(';').forEach((item) => {
                 item = item.split(':');
@@ -374,14 +397,16 @@ module.exports = class TelldusPlatform  {
 
                 this.log('Sending message:', message);
 
-                push.send({priority:0, message:message}, (error, result) => {
+                push.send({
+                    priority: 0,
+                    message: message
+                }, (error, result) => {
                     if (this.error)
                         this.log(error);
                 });
 
             }
-        }
-        catch (error) {
+        } catch (error) {
             this.log(error);
         }
     }
