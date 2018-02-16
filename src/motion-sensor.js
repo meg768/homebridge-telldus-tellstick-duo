@@ -11,7 +11,7 @@ module.exports = class MotionSensor extends Device {
 
         // Do not remember state since this is always ON
         this.state = false;
-        this.timeout = new Timer();
+        this.timeout = undefined;
     }
 
     initialize() {
@@ -46,10 +46,13 @@ module.exports = class MotionSensor extends Device {
                 this.log('Movement detected on sensor %s (%s). Setting timeout to %s seconds.', this.config.name, this.config.id, timeout);
 
                 this.setState(true);
+                this.log('Triggering sensor in HomeKit.');
                 motion.updateValue(this.getState());
 
+                this.log('Cancelling previous timer.');
                 this.timeout.cancel();
 
+                this.log('Setting new timer.');
                 this.timeout.setTimer(timeout * 1000, () => {
                     this.log('Resetting movement for sensor', this.config.name);
                     this.setState(false);
