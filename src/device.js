@@ -46,6 +46,15 @@ module.exports = class Device extends Accessory {
                 if (isString(alert.off) && !state)
                     this.platform.alert(alert.off);
             }
+
+            if (isString(notify) && state) {
+                this.platform.notify(notify);
+            }
+
+            if (isString(alert) && state) {
+                this.platform.alert(alert);
+            }
+
         }
 
 

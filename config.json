@@ -132,7 +132,7 @@
         		{
         			"name": "Saftblandare",
                     "type": "lightbulb",
-                    "timer": 120,
+                    "timer": 300,
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
