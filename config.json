@@ -217,7 +217,7 @@
         		{
         			"name": "Ringklocka",
                     "alert": "Det ringer på dörren.",
-                    "timeout": 2,
+                    "timer": 10,
 
         			"protocol": "arctech",
         			"model": "selflearning-switch",
