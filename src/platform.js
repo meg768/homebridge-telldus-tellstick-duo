@@ -63,7 +63,7 @@ module.exports = class TelldusPlatform {
         var rule = new Schedule.RecurrenceRule();
         var state = false;
 
-        rule.minute = range(0, 60, 1);
+        rule.minute = range(0, 60, 5);
 
         var device = this.config.devices.find((iterator) => {
             return iterator.name == 'Ping';
