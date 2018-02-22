@@ -48,8 +48,8 @@ module.exports = class TelldusPlatform {
         }
 
         this.installDevices();
-        this.createDeviceAccessories();
-        this.createSensorAccessories();
+        this.createDevices();
+        this.createSensors();
         this.addEventListeners();
         this.enablePing();
 
@@ -137,7 +137,7 @@ module.exports = class TelldusPlatform {
     }
 
 
-    createDeviceAccessories() {
+    createDevices() {
 
         telldus.getDevicesSync().forEach((item) => {
 
@@ -226,7 +226,7 @@ module.exports = class TelldusPlatform {
         });
     }
 
-    createSensorAccessories() {
+    createSensors() {
 
         // Add defined sensors
 
@@ -268,23 +268,31 @@ module.exports = class TelldusPlatform {
                     });
                 }
 
+                var sensor = undefined;
+
                 switch (config.model) {
                     case 'humidity':
                         {
-                            this.sensors.push(new Humidity(this, config));
+                            sensor = new Humidity(this, config);
                             break;
                         }
                     case 'temperature':
                         {
-                            this.sensors.push(new Thermometer(this, config));
+                            sensor = new Thermometer(this, config);
                             break;
                         }
                     case 'temperaturehumidity':
                         {
-                            this.sensors.push(new ThermometerHygrometer(this, config));
+                            sensor = new ThermometerHygrometer(this, config);
                             break;
                         }
                 }
+
+                if (sensor) {
+                    sensor.initialize();
+                    this.sensors.push(sensor);
+                }
+
 
 
             }
