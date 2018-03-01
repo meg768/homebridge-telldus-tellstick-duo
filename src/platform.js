@@ -287,7 +287,6 @@ module.exports = class TelldusPlatform {
                 }
 
                 if (sensor) {
-                    sensor.initialize();
                     this.sensors.push(sensor);
                 }
 
