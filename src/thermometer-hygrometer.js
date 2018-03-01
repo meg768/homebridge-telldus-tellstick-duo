@@ -7,8 +7,10 @@ module.exports = class ThermometerHygrometer extends Sensor {
     constructor(platform, config) {
         super(platform, config);
 
-        this.temperature = config.temperature;
-        this.humidity = config.humidity;
+        this.temperature = 20; //config.temperature;
+        this.humidity = 30; //config.humidity;
+
+        this.initialize();
     }
 
     initialize() {
