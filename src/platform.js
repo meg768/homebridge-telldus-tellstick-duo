@@ -216,8 +216,6 @@ module.exports = class TelldusPlatform {
                         }
                 }
 
-                device.initialize();
-
                 this.devices.push(device);
 
             }
@@ -320,7 +318,7 @@ module.exports = class TelldusPlatform {
             }
         });
 
-
+/*
         telldus.addSensorEventListener((id, protocol, model, type, value, timestamp) => {
 
             var accessory = this.sensors.find((item) => {
@@ -340,7 +338,7 @@ module.exports = class TelldusPlatform {
             }
 
         });
-
+*/
         telldus.addRawDeviceEventListener((id, data) => {
 
             var packet = {

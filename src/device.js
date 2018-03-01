@@ -20,8 +20,7 @@ module.exports = class Device extends Accessory {
 
     }
 
-    initialize() {
-    }
+
 
     setState(state) {
 

@@ -15,15 +15,19 @@ module.exports = class Switch extends Device {
         // Timer to help turnOn() and turnOff()
         this.timer = new Timer();
 
-    }
-
-    initialize() {
-
-        var service = new this.Service.Switch(this.name, this.uuid);
+        var Service = this.getService();
+        var service = new Service(this.name, this.uuid);
 
         this.enablePower(service);
         this.addService(service);
+
     }
+
+    getService() {
+        return this.Service.Switch;
+    }
+
+
 
     enablePower(service) {
         var timer = new Timer();

@@ -12,15 +12,18 @@ module.exports = class MotionSensor extends Device {
         // Do not remember state since this is always ON
         this.state = false;
         this.timeout = new Timer();
-    }
 
-    initialize() {
-
-        var service = new this.Service.MotionSensor(this.name, this.uuid);
+        var Service = this.getService();
+        var service = new Service(this.name, this.uuid);
 
         this.enableMotionDetected(service);
         this.addService(service);
     }
+
+    getService() {
+        return this.Service.MotionSensor;
+    }
+
 
     enableMotionDetected(service) {
         var motion = service.getCharacteristic(this.Characteristic.MotionDetected);
