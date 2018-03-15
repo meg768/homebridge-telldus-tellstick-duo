@@ -62,8 +62,9 @@ module.exports = class TelldusPlatform {
         var timeout = 10000;
         var rule = new Schedule.RecurrenceRule();
         var state = false;
+        var reboot = false;
 
-        rule.minute = range(0, 60, 5);
+        rule.minute = range(0, 60, 10);
 
         var device = this.config.devices.find((iterator) => {
             return iterator.name == 'Ping';
@@ -90,7 +91,10 @@ module.exports = class TelldusPlatform {
                     var delta = now - this.ping;
 
                     if (delta >= timeout) {
-                        this.log('Tellstick not responding.');
+                        if (!reboot) {
+                            reboot = true;
+                            alert('Tellstick is not responding. A reboot is needed.');
+                        }
                     }
 
                 }, timeout);
@@ -317,27 +321,32 @@ module.exports = class TelldusPlatform {
             }
         });
 
-/*
-        telldus.addSensorEventListener((id, protocol, model, type, value, timestamp) => {
+        if (this.sensors.length > 0) {
+            telldus.addSensorEventListener((id, protocol, model, type, value, timestamp) => {
 
-            var accessory = this.sensors.find((item) => {
-                return item.config.id == id;
+                var accessory = this.sensors.find((item) => {
+                    return item.config.id == id;
+                });
+
+                if (accessory != undefined) {
+                    this.log('Sensor event:', JSON.stringify({id:id, protocol:protocol, type:type, value:value, timestamp:timestamp}));
+
+                    if (protocol == 'temperature' || (protocol == 'temperaturehumidity' && type == 1)) {
+                        accessory.emit('temperatureChanged', parseFloat(value), timestamp);
+                    }
+
+                    if (protocol == 'humidity' || (protocol == 'temperaturehumidity' && type == 2)) {
+                        accessory.emit('humidityChanged', parseFloat(value), timestamp);
+                    }
+                }
+
             });
 
-            if (accessory != undefined) {
-                this.log('Sensor event:', JSON.stringify({id:id, protocol:protocol, type:type, value:value, timestamp:timestamp}));
+        }
+        else {
+            this.log('No sensors defined. Skipping event listener for sensors...');
+        }
 
-                if (protocol == 'temperature' || (protocol == 'temperaturehumidity' && type == 1)) {
-                    accessory.emit('temperatureChanged', parseFloat(value), timestamp);
-                }
-
-                if (protocol == 'humidity' || (protocol == 'temperaturehumidity' && type == 2)) {
-                    accessory.emit('humidityChanged', parseFloat(value), timestamp);
-                }
-            }
-
-        });
-*/
         telldus.addRawDeviceEventListener((id, data) => {
 
             var packet = {
