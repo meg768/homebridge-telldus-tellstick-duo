@@ -52,9 +52,27 @@ module.exports = class TelldusPlatform {
         this.createSensors();
         this.addEventListeners();
         this.enablePing();
+        this.enableReboot();
 
     }
 
+    enableReboot() {
+
+        var reboot = this.config.reboot;
+        var exec = require('child_process').exec;
+
+        if (isString(reboot)) {
+            this.log('Enabling reboot at cron-time "', reboot, '"...');
+
+            Schedule.scheduleJob(reboot, () => {
+                this.alert('Had enuff. Rebooting.');
+
+                exec('sudo reboot', (error, stdout, stderr) => {
+                    this.alert('Did it.');
+                });
+            });
+        }
+    }
 
 
     enablePing() {

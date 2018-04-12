@@ -8,296 +8,292 @@
 
     "description": "This is an example configuration file",
 
-    "platforms": [
-        {
-            "platform": "Telldus Tellstick Duo",
-            "name": "Telldus Tellstick Duo",
+    "platforms": [{
+        "platform": "Telldus Tellstick Duo",
+        "name": "Telldus Tellstick Duo",
+        "reboot": "0 23 * * *",
 
-            "pushover": {
-                "user": "my-pushover-user",
-                "token": "my-pushover-token"
+        "pushover": {
+            "user": "my-pushover-user",
+            "token": "my-pushover-token"
+        },
+
+        "sensors": [{
+            "id": 135,
+            "name": "Utomhus"
+        }],
+
+        "devices": [{
+                "name": "Rörelsevakt",
+                "location": "Kontoret",
+                "type": "motion-sensor",
+                "timeout": "30",
+
+                "notify": {
+                    "on": "Rörelse på kontoret"
+                },
+
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+
+                "parameters": {
+                    "house": "15452146",
+                    "unit": "16",
+                    "group": "0"
+                }
             },
 
-            "sensors": [
-                {
-                    "id": 135,
-                    "name": "Utomhus"
+            {
+                "name": "Rörelsevakt",
+                "location": "Biorummet",
+                "type": "motion-sensor",
+                "timeout": "30",
+
+                "notify": {
+                    "on": "Rörelse i biorummet"
+                },
+
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "9674738",
+                    "unit": "16",
+                    "group": "0"
                 }
-            ],
+            },
 
-            "devices": [
-        		{
-        			"name": "Rörelsevakt",
-        			"location": "Kontoret",
-                    "type": "motion-sensor",
-                    "timeout": "30",
+            {
+                "name": "Rörelsevakt",
+                "location": "Vardagsrummet",
+                "type": "motion-sensor",
+                "timeout": "30",
 
-                    "notify": {
-                        "on": "Rörelse på kontoret"
-                    },
+                "notify": {
+                    "on": "Rörelse i vardagsrummet"
+                },
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "62632946",
+                    "unit": "16",
+                    "group": "0"
+                }
+            },
 
-        			"parameters": {
-        				"house": "15452146",
-        				"unit": "16",
-        				"group": "0"
-        			}
-        		},
+            {
+                "name": "Rörelsevakt",
+                "location": "Köket",
+                "type": "motion-sensor",
+                "timeout": "60 * 30",
 
-        		{
-        			"name": "Rörelsevakt",
-        			"location": "Biorummet",
-                    "type": "motion-sensor",
-                    "timeout": "30",
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "28559346",
+                    "unit": "16",
+                    "group": "0"
+                }
+            },
 
-                    "notify": {
-                        "on": "Rörelse i biorummet"
-                    },
+            {
+                "name": "Skymningsrelä",
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "9674738",
-        				"unit": "16",
-        				"group": "0"
-        			}
-        		},
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "group": "0",
+                    "unit": "10",
+                    "house": "19670382"
+                }
+            },
+            {
+                "name": "Terassen",
+                "location": "Utomhus",
+                "type": "lightbulb",
+                "comment": "Brytaren sitter vid terass-dörren",
 
-        		{
-        			"name": "Rörelsevakt",
-        			"location": "Vardagsrummet",
-                    "type": "motion-sensor",
-                    "timeout": "30",
+                "notify": {
+                    "on": "Terassen tänd",
+                    "off": "Terassen släckt"
+                },
 
-                    "notify": {
-                        "on": "Rörelse i vardagsrummet"
-                    },
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "57954",
+                    "group": "0",
+                    "unit": "1"
+                }
+            },
+            {
+                "name": "Saftblandare",
+                "type": "lightbulb",
+                "timer": 300,
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "62632946",
-        				"unit": "16",
-        				"group": "0"
-        			}
-        		},
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "unit": "10",
+                    "house": "17052298",
+                    "group": "0"
+                }
+            },
+            {
+                "name": "Belysning",
+                "location": "Matrummet",
+                "type": "lightbulb",
 
-        		{
-        			"name": "Rörelsevakt",
-        			"location": "Köket",
-                    "type": "motion-sensor",
-                    "timeout": "60 * 30",
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "593614",
+                    "unit": "1",
+                    "group": "0"
+                }
+            },
+            {
+                "name": "Belysning",
+                "location": "Vardagsrummet",
+                "type": "lightbulb",
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "28559346",
-        				"unit": "16",
-        				"group": "0"
-        			}
-        		},
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "658966",
+                    "unit": "1",
+                    "group": "0"
+                }
+            },
+            {
+                "name": "Larm",
+                "type": "notification-switch",
 
-        		{
-        			"name": "Skymningsrelä",
+                "notify": {
+                    "on": "Larm aktiverat",
+                    "off": "Larm avaktiverat"
+                },
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"group": "0",
-        				"unit": "10",
-        				"house": "19670382"
-        			}
-        		},
-        		{
-        			"name": "Terassen",
-        			"location": "Utomhus",
-                    "type": "lightbulb",
-                    "comment": "Brytaren sitter vid terass-dörren",
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "655218",
+                    "unit": "1",
+                    "group": "0"
+                }
+            },
+            {
+                "name": "Belysning 1",
+                "location": "Kontoret",
+                "type": "outlet",
 
-                    "notify": {
-                        "on": "Terassen tänd",
-                        "off": "Terassen släckt"
-                    },
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "592186",
+                    "unit": "2",
+                    "group": "0"
+                }
+            },
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "57954",
-        				"group": "0",
-        				"unit": "1"
-        			}
-        		},
-        		{
-        			"name": "Saftblandare",
-                    "type": "lightbulb",
-                    "timer": 300,
+            {
+                "name": "Belysning 2",
+                "location": "Kontoret",
+                "type": "outlet",
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"unit": "10",
-        				"house": "17052298",
-        				"group": "0"
-        			}
-        		},
-        		{
-        			"name": "Belysning",
-        			"location": "Matrummet",
-                    "type": "lightbulb",
-
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "593614",
-        				"unit": "1",
-        				"group": "0"
-        			}
-        		},
-        		{
-        			"name": "Belysning",
-        			"location": "Vardagsrummet",
-                    "type": "lightbulb",
-
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "658966",
-        				"unit": "1",
-        				"group": "0"
-        			}
-        		},
-        		{
-        			"name": "Larm",
-                    "type": "notification-switch",
-
-                    "notify": {
-                        "on": "Larm aktiverat",
-                        "off": "Larm avaktiverat"
-                    },
-
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "655218",
-        				"unit": "1",
-        				"group": "0"
-        			}
-        		},
-        		{
-        			"name": "Belysning 1",
-        			"location": "Kontoret",
-                    "type": "outlet",
-
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "592186",
-        				"unit": "2",
-        				"group": "0"
-        			}
-        		},
-
-        		{
-        			"name": "Belysning 2",
-                    "location": "Kontoret",
-                    "type": "outlet",
-
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "592186",
-        				"unit": "1",
-        				"group": "0"
-        			}
-        		},
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "592186",
+                    "unit": "1",
+                    "group": "0"
+                }
+            },
 
 
-        		{
-        			"name": "Ringklocka",
-                    "alert": "Det ringer på dörren.",
-                    "timer": 10,
+            {
+                "name": "Ringklocka",
+                "alert": "Det ringer på dörren.",
+                "timer": 10,
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "17482442",
-        				"unit": "1",
-        				"group": "1"
-        			}
-        		},
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "17482442",
+                    "unit": "1",
+                    "group": "1"
+                }
+            },
 
-        		{
-        			"name": "Bokhyllan",
-                    "location": "Biorummet",
-                    "type": "lightbulb",
+            {
+                "name": "Bokhyllan",
+                "location": "Biorummet",
+                "type": "lightbulb",
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "10000001",
-        				"unit": "0",
-        				"group": "0"
-        			}
-        		},
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "10000001",
+                    "unit": "0",
+                    "group": "0"
+                }
+            },
 
-        		{
-        			"name": "Fönsterbelysning",
+            {
+                "name": "Fönsterbelysning",
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "10000002",
-        				"unit": "0",
-        				"group": "0"
-        			}
-        		},
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "10000002",
+                    "unit": "0",
+                    "group": "0"
+                }
+            },
 
-                {
-        			"name": "Ledig 1",
-                    "type": "outlet",
+            {
+                "name": "Ledig 1",
+                "type": "outlet",
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "10000003",
-        				"unit": "0",
-        				"group": "0"
-        			}
-        		},
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "10000003",
+                    "unit": "0",
+                    "group": "0"
+                }
+            },
 
-                {
-        			"name": "Ledig 2",
-                    "type": "outlet",
+            {
+                "name": "Ledig 2",
+                "type": "outlet",
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "10000004",
-        				"unit": "0",
-        				"group": "0"
-        			}
-        		},
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "10000004",
+                    "unit": "0",
+                    "group": "0"
+                }
+            },
 
 
-                {
-        			"name": "Ping",
-                    "type": "outlet",
+            {
+                "name": "Ping",
+                "type": "outlet",
 
-        			"protocol": "arctech",
-        			"model": "selflearning-switch",
-        			"parameters": {
-        				"house": "10000005",
-        				"unit": "0",
-        				"group": "0"
-        			}
-        		}
+                "protocol": "arctech",
+                "model": "selflearning-switch",
+                "parameters": {
+                    "house": "10000005",
+                    "unit": "0",
+                    "group": "0"
+                }
+            }
 
-        	]
+        ]
 
-        }
-    ]
+    }]
 
 
 }
