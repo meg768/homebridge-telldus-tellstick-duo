@@ -46,7 +46,7 @@ module.exports = class ThermometerHygrometer extends Sensor {
         this.on('temperatureChanged', (temperature) => {
             this.temperature = temperature;
 
-            this.log('Reflecting temperature to HomeKit. %s is now %s.', this.config.name, temperature);
+            this.debug('Reflecting temperature to HomeKit. %s is now %s.', this.config.name, temperature);
             characteristics.updateValue(this.temperature);
         });
     }

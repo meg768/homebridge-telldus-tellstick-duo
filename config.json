@@ -12,7 +12,7 @@
         "platform": "Telldus Tellstick Duo",
         "name": "Telldus Tellstick Duo",
         "reboot": "0 3 * * *",
-        "alive": "0 * * * *",
+        "alive": "* * * * *",
 
         "pushover": {
             "user": "my-pushover-user",
