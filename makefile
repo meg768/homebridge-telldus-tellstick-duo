@@ -11,8 +11,11 @@ config:
 install:
 	npm install -g
 
+undo:
+	git reset --hard HEAD
+	
 restart:
 	pm2 restart homebridge
-	
+
 run:
 	homebridge
