@@ -25,7 +25,6 @@ module.exports = class TelldusPlatform {
 
         this.config = config;
         this.log = log;
-        this.debug = log;
         this.homebridge = homebridge;
         this.notifications = false;
         this.alerts = true;
@@ -53,9 +52,25 @@ module.exports = class TelldusPlatform {
         this.addEventListeners();
         this.enablePing();
         this.enableReboot();
+        this.enableAliveAndWell();
 
     }
 
+    debug() {
+    }
+
+    enableAliveAndWell() {
+        var alive = this.config.alive;
+
+        if (isString(alive)) {
+            this.log('Enabling alive and well at cron-time "', alive, '"...');
+
+            Schedule.scheduleJob(alive, () => {
+                this.log('Alive and well...');
+            });
+        }
+
+    }
     enableReboot() {
 
         var reboot = this.config.reboot;
@@ -95,7 +110,7 @@ module.exports = class TelldusPlatform {
             Schedule.scheduleJob(rule, () => {
                 state = !state;
 
-                this.log('Pinging device \'%s\'. Setting to %s.', device.name, state);
+                this.debug('Pinging device \'%s\'. Setting to %s.', device.name, state);
 
                 this.ping = new Date();
 
@@ -328,7 +343,7 @@ module.exports = class TelldusPlatform {
             });
 
             if (accessory != undefined) {
-                this.log('Device event:', JSON.stringify({
+                this.debug('Device event:', JSON.stringify({
                     id: id,
                     status: status
                 }));
@@ -347,7 +362,7 @@ module.exports = class TelldusPlatform {
                 });
 
                 if (accessory != undefined) {
-                    this.log('Sensor event:', JSON.stringify({id:id, protocol:protocol, type:type, value:value, timestamp:timestamp}));
+                    this.debug('Sensor event:', JSON.stringify({id:id, protocol:protocol, type:type, value:value, timestamp:timestamp}));
 
                     if (protocol == 'temperature' || (protocol == 'temperaturehumidity' && type == 1)) {
                         accessory.emit('temperatureChanged', parseFloat(value), timestamp);
