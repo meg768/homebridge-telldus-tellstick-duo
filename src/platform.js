@@ -380,21 +380,28 @@ module.exports = class TelldusPlatform {
             this.log('No sensors defined. Skipping event listener for sensors...');
         }
 
-        telldus.addRawDeviceEventListener((id, data) => {
+        if (config.debug) {
+            this.log('Adding raw event listener...');
+            
+            telldus.addRawDeviceEventListener((id, data) => {
 
-            var packet = {
-                id: id
-            };
+                var packet = {
+                    id: id
+                };
 
-            data.split(';').forEach((item) => {
-                item = item.split(':');
+                data.split(';').forEach((item) => {
+                    item = item.split(':');
 
-                if (item.length == 2)
-                    packet[item[0]] = item[1];
+                    if (item.length == 2)
+                        packet[item[0]] = item[1];
+                });
+
+                this.log('Raw event:', JSON.stringify(packet));
             });
-
-            this.log('Raw event:', JSON.stringify(packet));
-        });
+        }
+        else {
+            this.log('Skipping raw event listener (config.debug not defined)...');
+        }
     }
 
     generateUUID(id) {
