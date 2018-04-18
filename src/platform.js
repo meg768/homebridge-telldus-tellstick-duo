@@ -380,9 +380,9 @@ module.exports = class TelldusPlatform {
             this.log('No sensors defined. Skipping event listener for sensors...');
         }
 
-        if (config.debug) {
+        if (this.config.debug) {
             this.log('Adding raw event listener...');
-            
+
             telldus.addRawDeviceEventListener((id, data) => {
 
                 var packet = {
