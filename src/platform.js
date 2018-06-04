@@ -275,7 +275,8 @@ module.exports = class TelldusPlatform {
                 });
 
             }
-            else {
+
+            if (config == undefined) {
                 this.log('Sensor not defined.', item);
             }
 
