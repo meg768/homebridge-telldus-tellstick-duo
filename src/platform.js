@@ -176,6 +176,12 @@ module.exports = class TelldusPlatform {
 
     createDevices() {
 
+
+        // Call a few times. It seems it is needed if the RPI was just booted
+        telldus.getDevicesSync();
+        telldus.getDevicesSync();
+        telldus.getDevicesSync();
+
         telldus.getDevicesSync().forEach((item) => {
 
             if (item.type == 'DEVICE') {
@@ -267,7 +273,7 @@ module.exports = class TelldusPlatform {
 
         telldus.getSensorsSync().forEach((item) => {
 
-            var config;
+            var config = undefined;
 
             if (this.config.sensors) {
                 config = this.config.sensors.find((iterator) => {
