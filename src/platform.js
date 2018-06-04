@@ -178,6 +178,10 @@ module.exports = class TelldusPlatform {
 
 
 
+        telldus.getDevicesSync();
+        telldus.getDevicesSync();
+        telldus.getDevicesSync();
+        
         telldus.getDevicesSync().forEach((item) => {
 
             if (item.type == 'DEVICE') {
