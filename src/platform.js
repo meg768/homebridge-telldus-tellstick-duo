@@ -275,7 +275,9 @@ module.exports = class TelldusPlatform {
                 });
 
             }
-
+            else {
+                this.log('Sensor not defined.', item);
+            }
 
             if (config) {
                 if (config.model == 'EA4C')
