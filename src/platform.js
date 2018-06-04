@@ -177,10 +177,6 @@ module.exports = class TelldusPlatform {
     createDevices() {
 
 
-        // Call a few times. It seems it is needed if the RPI was just booted
-        telldus.getDevicesSync();
-        telldus.getDevicesSync();
-        telldus.getDevicesSync();
 
         telldus.getDevicesSync().forEach((item) => {
 
@@ -269,7 +265,10 @@ module.exports = class TelldusPlatform {
 
     createSensors() {
 
-        // Add defined sensors
+        // Call a few times. It seems it is needed if the RPI was just booted
+        telldus.getSensorsSync();
+        telldus.getSensorsSync();
+        telldus.getSensorsSync();
 
         telldus.getSensorsSync().forEach((item) => {
 
