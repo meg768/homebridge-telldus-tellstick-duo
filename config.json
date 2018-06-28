@@ -76,7 +76,10 @@
                     "name": "Rörelsevakt",
                     "location": "Köket",
                     "type": "motion-sensor",
-                    "timeout": "60 * 30",
+                    "timeout": "30",
+                    "notify": {
+                        "on": "Rörelse i köket"
+                    },
                     "protocol": "arctech",
                     "model": "selflearning-switch",
                     "parameters": {
