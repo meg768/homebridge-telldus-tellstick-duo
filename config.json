@@ -256,6 +256,17 @@
                         "unit": "0",
                         "group": "0"
                     }
+                },
+                {
+                    "name": "Ölkylen",
+                    "type": "outlet",
+                    "protocol": "arctech",
+                    "model": "selflearning-switch",
+                    "parameters": {
+                        "house": "10000006",
+                        "unit": "0",
+                        "group": "0"
+                    }
                 }
             ]
         }
