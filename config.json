@@ -17,7 +17,7 @@
                 "user": "my-pushover-user",
                 "token": "my-pushover-token"
             },
-            "sensors": [
+            "!sensors": [
                 {
                     "id": 135,
                     "name": "Utomhus"
