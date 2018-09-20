@@ -58,14 +58,14 @@ module.exports = class Server {
 			}
 
             var device = this.devices.find((iterator) => {
-                return iterator.name.toUpperCase() == options.name.toUpperCase();
+                return iterator.id == options.id;
             });
 
             if (device != undefined) {
                 this.log('Turning on', device.name);
-                telldus.turnOnSync(device.id);
-                telldus.turnOnSync(device.id);
-                telldus.turnOnSync(device.id);
+                telldus.turnOffSync(device.id);
+                telldus.turnOffSync(device.id);
+                telldus.turnOffSync(device.id);
             }
             else {
                 this.log('Device not found', options);
