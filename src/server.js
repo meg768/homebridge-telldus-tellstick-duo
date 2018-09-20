@@ -10,8 +10,7 @@ var isString   = require('yow/is').isString;
 var telldus    = require('telldus');
 
 
-export default class Server {
-
+module.exports = class Server {
 
     constructor(platform) {
         this.platform = platform;
