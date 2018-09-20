@@ -25,8 +25,11 @@
   "author": "meg768",
   "license": "ISC",
   "dependencies": {
-      "node-schedule": "^1.2.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
     "dotenv": "^4.0.0",
+    "express": "^4.16.3",
+    "node-schedule": "^1.2.0",
     "pushover-notifications": "^0.2.4",
     "telldus": "^1.1.2",
     "yow": "^1.0.87"
