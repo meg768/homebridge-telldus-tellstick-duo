@@ -9,7 +9,7 @@ var sprintf    = require('yow/sprintf');
 var isString   = require('yow/is').isString;
 var telldus    = require('telldus');
 
-var Module = new function(options) {
+var Module = function(options) {
 
 
 
