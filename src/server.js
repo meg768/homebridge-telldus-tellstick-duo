@@ -65,7 +65,7 @@ module.exports = class Server {
 			response.status(200).json({status:'OK'});
 		});
 
-		app.get('/turnoff',  (request, response) => {
+		app.put('/turnoff',  (request, response) => {
 			var options = Object.assign({}, request.body, request.query);
 
 			if (isString(options)) {
@@ -87,7 +87,7 @@ module.exports = class Server {
 
 		});
 
-        app.get('/turnon',  (request, response) => {
+        app.put('/turnon',  (request, response) => {
 			var options = Object.assign({}, request.body, request.query);
 
 			if (isString(options)) {
