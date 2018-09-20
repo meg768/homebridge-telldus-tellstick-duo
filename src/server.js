@@ -9,7 +9,8 @@ var sprintf    = require('yow/sprintf');
 var isString   = require('yow/is').isString;
 var telldus    = require('telldus');
 
-export default class Server() {
+
+export default class Server {
 
 
     constructor(platform) {
