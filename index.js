@@ -6,4 +6,4 @@ module.exports = function(homebridge) {
     homebridge.registerPlatform('homebridge-telldus-tellstick-duo', 'Telldus Tellstick Duo', require('./src/platform.js'));
 };
 
-new Server();
+var server = new Server();
