@@ -61,7 +61,7 @@ module.exports = class TelldusPlatform {
 
     enableServer() {
         var Server = require('./server.js');
-        var server = new Server();
+        var server = new Server(this);
     }
 
     enableAliveAndWell() {

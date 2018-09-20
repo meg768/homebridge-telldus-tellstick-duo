@@ -9,38 +9,15 @@ var sprintf    = require('yow/sprintf');
 var isString   = require('yow/is').isString;
 var telldus    = require('telldus');
 
-var Module = module.exports = function(options) {
+module.exports = class Server() {
 
 
+    constructor(platform) {
+        this.platform = platform;
+        this.devices = platform.config.devices;
+        this.log = platform.log;
 
-    options = options || {};
-
-
-	function defineRoutes(app) {
-
-		app.get('/hello', function (request, response) {
-			response.status(200).json({status:'OK'});
-		});
-
-		app.get('/off', function (request, response) {
-			var options = Object.assign({}, request.body, request.query);
-
-			if (isString(options)) {
-				options = {symbol:options};
-			}
-
-			response.status(200).json(options);
-
-		});
-
-
-
-	}
-
-	function run() {
-
-
-		Promise.resolve().then(function() {
+        Promise.resolve().then(function() {
 
             return Promise.resolve();
 
@@ -48,12 +25,12 @@ var Module = module.exports = function(options) {
 		.then(function() {
 			console.log('Initializing service...');
 
-			app.set('port', (options.port || 3000));
+			app.set('port', 3000);
 			app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 			app.use(bodyParser.json({limit: '50mb'}));
 			app.use(cors());
 
-			defineRoutes(app);
+			this.defineRoutes(app);
 
 			app.listen(app.get('port'), function() {
 				console.log("Tellstick service is running on port " + app.get('port'));
@@ -64,9 +41,39 @@ var Module = module.exports = function(options) {
 			console.error(error.stack);
 
 		});
+    }
+
+
+	defineRoutes(app) {
+
+		app.get('/hello', (request, response) => {
+			response.status(200).json({status:'OK'});
+		});
+
+		app.get('/turnoff',  (request, response) => {
+			var options = Object.assign({}, request.body, request.query);
+
+			if (isString(options)) {
+				options = {name:options};
+			}
+
+            var device = this.devices.find((iterator) => {
+                return iterator.name.toUpperCase() == options.name.toUpperCase();
+            });
+
+            if (device != undefined) {
+                this.log('Turning on', device.name);
+                telldus.turnOnSync(device.id);
+                telldus.turnOnSync(device.id);
+                telldus.turnOnSync(device.id);
+            }
+
+			response.status(200).json(options);
+
+		});
+
+
 
 	}
-
-    run();
 
 };
