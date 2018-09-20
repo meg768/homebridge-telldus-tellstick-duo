@@ -53,10 +53,15 @@ module.exports = class TelldusPlatform {
         this.enablePing();
         this.enableReboot();
         this.enableAliveAndWell();
-
+        this.enableServer();
     }
 
     debug() {
+    }
+
+    enableServer() {
+        var Server = require('./server.js');
+        var server = new Server();
     }
 
     enableAliveAndWell() {
@@ -181,7 +186,7 @@ module.exports = class TelldusPlatform {
         telldus.getDevicesSync();
         telldus.getDevicesSync();
         telldus.getDevicesSync();
-        
+
         telldus.getDevicesSync().forEach((item) => {
 
             if (item.type == 'DEVICE') {
