@@ -67,6 +67,9 @@ module.exports = class Server {
                 telldus.turnOnSync(device.id);
                 telldus.turnOnSync(device.id);
             }
+            else {
+                this.log('Device not found', options);
+            }
 
 			response.status(200).json(options);
 
