@@ -22,7 +22,7 @@ module.exports = class Server {
             return Promise.resolve();
 
 		})
-		.then(function() {
+		.then(() => {
 			console.log('Initializing service...');
 
 			app.set('port', 3000);
@@ -37,7 +37,7 @@ module.exports = class Server {
 			});
 
 		})
-		.catch(function(error) {
+		.catch((error) => {
 			console.error(error.stack);
 
 		});
