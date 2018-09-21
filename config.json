@@ -99,6 +99,7 @@
                     }
                 },
                 {
+                    "identity": "TRU",
                     "name": "Terassen",
                     "location": "Utomhus",
                     "type": "lightbulb",
@@ -116,6 +117,7 @@
                     }
                 },
                 {
+                    "identity": "SBL",
                     "name": "Saftblandare",
                     "type": "lightbulb",
                     "timer": 300,
@@ -128,6 +130,7 @@
                     }
                 },
                 {
+                    "identity": "BMA",
                     "name": "Belysning",
                     "location": "Matrummet",
                     "type": "lightbulb",
@@ -140,6 +143,7 @@
                     }
                 },
                 {
+                    "identity": "BVA",
                     "name": "Belysning",
                     "location": "Vardagsrummet",
                     "type": "lightbulb",
@@ -152,6 +156,7 @@
                     }
                 },
                 {
+                    "identity": "LRM",
                     "name": "Larm",
                     "type": "notification-switch",
                     "notify": {
@@ -167,7 +172,7 @@
                     }
                 },
                 {
-                    "identity": "BK01",
+                    "identity": "BKA",
                     "name": "Belysning 1",
                     "location": "Kontoret",
                     "type": "outlet",
@@ -180,7 +185,7 @@
                     }
                 },
                 {
-                    "identity": "BK02",
+                    "identity": "BKB",
                     "name": "Belysning 2",
                     "location": "Kontoret",
                     "type": "outlet",
@@ -193,6 +198,7 @@
                     }
                 },
                 {
+                    "identity": "RKL",
                     "name": "Ringklocka",
                     "alert": "Det ringer på dörren.",
                     "timer": 10,
@@ -205,18 +211,7 @@
                     }
                 },
                 {
-                    "name": "Bokhyllan",
-                    "location": "Biorummet",
-                    "type": "lightbulb",
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "10000001",
-                        "unit": "0",
-                        "group": "0"
-                    }
-                },
-                {
+                    "identity": "FBL",
                     "name": "Fönsterbelysning",
                     "protocol": "arctech",
                     "model": "selflearning-switch",
@@ -227,6 +222,7 @@
                     }
                 },
                 {
+                    "identity": "LDA",
                     "name": "Ledig 1",
                     "type": "outlet",
                     "protocol": "arctech",
@@ -238,6 +234,7 @@
                     }
                 },
                 {
+                    "identity": "LDB",
                     "name": "Ledig 2",
                     "type": "outlet",
                     "protocol": "arctech",
@@ -249,6 +246,7 @@
                     }
                 },
                 {
+                    "identity": "PNG",
                     "name": "Ping",
                     "type": "outlet",
                     "protocol": "arctech",
@@ -260,7 +258,7 @@
                     }
                 },
                 {
-                    "identity":"KK01",
+                    "identity":"KIK",
                     "name": "Kylen",
                     "location": "Källaren",
                     "type": "outlet",
