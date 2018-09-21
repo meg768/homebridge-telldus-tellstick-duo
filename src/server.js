@@ -105,7 +105,7 @@ module.exports = class Server {
                     this.turnOff(device);
                 }
 
-    			response.status(200).json(device);
+    			response.status(200).json({message:'OK'});
 
             }
             catch (error) {
