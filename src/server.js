@@ -47,16 +47,36 @@ module.exports = class Server {
     turnOn(device) {
         this.log('Turning on', device.name);
         telldus.turnOnSync(device.id);
-        telldus.turnOnSync(device.id);
-        telldus.turnOnSync(device.id);
+
+        setImmediate(() => {
+            telldus.turnOnSync(device.id);
+        });
+
+        setImmediate(() => {
+            telldus.turnOnSync(device.id);
+        });
+
+        setImmediate(() => {
+            telldus.turnOnSync(device.id);
+        });
 
     }
 
     turnOff(device) {
         this.log('Turning off', device.name);
         telldus.turnOffSync(device.id);
-        telldus.turnOffSync(device.id);
-        telldus.turnOffSync(device.id);
+
+        setImmediate(() => {
+            telldus.turnOffSync(device.id);
+        });
+
+        setImmediate(() => {
+            telldus.turnOffSync(device.id);
+        });
+
+        setImmediate(() => {
+            telldus.turnOffSync(device.id);
+        });
 
     }
 
@@ -115,49 +135,6 @@ module.exports = class Server {
 
 		});
 
-		app.put('/turnoff',  (request, response) => {
-			var options = Object.assign({}, request.body, request.query);
-
-			if (isString(options)) {
-				options = {name:options};
-			}
-
-            var device = this.devices.find((iterator) => {
-                return iterator.id == options.id;
-            });
-
-            if (device != undefined) {
-                this.turnOff(device);
-            }
-            else {
-                this.log('Device not found', options);
-            }
-
-			response.status(200).json(options);
-
-		});
-
-        app.put('/turnon',  (request, response) => {
-			var options = Object.assign({}, request.body, request.query);
-
-			if (isString(options)) {
-				options = {name:options};
-			}
-
-            var device = this.devices.find((iterator) => {
-                return iterator.id == options.id;
-            });
-
-            if (device != undefined) {
-                this.turnOn(device);
-            }
-            else {
-                this.log('Device not found', options);
-            }
-
-			response.status(200).json(options);
-
-		});
 
 
 	}

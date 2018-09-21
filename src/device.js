@@ -76,6 +76,9 @@ module.exports = class Device extends Accessory {
     }
 
     getSerialNumber() {
+        if (this.config.identity)
+            return sprintf('%s (%d)', this.config.identity, this.config.id);
+
         return this.config.id;
     }
 
