@@ -7,6 +7,7 @@ var cors = require('cors');
 
 var sprintf    = require('yow/sprintf');
 var isString   = require('yow/is').isString;
+var isNumber   = require('yow/is').isNumber;
 var telldus    = require('telldus');
 
 
@@ -63,6 +64,55 @@ module.exports = class Server {
 
 		app.get('/hello', (request, response) => {
 			response.status(200).json({status:'OK'});
+		});
+
+        app.put('/devices/:identity',  (request, response) => {
+            try {
+                var options = Object.assign({}, request.body, request.query);
+
+                if (options.state == undefined) {
+                    throw new Error('State not specified.');
+                }
+
+                if (isString(options.state)) {
+                    switch (options.state.toUpperCase()) {
+                        case 'ON': {
+                            options.state = true;
+                            break;
+                        }
+                        case 'OFF': {
+                            options.state = false;
+                            break;
+                        }
+                        default: {
+                            throw new Error('Invalid state specified');
+                        }
+                    }
+                }
+
+                var device = this.devices.find((iterator) => {
+                    return iterator.identity == request.params.identity;
+                });
+
+                if (device == undefined) {
+                    throw new Error('Specified device not found.');
+                }
+
+                if (options.state) {
+                    this.turnOn(device);
+                }
+                else {
+                    this.turnOff(device);
+                }
+
+    			response.status(200).json(device);
+
+            }
+            catch (error) {
+                response.status(404).json({error: error.message});
+
+            }
+
 		});
 
 		app.put('/turnoff',  (request, response) => {

@@ -167,6 +167,7 @@
                     }
                 },
                 {
+                    "identity": "BK01",
                     "name": "Belysning 1",
                     "location": "Kontoret",
                     "type": "outlet",
@@ -179,6 +180,7 @@
                     }
                 },
                 {
+                    "identity": "BK02",
                     "name": "Belysning 2",
                     "location": "Kontoret",
                     "type": "outlet",
@@ -258,7 +260,9 @@
                     }
                 },
                 {
-                    "name": "Ölkylen",
+                    "identity":"KK01",
+                    "name": "Kylen",
+                    "location": "Källaren",
                     "type": "outlet",
                     "protocol": "arctech",
                     "model": "selflearning-switch",
