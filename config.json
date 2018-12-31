@@ -269,6 +269,19 @@
                         "unit": "0",
                         "group": "0"
                     }
+                },
+                {
+                    "identity":"DIK",
+                    "name": "Diskbänken",
+                    "location": "Köket",
+                    "type": "outlet",
+                    "protocol": "arctech",
+                    "model": "selflearning-switch",
+                    "parameters": {
+                        "house": "10000007",
+                        "unit": "0",
+                        "group": "0"
+                    }
                 }
             ]
         }
