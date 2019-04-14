@@ -70,7 +70,7 @@ module.exports = class Accessory extends Events {
     }
 
     identify(callback) {
-        this.log('Identify called for accessory', this.device.name);
+        this.log('Identify called for accessory', this.name);
         callback();
     }
 
