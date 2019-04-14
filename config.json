@@ -1,9 +1,9 @@
 {
     "bridge": {
         "name": "Thyren 3",
-        "username": "CD:DD:3D:E3:CD:66",
+        "username": "CD:DD:3D:E3:CD:67",
         "port": 51826,
-        "pin": "239-45-100"
+        "pin": "239-45-101"
     },
     "description": "This is an example configuration file",
     "platforms": [
