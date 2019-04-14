@@ -12,8 +12,8 @@
             "name": "Telldus Tellstick Duo",
             "!reboot": "0 3 * * *",
             "!alive": "* * * * *",
-            "debug": false,
-            "pushover": {
+            "!debug": true,
+            "!pushover": {
                 "user": "my-pushover-user",
                 "token": "my-pushover-token"
             },
@@ -36,22 +36,6 @@
                     "model": "selflearning-switch",
                     "parameters": {
                         "house": "15452146",
-                        "unit": "16",
-                        "group": "0"
-                    }
-                },
-                {
-                    "name": "Rörelsevakt",
-                    "location": "Biorummet",
-                    "type": "motion-sensor",
-                    "timeout": "30",
-                    "notify": {
-                        "on": "Rörelse i biorummet"
-                    },
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "9674738",
                         "unit": "16",
                         "group": "0"
                     }
@@ -99,63 +83,6 @@
                     }
                 },
                 {
-                    "identity": "TRU",
-                    "name": "Terassen",
-                    "location": "Utomhus",
-                    "type": "lightbulb",
-                    "comment": "Brytaren sitter vid terass-dörren",
-                    "notify": {
-                        "on": "Terassen tänd",
-                        "off": "Terassen släckt"
-                    },
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "57954",
-                        "group": "0",
-                        "unit": "1"
-                    }
-                },
-                {
-                    "identity": "SBL",
-                    "name": "Saftblandare",
-                    "type": "lightbulb",
-                    "timer": 300,
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "unit": "10",
-                        "house": "17052298",
-                        "group": "0"
-                    }
-                },
-                {
-                    "identity": "BMA",
-                    "name": "Belysning",
-                    "location": "Matrummet",
-                    "type": "lightbulb",
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "593614",
-                        "unit": "1",
-                        "group": "0"
-                    }
-                },
-                {
-                    "identity": "BVA",
-                    "name": "Belysning",
-                    "location": "Vardagsrummet",
-                    "type": "lightbulb",
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "658966",
-                        "unit": "1",
-                        "group": "0"
-                    }
-                },
-                {
                     "identity": "LRM",
                     "name": "Larm",
                     "type": "notification-switch",
@@ -185,19 +112,6 @@
                     }
                 },
                 {
-                    "identity": "BKB",
-                    "name": "Belysning 2",
-                    "location": "Kontoret",
-                    "type": "outlet",
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "592186",
-                        "unit": "1",
-                        "group": "0"
-                    }
-                },
-                {
                     "identity": "RKL",
                     "name": "Ringklocka",
                     "alert": "Det ringer på dörren.",
@@ -211,41 +125,6 @@
                     }
                 },
                 {
-                    "identity": "FBL",
-                    "name": "Fönsterbelysning",
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "10000002",
-                        "unit": "0",
-                        "group": "0"
-                    }
-                },
-                {
-                    "identity": "LDA",
-                    "name": "Ledig 1",
-                    "type": "outlet",
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "10000003",
-                        "unit": "0",
-                        "group": "0"
-                    }
-                },
-                {
-                    "identity": "LDB",
-                    "name": "Ledig 2",
-                    "type": "outlet",
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "10000004",
-                        "unit": "0",
-                        "group": "0"
-                    }
-                },
-                {
                     "identity": "PNG",
                     "name": "Ping",
                     "type": "outlet",
@@ -253,32 +132,6 @@
                     "model": "selflearning-switch",
                     "parameters": {
                         "house": "10000005",
-                        "unit": "0",
-                        "group": "0"
-                    }
-                },
-                {
-                    "identity":"KIK",
-                    "name": "Kylen",
-                    "location": "Källaren",
-                    "type": "outlet",
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "10000006",
-                        "unit": "0",
-                        "group": "0"
-                    }
-                },
-                {
-                    "identity":"DIK",
-                    "name": "Diskbänken",
-                    "location": "Köket",
-                    "type": "outlet",
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "10000007",
                         "unit": "0",
                         "group": "0"
                     }

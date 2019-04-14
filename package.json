@@ -4,8 +4,10 @@
   "description": "Homebridge for Telldus Tellstick Duo",
   "main": "index.js",
   "scripts": {
+    "commit": "git add -A && git commit -m '-' && git push",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/meg768/homebridge-telldus-tellstick-duo.git"
