@@ -17,29 +17,32 @@ function install() {
     if (!homebridge.platforms)
         homebridge.platforms = [];
 
-    config.accessories.forEach((accessory) => {
+    if (config.accessories) {
+        config.accessories.forEach((accessory) => {
 
-        // Remove existing
-        homebridge.accessories = homebridge.accessories.filter((item) => {
-            return item.accessory.toLowerCase() != accessory.accessory.toLowerCase();
+            // Remove existing
+            homebridge.accessories = homebridge.accessories.filter((item) => {
+                return item.accessory.toLowerCase() != accessory.accessory.toLowerCase();
+            });
+    
+            // And add this one
+            homebridge.accessories.push(accessory);
+    
         });
-
-        // And add this one
-        homebridge.accessories.push(accessory);
-
-    });
-
-    config.platforms.forEach((platform) => {
-
-        // Remove existing platform from homebridge
-        homebridge.platforms = homebridge.platforms.filter((item) => {
-            return item.platform.toLowerCase() != platform.platform.toLowerCase();
+    
+        config.platforms.forEach((platform) => {
+    
+            // Remove existing platform from homebridge
+            homebridge.platforms = homebridge.platforms.filter((item) => {
+                return item.platform.toLowerCase() != platform.platform.toLowerCase();
+            });
+    
+            // And add this one
+            homebridge.platforms.push(platform);
+    
         });
-
-        // And add this one
-        homebridge.platforms.push(platform);
-
-    });
+    
+    }
 
 
     fs.writeFileSync(homebridgeConfig, JSON.stringify(homebridge, null, '    '));
