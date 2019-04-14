@@ -29,7 +29,9 @@ function install() {
             homebridge.accessories.push(accessory);
     
         });
-    
+
+    }
+    if (config.platforms) {
         config.platforms.forEach((platform) => {
     
             // Remove existing platform from homebridge
@@ -41,8 +43,9 @@ function install() {
             homebridge.platforms.push(platform);
     
         });
-    
+
     }
+    
 
 
     fs.writeFileSync(homebridgeConfig, JSON.stringify(homebridge, null, '    '));
