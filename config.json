@@ -99,19 +99,6 @@
                     }
                 },
                 {
-                    "identity": "BKA",
-                    "name": "Belysning 1",
-                    "location": "Kontoret",
-                    "type": "outlet",
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "592186",
-                        "unit": "2",
-                        "group": "0"
-                    }
-                },
-                {
                     "identity": "RKL",
                     "name": "Ringklocka",
                     "alert": "Det ringer på dörren.",
