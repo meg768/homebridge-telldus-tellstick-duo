@@ -99,6 +99,17 @@
                     }
                 },
                 {
+                    "identity": "JK",
+                    "name": "Jäskylen",
+                    "protocol": "arctech",
+                    "model": "selflearning-switch",
+                    "parameters": {
+                        "house": "10000006",
+                        "unit": "1",
+                        "group": "1"
+                    }
+                },
+                {
                     "identity": "RKL",
                     "name": "Ringklocka",
                     "alert": "Det ringer på dörren.",
