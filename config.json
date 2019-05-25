@@ -30,9 +30,6 @@
                     "location": "Kontoret",
                     "type": "motion-sensor",
                     "timeout": "30",
-                    "notify": {
-                        "on": "Rörelse på kontoret"
-                    },
                     "protocol": "arctech",
                     "model": "selflearning-switch",
                     "parameters": {
@@ -47,9 +44,6 @@
                     "location": "Vardagsrummet",
                     "type": "motion-sensor",
                     "timeout": "30",
-                    "notify": {
-                        "on": "Rörelse i vardagsrummet"
-                    },
                     "protocol": "arctech",
                     "model": "selflearning-switch",
                     "parameters": {
@@ -64,9 +58,6 @@
                     "location": "Matrummet",
                     "type": "motion-sensor",
                     "timeout": "30",
-                    "notify": {
-                        "on": "Rörelse i matrummet"
-                    },
                     "protocol": "arctech",
                     "model": "selflearning-switch",
                     "parameters": {
@@ -81,9 +72,6 @@
                     "location": "Trappan",
                     "type": "motion-sensor",
                     "timeout": "30",
-                    "notify": {
-                        "on": "Rörelse i trappan"
-                    },
                     "protocol": "arctech",
                     "model": "selflearning-switch",
                     "parameters": {
@@ -100,22 +88,6 @@
                         "group": "0",
                         "unit": "10",
                         "house": "19670382"
-                    }
-                },
-                {
-                    "identity": "LRM",
-                    "name": "Larm",
-                    "type": "notification-switch",
-                    "notify": {
-                        "on": "Larm aktiverat",
-                        "off": "Larm avaktiverat"
-                    },
-                    "protocol": "arctech",
-                    "model": "selflearning-switch",
-                    "parameters": {
-                        "house": "655218",
-                        "unit": "1",
-                        "group": "0"
                     }
                 },
                 {
@@ -156,7 +128,6 @@
                 {
                     "identity": "RKL",
                     "name": "Ringklocka",
-                    "alert": "Det ringer på dörren.",
                     "timer": 10,
                     "protocol": "arctech",
                     "model": "selflearning-switch",
