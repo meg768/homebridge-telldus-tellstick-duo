@@ -119,6 +119,30 @@
                     }
                 },
                 {
+                    "identity": "BIM",
+                    "location": "Matrummet",
+                    "name": "Belysning",
+                    "protocol": "arctech",
+                    "model": "selflearning-switch",
+                    "parameters": {
+                        "house": "593614",
+                        "unit": "1",
+                        "group": "0"
+                    }
+                },
+                {
+                    "identity": "BIV",
+                    "location": "Vardagsrummet",
+                    "name": "Belysning",
+                    "protocol": "arctech",
+                    "model": "selflearning-switch",
+                    "parameters": {
+                        "house": "658966",
+                        "unit": "1",
+                        "group": "0"
+                    }
+                },
+                {
                     "identity": "BKB",
                     "name": "Jäskylen",
                     "protocol": "arctech",
