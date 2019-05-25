@@ -25,6 +25,7 @@
             ],
             "devices": [
                 {
+                    "identity": "RV-01",
                     "name": "Rörelsevakt",
                     "location": "Kontoret",
                     "type": "motion-sensor",
@@ -41,6 +42,7 @@
                     }
                 },
                 {
+                    "identity": "RV-02",
                     "name": "Rörelsevakt",
                     "location": "Vardagsrummet",
                     "type": "motion-sensor",
@@ -51,18 +53,36 @@
                     "protocol": "arctech",
                     "model": "selflearning-switch",
                     "parameters": {
+                        "house": "59738098",
+                        "unit": "16",
+                        "group": "0"
+                    }
+                },
+                {
+                    "identity": "RV-03",
+                    "name": "Rörelsevakt",
+                    "location": "Matrummet",
+                    "type": "motion-sensor",
+                    "timeout": "30",
+                    "notify": {
+                        "on": "Rörelse i matrummet"
+                    },
+                    "protocol": "arctech",
+                    "model": "selflearning-switch",
+                    "parameters": {
                         "house": "62632946",
                         "unit": "16",
                         "group": "0"
                     }
                 },
                 {
+                    "identity": "RV-04",
                     "name": "Rörelsevakt",
-                    "location": "Köket",
+                    "location": "Trappan",
                     "type": "motion-sensor",
                     "timeout": "30",
                     "notify": {
-                        "on": "Rörelse i köket"
+                        "on": "Rörelse i trappan"
                     },
                     "protocol": "arctech",
                     "model": "selflearning-switch",
