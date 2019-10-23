@@ -2,7 +2,6 @@
 
 var Device = require('./device.js');
 var Timer = require('yow/timer');
-var isString = require('yow/is').isString;
 
 module.exports = class MotionSensor extends Device {
 

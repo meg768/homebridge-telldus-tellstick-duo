@@ -1,9 +1,6 @@
 "use strict";
 
 var Events   = require('events');
-var isString = require('yow/is').isString;
-var isObject = require('yow/is').isObject;
-var sprintf  = require('yow/sprintf');
 
 var uuids = {};
 

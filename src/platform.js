@@ -16,7 +16,7 @@ var Thermometer = require('./thermometer.js');
 var Hygrometer = require('./hygrometer.js');
 
 var sprintf = require('yow/sprintf');
-var isString = require('yow/is').isString;
+var isString = require('yow/isString');
 
 
 module.exports = class TelldusPlatform {

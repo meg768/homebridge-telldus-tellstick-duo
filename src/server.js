@@ -5,9 +5,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
-var sprintf    = require('yow/sprintf');
-var isString   = require('yow/is').isString;
-var isNumber   = require('yow/is').isNumber;
+var isString   = require('yow/isString');
 var telldus    = require('telldus');
 
 

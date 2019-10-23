@@ -1,9 +1,7 @@
 "use strict";
 var telldus   = require('telldus');
 var sprintf   = require('yow/sprintf');
-var isString  = require('yow/is').isString;
-var isObject  = require('yow/is').isObject;
-var isNumber  = require('yow/is').isNumber;
+var isNumber  = require('yow/isNumber');
 var Timer     = require('yow/timer');
 var Device    = require('./device.js');
 

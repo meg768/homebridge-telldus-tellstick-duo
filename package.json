@@ -1,6 +1,6 @@
 {
   "name": "homebridge-telldus-tellstick-duo",
-  "version": "1.0.49",
+  "version": "1.0.50",
   "description": "Homebridge for Telldus Tellstick Duo",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,7 @@
     "node-schedule": "^1.2.0",
     "pushover-notifications": "^0.2.4",
     "telldus": "^1.1.2",
-    "yow": "^1.0.94"
+    "yow": "^1.0.107"
   },
   "bugs": {
     "url": "https://github.com/meg768/homebridge-telldus-tellstick-duo/issues"
