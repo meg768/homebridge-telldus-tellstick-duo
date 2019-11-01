@@ -12,6 +12,11 @@
             "type": "npm",
             "script": "git-commit",
             "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "npm-publish",
+            "problemMatcher": []
         }
     ]
 }
